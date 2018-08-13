@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hospital</title>
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href='css/styles.css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="classes/class.js"></script>
+
+</head>
+
+
+<body id="body">
+    <nav>
+      <a href="/">
+        <img src="home-icon.png" height="60px;" />
+      </a>
+      <a href="#Anamnesi pazienti" class="menu-item">Anamnesi pazienti</a>
+      <a href="#Dottori" class="menu-item">Dottori</a>
+      <a href="#Pazienti" class="menu-item">Pazienti</a>
+
+    </nav>
+
+    <header class="page-header">
+      <div class="title-wrapper">
+        <h1 id="my-title" class="my-title">Hospital</h1>
+      </div>
+      <div class="title-wrapper">
+        <p>Anamnesi Pazienti</p>
+      </div>
+    </header>
+
+    <hr>
+
+    <div class="main-container">
+      <div id="id_btns_container" class="container">
+        <div style="display: flex; flex-direction: row; margin: 0" >
+          <p style="padding:0px 0px 0px 10px; width:400px">Cognome Nome </p>
+          <p style="width:200px">Data di nascita</p>
+          <p style="width:100px">Numero servizi</p>
+        </div>
+        <button href="#content-btn_person_0" id="id_btn_person_0" type="button" class="btn_btn-person" data-toggle="collapse">
+          <div style="display: flex; flex-direction: row; align-items:center; width:80%">
+            <p id="p_id_fullName_0" style="padding:0px 0px 0px 10px; width: 400px; height:auto;">full_name </p>
+            <p id="p_id_birthDate_0" style="width:200px">birth_date</p>
+            <p id="p_id_servicesNumber_0" style="width:100px">services_number</p>
+          </div>
+        </button>
+        <div id="content-btn_person_0" class="collapse" >
+          <table>
+              <tr>
+                <td id="id_imgSource_0" class="class_input_imgSource"
+                    width="200px"align="center">
+                    <!-- <input type="file" name="PicturePath" id="id_photoFile" accept="image/*" style="display:none"><br>
+                    <img id="id_photo_img" class='img img-responsive img-thumbnail' 
+                        src="images/patients_photos/mario_rossi.jpg" 
+                        style="cursor:pointer;" alt="Patient's Photo"
+                        onclick='return OpenFileBrowser(event)' /> -->
+
+                        <input type="file" id="id_photoFile_0" accept="image/*" name="img" onchange="changePhoto(this);" style="visibility: hidden; width: 1px; height: 1px"/>            
+                        <a href="" onclick="document.getElementById('id_photoFile_0').click(); return false">
+                          <img id="id_photo_image" class='img img-responsive img-thumbnail'  
+                              src="images/patients_photos/.jpg" alt="Patient's Photo" style="cursor:pointer; width: 100px; height: 140px;"/></a>
+                   
+                 </td>
+                <td width="60%">
+                    <form id="id_form_patient_0">
+                        <ul class="flex-outer">
+                          <li>
+                            <label for="first-name">Nome</label>
+                            <input type="text" id="id_name_0" name ="name" class="class_input_name" placeholder="Enter first name here">
+                          </li>
+                          <li>
+                            <label for="last-name">Cognome</label>
+                            <input type="text" id="id_surname_0" name ="surname" class="class_input_surname" placeholder="Enter last name here">
+                          </li>
+                          <li>
+                              <label for="gender">Sesso</label>
+                              <input type="text" id="id_gender_0" name = "gender" class="class_input_gender" placeholder="Enter gender here">
+                            </li>
+                          <li>
+                          <li>
+                              <label for="birthDate">Data di nascita</label>
+                              <input type="date" id="id_birthDate_0" name = "birthDate"  class="class_input_birthDate" placeholder="Enter birth date here">
+                            </li>
+                          <li>
+                            <label for="address">Indirizzo</label>
+                            <input type="text" id="id_address_0" name = "address" class="class_input_address" placeholder="Enter address here">
+                          </li>
+                          <li>
+                            <label for="civicNumber">Numero</label>
+                            <input type="text" id="id_number_0" name = "number" class="class_input_number" placeholder="Nr here">
+                          </li>
+                          <li>
+                              <label for="city">Città</label>
+                              <input type="text" id="id_city_0" name = "city" class="class_input_city" placeholder="Enter city here">
+                            </li>
+                          <li>
+                            <label for="zipCode">CAP</label>
+                            <input type="text" id="id_zip_0" name = "zip" class="class_input_zip" placeholder="Zip here"
+                              maxlength="5" max-width="20px">
+                          </li>
+                        </ul>
+                    </form>
+
+                    <button id="id_btn_patient_update_0" class="class_btn_patient_update">Aggiorna</button>
+
+                </td>
+              </tr>
+
+          </table>
+          <button href="#id_content-btn_service_0_0" id="id_btn_service_0_0"  
+            type="button" class="btn_btn-service" data-toggle="collapse" >Servizio 1 
+            <!-- <div style="display: flex; flex-direction: row; align-items:center" margin="0" > -->
+              <!-- <p id="p_id_Service_0" style="padding:0px 0px 0px 10px; width: 400px; height:auto;">Servizio 1 </p> -->
+            <!-- </div> -->
+          </button>
+          <div id="id_content-btn_service_0_0" class="collapse">
+            <table style="text-align: center;">
+              <tr>
+                <td width="50%">
+                  <form>
+                      <label for="label_select_service" >Servizio &nbsp</label>
+                      <select id="id_select_service_0_0" class="class_input_select" required>
+                          <option value="" disabled selected hidden>Selezionare un servizio...</option>
+                          <optgroup id="id_optGroup_visits" label="Visite">
+                              // loaded dynamically
+                            </optgroup>
+                            <optgroup id="id_optGroup_surgeries" label="Interventi">
+                              // loaded dynamically
+                            </optgroup>
+                      </select>
+
+                  </form> 
+                </td>
+                <td width="50%">
+                    <form>
+                        <label ="label_select_doctor" >Dottore &nbsp&nbsp</label>
+                        <select id="id_select_doctor_0_0" class="class_input_select" required>
+                            <!-- onchange="selectFront(this.value.split(',')[0]);selectBack(this.value.split(',')[1]);"> -->
+                            <optgroup id="id_optGroup_doctors" label="Medici"></optgroup>
+                              <option value="" disabled selected hidden>Selezionare un dottore...</option>
+
+                            </optgroup>
+                        </select>
+                    </form> 
+                </td>
+              </tr>
+              <tr id="id_tr_visit_0_0" class="class_input_tr_visit" style="display:none">
+                <td colspan="2">
+                    <div margin="auto" style="text-align:center;"></div>
+                      <p>centro</p>
+
+                      <div class="row">
+                        <div class="col-lg-8">
+                          <div class="input-group">
+                            
+                            <label for="checkupStatus" >Condizioni di salute &nbsp&nbsp</label>
+                            <select id="id_visitConditions_0_0" class="class_input_select" required>
+                              <optgroup label="Condizione di salute" ></optgroup>
+                                <option value="" disabled selected hidden>Selezionare lo stato di salute...</option>
+                                <option value="1">Buona salute</option>
+                                <option value="2">Qualche acciacco</option>
+                                <option value="3">Salute cagionevole</option>
+                                <option value="4">Condizioni gravi</option>
+                              </optgroup>
+                            </select>
+                            <label for="checkuptDate">Data della visita &nbsp</label>
+                            <input type="date" id="id_visitDate_0_0" class="class_input_visitDate" style="min-width:110" placeholder="Selezionare la data...">
+                    
+                          </div><br />
+                          <div class="input-group">
+                              <label for="notes">Note &nbsp</label>
+                              <textarea id="id_visitNotes_0_0" class="class_input_note" rows="3" cols = "230" width="100%" placeholder="Aggiungi eventuali note"></textarea>
+                              <button id="id_btn_visit_update_0_0" class="class_btn_visit_update">Aggiorna</button>
+                          </div>
+                        </div>
+                      </div>
+                    
+                    </div>
+                </td>
+                
+              </tr>
+              <tr id="id_tr_surgery_0_0" class="class_input_tr_surgery" style="display:none">
+                <td colspan="2">
+                  <div margin="auto" style="text-align:center;"></div>
+                    <p>centro</p>
+
+                    <div class="row">
+                      <div class="col-lg-8">
+                        <div class="input-group">
+                          
+                          <label for="surgeryResult">Esito dell'intervento &nbsp</label>
+                          <select id="id_surgeryConditions_0_0" class="class_input_select_surgery_result" required>
+                            <optgroup label="Condizione di salute"></optgroup>
+                              <option value="" disabled selected hidden>Selezionare l'esito dell'intervento...</option>
+                              <option value="1">Successo</option>
+                              <option value="2">Complicazioni</option>
+                              <option value="3">Decesso</option>
+                            </optgroup>
+                          </select>
+                          <label for="surgeryDate">Data dell'intervento &nbsp</label>
+                          <input type="date" id="id_surgeryDate_0_0" class="class_input_surgeryDate" style="min-width:110" placeholder="Selezionare la data...">
+                  
+                        </div><br />
+                        <div class="input-group">
+                            <label for="notes">Note &nbsp</label>
+                            <textarea id="id_surgeryNotes_0_0" class="class_input_note" rows="3" cols="230" width ="100%" box-sizing="boder-box"  id="message" width="100%" placeholder="Aggiungi eventuali note"></textarea>
+                            <button id="id_btn_surgery_update_0_0" class="class_btn_surgery_update">Aggiorna</button>
+                        </div>
+                      </div>
+                    </div>
+                  
+                </td>
+              
+              </tr>
+            </table>
+            
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script src='scripts/jscript.js'>
+    </script>
+
+    <!-- <script>
+      $( ".btn_btn-person" ).click(function() {
+      $( ".btn_btn-person" ).css('content', '\2796');
+      });
+    </script> -->
+    <!-- <script>
+      var coll = document.getElementsByClassName("collapsible_person");
+      var i;
+
+      for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+              this.classList.toggle("active");
+              var content = this.nextElementSibling;
+              if (content.style.display === "block") {
+                  content.style.display = "none";
+              } else {
+                  content.style.display = "block";
+              }
+          });
+      }
+    </script> -->
+
+  </body>
+
+
+</html>
