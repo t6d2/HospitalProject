@@ -79,8 +79,6 @@ function UpdatePersonFieldsPage(entry){
   
 }
 
-
-
 function CloneServices(entry) {
 
   let divName = "id_content-btn_service_" + entry.id + '_'
@@ -118,8 +116,6 @@ function CloneServices(entry) {
 
   LoadServiceDetail(entry, 1)
 
- 
-
   //clone services if > 1
   if (entry.servicesNumber > 1) {
     for (let i=2; i <= entry.servicesNumber; i++){
@@ -140,10 +136,8 @@ function CloneServices(entry) {
 
 function LoadServiceDetail(entry, serviceNumber) {
 
-  console.log(entry, serviceNumber, entry.servicesList, entry.servicesList[serviceNumber-1])
-  console.log(entry.servicesList[serviceNumber-1].dptName)
-  $("#id_select_service_" + entry.id + "_" + serviceNumber + " option:contains(" + entry.servicesList[serviceNumber-1].dptName  +")").attr("selected", true)
-
+  // $("#id_select_service_" + entry.id + "_" + serviceNumber + " option:contains(" + entry.servicesList[serviceNumber-1].dptName  +")").attr("selected", true)
+  
   month = (1 + entry.servicesList[serviceNumber-1].serviceDate.getMonth()).toString();
   month = month.length > 1 ? month : '0' + month;
   day = entry.servicesList[serviceNumber-1].serviceDate.getDate().toString();
@@ -151,23 +145,32 @@ function LoadServiceDetail(entry, serviceNumber) {
   dateString = entry.servicesList[serviceNumber-1].serviceDate.getFullYear() + "-" + month + "-" + day
   
   if(entry.servicesList[serviceNumber-1].type == "visita") {
+    $("#id_select_service_" + entry.id + "_" + serviceNumber + " > optgroup[id='id_optGroup_visits']")
+    .find("option:contains(" + entry.servicesList[serviceNumber-1].dptName  +")")
+      .attr("selected","selected");
     document.body.querySelector('#id_visitDate_' + entry.id + '_' + serviceNumber)
       .setAttribute('value', dateString)
     document.body.querySelector('#id_visitNotes_' + entry.id + '_' + serviceNumber)
       .value = entry.servicesList[serviceNumber-1].serviceNotes
     $("#id_visitConditions_" + entry.id + "_" + serviceNumber + " option:contains(" + entry.servicesList[serviceNumber-1].healthConditions  +")").attr("selected", true)
-    $("tr[id^='id_tr_visit_" + entry.id + '_' + serviceNumber + "']").show()
-    $("tr[id^='id_tr_surgery_" + entry.id + '_' + serviceNumber + "']").hide();
-    // $("#id_visitConditions_" + entry.id + "_" + serviceNumber + " option[text='" + entry.servicesList[serviceNumber-1].healthConditions +"']").attr("selected","selected")
+    
   } else {
+    $("#id_select_service_" + entry.id + "_" + serviceNumber + " > optgroup[id='id_optGroup_surgeries']")
+    .find("option:contains(" + entry.servicesList[serviceNumber-1].dptName  +")")
+      .attr("selected","selected");
     document.body.querySelector('#id_surgeryDate_' + entry.id + '_' + serviceNumber)
       .setAttribute('value', dateString)
     elementCreated = document.body.querySelector('#id_surgeryNotes_' + entry.id + '_' + serviceNumber)
       .value =  entry.servicesList[serviceNumber-1].serviceNotes
     $("#id_surgeryConditions_" + entry.id + "_" + serviceNumber + " option:contains(" + entry.servicesList[serviceNumber-1].healthConditions  +")").attr("selected", true)
-    $("tr[id^='id_tr_visit_" + entry.id + '_' + serviceNumber + "']").hide()
-    $("tr[id^='id_tr_surgery_" + entry.id + '_' + serviceNumber + "']").show()
+
   }
+
+  //set selectedItem service 
+  $("#id_select_service_" + entry.id + "_" + serviceNumber).change(); 
+  // set selectedItem doctor
+  let doctorCompletName = doctors.find(item=>item.id==entry.servicesList[serviceNumber-1].doctorId).completeName;
+  $("#id_select_doctor_" + entry.id + "_" + serviceNumber + " option:contains(" + doctorCompletName  +")").attr("selected", true)
 
 }
 
@@ -191,10 +194,10 @@ function ServicesSelectPopulate () {
 
 function DoctorsSelectPopulate (doctorsArraySelect, id_content_service) {
 
-  //remove all options except the first
+  //remove all options 
    let $div = document.body.querySelector('#' + id_content_service).querySelector('#id_optGroup_doctors')
   $($div).find("option").remove()
-
+  //populate
   let depArray = Array.from(departments)
   for(i = 0; i < doctorsArraySelect.length; i++) {
     let option = document.createElement("option")
@@ -219,6 +222,26 @@ function UpdatePatientObjectData(inputArray, idPatient) {
   UpdateButtonPerson(patientToUpdate, idPatient)
 }
 
+function UpdatePatientObjectServiceData(inputArray, idPatient, idService) {
+  
+  var patientToUpdate = patients.find(item=>item.id==idPatient);
+  var serviceToUpdate = patientToUpdate.servicesList.find(item=>item.serviceId==idService);
+  console.log(0, inputArray)
+  console.log(1, patientToUpdate, serviceToUpdate)
+  for(var i in inputArray){
+    console.log(2, patientToUpdate.servicesList[idService-1][inputArray[i].name])
+    patientToUpdate.servicesList[idService-1][inputArray[i].name] = inputArray[i].value
+
+  }
+  
+
+  var dateObject = new Date(patientToUpdate.servicesList[idService].serviceDate);
+  patientToUpdate.servicesList[idService].serviceDate = dateObject
+  console.log(3, patientToUpdate)
+
+  
+}
+
 
 // main
 var departments = []
@@ -233,7 +256,6 @@ departments.push(new Department(7,'oncologia', [9, 10], []))
 departments.push(new Department(8,'ortopedia',[22, 23, 24],[22, 23]))
 departments.push(new Department(9,'otorinolaringoiatria', [11, 12, 13],[12, 13]))
 departments.push(new Department(10,'pneumologia', [14, 15], []))
-
 
 var doctors = []
 doctors.push(new Doctor(1, 'Dott.','Albino', 'Arnaldi', 'cardiologia'))
@@ -265,19 +287,17 @@ doctors.push(new Doctor(26, 'Dott.','Carlo', 'Cori', 'generale'))
 doctors.push(new Doctor(27, 'Dott.','Danilo', 'Dondi', 'generale'))
 doctors.push(new Doctor(28, 'Dott.','Fabio', 'Fabi', 'generale'))
 
-
 var patients = [];
 patients.push(new Patient(1,'Mario','Rossi', 'maschio',new Date("1973-10-21"), 'Piazza Garibaldi',11,'Udine',33100, 2, 'images/patients_photos/mario_rossi.jpg' ));
 patients.push(new Patient(2, 'Andrea','Bianchi', 'maschio',new Date("1980-03-23"), 'Via Roma',10,'Udine',33100, 1, 'images/patients_photos/andrea_bianchi.jpg' ));
 patients.push(new Patient(3, 'Anna','Rosi', 'femmina',new Date("1982-04-11"), 'Via Matteotti',13,'Cividale del Friuli',33043, 3, 'images/patients_photos/anna_rosi.jpg' ));
 
-
-patients[0].addService(new PatientService('oculistica','visita','Buona salute',new Date("2018-00-15"), 'Miopia, prescrizione occhiali', ''))
-patients[0].addService(new PatientService('oculistica','visita','Qualche acciacco', new Date("2018-03-20"), 'Irritazione continua agli occhi, prescritte gocce giornaliere',''))
-patients[1].addService(new PatientService('generale','visita','Salute cagionevole',new Date("2018-02-04"), 'Pressione alta prescritte pillole - giramenti di testa dovuti alla cervicale ', ''))
-patients[2].addService(new PatientService('ortopedia','visita','Buona salute',new Date("2018-02-07"), 'Ginocchio in condizioni critiche prevedere intervento', ''))
-patients[2].addService(new PatientService('neurologia','visita','Qualche acciacco',new Date("2018-04-11"), 'Problemi di deambulazione - prescritte analisi più accurate', ''))
-patients[2].addService(new PatientService('cardiologia','intervento','Condizioni gravi',new Date("2018-07-20"), 'Eseguito intervento con bypass - anestesia più lunga del previsto dovuta a complicaziioni . Prognosi riservata', ''))
+patients[0].addService(new PatientService(1, 'oculistica', 7, 'visita','Buona salute',new Date("2018-00-15"), 'Miopia, prescrizione occhiali', ''))
+patients[0].addService(new PatientService(2, 'oculistica', 6, 'visita','Qualche acciacco', new Date("2018-03-20"), 'Irritazione continua agli occhi, prescritte gocce giornaliere',''))
+patients[1].addService(new PatientService(1, 'generale', 26,'visita','Salute cagionevole',new Date("2018-02-04"), 'Pressione alta prescritte pillole - giramenti di testa dovuti alla cervicale ', ''))
+patients[2].addService(new PatientService(1, 'ortopedia', 23,'visita','Buona salute',new Date("2018-02-07"), 'Ginocchio in condizioni critiche prevedere intervento', ''))
+patients[2].addService(new PatientService(2, 'nefrologia', 16,'visita','Qualche acciacco',new Date("2018-04-11"), 'Dolori persistenti zona renale - prescritta ecografia', ''))
+patients[2].addService(new PatientService(3, 'cardiologia', 3,'intervento','Complicazioni',new Date("2018-07-20"), 'Eseguito intervento con bypass - anestesia più lunga del previsto dovuta a complicaziioni . Prognosi riservata', ''))
 patients.sort(dynamicSort("fullName"));
 
  // populate dropdown services
@@ -323,6 +343,8 @@ $('select[id^=id_select_service_]').on('change', function(){
   let doctorsArray = Array.from(doctors)
   let doctorsArraySelect = []
   let servicesArray = []
+
+  // console.log(selected, selected.parent()[0].label)
   if(selected.parent()[0].label=="Visite")
     servicesArray = dptsArray[this.value].visitDoctorsList
   if(selected.parent()[0].label=="Interventi")
@@ -349,28 +371,53 @@ function dynamicSort(property) {
 }
 
 $('.btn_btn-person').click (function() {
-  var idTag = this.id
-  id = parseInt(idTag.substr(idTag.lastIndexOf('_') + 1));
+
+  id = parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
   var entry = patients.find(entry => entry.id === id)
 
   CloneServices(entry)
 })
 
 $('.class_btn_patient_update').click(function () {
-  var idTag = this.id
-  idPatient = parseInt(idTag.substr(idTag.lastIndexOf('_') + 1));
-  // var entry = patients.find(entry => entry.id === id)
 
+  idPatient = parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
   let inputArray = $('#id_form_patient_' + idPatient).serializeArray()
   
   UpdatePatientObjectData(inputArray, idPatient)
+
+});
+
+$('.class_btn_service_update').click(function () {
+  
+  let service = "visit"
+  if(this.id.indexOf("sugery") != -1)
+    service = "sugery"
+
+  let idPatient = this.id.substring(/\d/.exec(this.id).index, (this.id).lastIndexOf('_'))
+  let idService = this.id.substring((this.id).lastIndexOf('_') + 1)
+  
+  let inputArray = $('#id_form_' + service + '_' + idPatient + '_' + idService).serializeArray()
+  
+  inputArray.unshift({ 
+    name: 'dptName',
+    value: $("#id_select_service_" + idPatient + '_' + idService + " option:selected").text() 
+  });
+  inputArray.unshift({ 
+    name: 'doctorId',
+    value: parseInt($("#id_select_doctor_" + idPatient + '_' + idService + " option:selected").val())
+  });
+  inputArray.push({ 
+    name: 'healthConditions',
+    value: $("#id_visitConditions_" + idPatient + '_' + idService + " option:selected").text() 
+  });
+  console.log('00', service,  idPatient, idService, inputArray)
+  UpdatePatientObjectServiceData(inputArray, idPatient, idService)
 });
 
 
 function changePhoto(elem) {
 
-  let parentElement = elem.parentNode
-
+  // let parentElement = elem.parentNode
   // console.log(1, elem, parentElement)
   if (elem.files && elem.files[0]) {
       var reader = new FileReader();

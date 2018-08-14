@@ -55,8 +55,10 @@ class Department
 }
     
 class PatientService {
-  constructor(dptName, type, healthConditions, serviceDate, serviceNotes, pointsList){
+  constructor(serviceId, dptName, doctorId, type, healthConditions, serviceDate, serviceNotes, pointsList){
+    this.serviceId = serviceId
     this.dptName = dptName
+    this.doctorId = doctorId
     this.type = type
     this.healthConditions = healthConditions
     this.serviceDate = serviceDate
