@@ -75,16 +75,22 @@
                       <li>
                         <label for="first-name">Nome</label>
                         <input type="text" id="id_name_0" name ="name" class="class_input_name" 
-                                placeholder="Inserire il nome" required pattern="[A-Za-z]+" autofocus>
+                                placeholder="Inserire il nome" required pattern="[A-Za-z]+" >
                       </li>
                       <li>
                         <label for="last-name">Cognome</label>
                         <input type="text" id="id_surname_0" name ="surname" class="class_input_surname" 
-                                placeholder="Inserire il cognome"  pattern="[A-Za-z]+"  required  >
+                                placeholder="Inserire il cognome" required pattern="[A-Za-z]+"    >
                       </li>
                       <li>
-                          <label for="gender">Sesso</label>
-                          <input type="text" id="id_gender_0" name = "gender" class="class_input_gender" placeholder="Inserire il genere" required>
+                          <label for="gender">Genere</label>
+                          <select id="id_gender_0" name="gender" class="class_input_gender" required>
+                            <option value="" disabled selected hidden>genere...</option>
+                            <option value="maschio">maschio</option>
+                            <option value="female">femmina</option>
+                            <option value="altro">altro</option>
+                          </select>
+                          <!-- <input type="text" id="id_gender_0" name = "gender" class="class_input_gender" placeholder="Inserire il genere" required> -->
                       </li>
                       <li>
                       <li>
@@ -94,12 +100,12 @@
                       <li>
                         <label for="address">Indirizzo</label>
                         <input type="text" id="id_address_0" name = "address" class="class_input_address" 
-                                placeholder="Inserire l'indirizzo" pattern="[A-Za-z]+" required>
+                                placeholder="Inserire l'indirizzo" required pattern="[A-Za-z]+" >
                       </li>
                       <li>
                         <label for="civicNumber">Numero</label>
                         <input type="text" id="id_number_0" name = "number" class="class_input_number" 
-                            placeholder="Numero civico" pattern="[1-9A-Za-z]+" required>
+                            placeholder="Numero civico" required pattern="[1-9A-Za-z]+" >
                       </li>
                       <li>
                           <label for="city">Città</label>
@@ -108,11 +114,11 @@
                       </li>
                       <li>
                         <label for="zipCode">CAP</label>
-                        <input type="text" id="id_zip_0" name = "zip" class="class_input_zip" placeholder="CAP" required
-                              pattern ="[0-9]{5}" maxlength="5" max-width="20px">
+                        <input type="text" id="id_zip_0" name = "zip" class="class_input_zip" 
+                                placeholder="CAP" required pattern ="[0-9]{5}" maxlength="5" max-width="20px">
                       </li>
                     </ul>
-                    <!-- <input type=submit id="id_btn_patient_update_0" class="class_btn_patient_update" value="Aggiorna"/> -->
+                    
                   </form>
               </td>
               <td width="10%" valign="top" padding="10px 0px 0px 0px">
@@ -121,14 +127,14 @@
             </tr>
             <tr >
               <td colspan=3>
-                  <button id="id_btn_patient_update_0" class="class_btn_patient_update">Aggiorna</button>
+                  <button type="submit" id="id_btn_patient_update_0" class="class_btn_update_patient">Aggiorna</button>
               </td>
             </tr>
             
 
           </table>
           <button href="#id_content-btn_service_0_0" id="id_btn_service_0_0"
-                  type="button" class="btn_btn-service" data-toggle="collapse" >Servizio 1
+                  type="button" class="btn_btn-service" data-toggle="collapse" >Servizio
             <!-- <div style="display: flex; flex-direction: row; align-items:center" margin="0" > -->
               <!-- <p id="p_id_Service_0" style="padding:0px 0px 0px 10px; width: 400px; height:auto;">Servizio 1 </p> -->
             <!-- </div> -->
@@ -196,7 +202,7 @@
                         </div>
                       </div>
                     </form>
-                    <button id="id_btn_visit_update_0_0" class="class_btn_service_update">Aggiorna</button>
+                    <button id="id_btn_visit_update_0_0" class="class_btn_update_service">Aggiorna</button>
                   </div>
                 </td>
 

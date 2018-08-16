@@ -23,7 +23,7 @@ function CloneBtnPerson(entry, isNewPatient) {
   contentPatientElement.querySelector('#id_form_patient_0').setAttribute('id', 'id_form_patient_' + entry.id)
   contentPatientElement.querySelector('#id_button_add_service_0').setAttribute('id', 'id_button_add_service_' + entry.id)
 
-  //remove default service
+  //remove default service from the content_person cloned
   contentPatientElement.querySelector('#id_btn_service_0_0').remove()
   contentPatientElement.querySelector('#id_content-btn_service_0_0').remove()
   
@@ -35,9 +35,7 @@ function CloneBtnPerson(entry, isNewPatient) {
     elem = document.getElementById('id_btn_person_' + entry.id);
     document.getElementById(elem.id).style.display = 'inline-flex';
     document.getElementById(elem.id).className = 'btn_btn-person active'
-    // elem = document.getElementById('id_button_add_service_' + entry.id);
     document.getElementById('id_button_add_service_' + entry.id).style.display = 'none';
-    
 
   }
 }
@@ -81,16 +79,18 @@ function UpdatePersonFieldsPage(entry){
         elementCreated.setAttribute('value', entry[key])
       }
       elementCreated.id = 'id_' + key + '_' + entry.id
-
     }
   }
-
+  if(entry.gender != "")  
+    $("#id_gender_" + entry.id +  " option:contains(" + entry.gender  +")").attr("selected", true)
+  else
+    $("#id_gender_" + entry.id).attr("selectedIndex", -1);
   let $div =  document.body.querySelector('#id_content-btn_person_' + entry.id).querySelector('#id_btn_patient_update_0')
   $div.setAttribute('id', 'id_btn_patient_update_' + entry.id)
   
 }
 
-function CloneServices(entry) {
+function CloneServicesInitialLoad(entry) {
 
   // remove all services
   let $contenitor = $("#id_content-btn_person_" + entry.id).find("button[id^='id_btn_service_']")
@@ -101,29 +101,19 @@ function CloneServices(entry) {
   if($contenitor.length > 0){
     $contenitor.remove()
   }
-
   if(entry.servicesNumber == 0){
     return
   }
- 
-  //create first service from default 0_0
-  let elementCloned = $('#id_btn_service_0_0').clone(true).attr('id', 'id_btn_service_' + entry.id + '_' + 1)
 
-  $('#id_content-btn_person_' + entry.id).append(elementCloned)
-  document.getElementById('id_btn_service_' + entry.id + '_' + 1).setAttribute('href', '#id_content-btn_service_' + entry.id + '_' + 1)
-  document.getElementById('id_btn_service_' + entry.id + '_' + 1).innerHTML = "Servizio " + 1
- 
-  $('#id_content-btn_person_' + entry.id).append($('#id_content-btn_service_0_0').clone(true).attr('id', 'id_content-btn_service_' + entry.id + '_' + 1))
-  elements = $('#id_content-btn_service_' + entry.id + '_' + 1).find('*[id$=_0_0]');
-  for(let j = 0; j < elements.length; j++){
-    elements[j].id = elements[j].id.replace('_0_0', '_' + entry.id + '_' + 1)
-  }
-  
+  //create first service from default 0_0
+  CloneDefaultService (entry, 1)
+
   AddListener(document.getElementById("id_btn_service_" + entry.id + "_" + 1))
 
   LoadServiceDetail(entry, 1)
 
-  //clone services if > 1
+  //clone all services from the previous till servicesNumber 
+  
   if (entry.servicesNumber > 1) {
     for (let i=2; i <= entry.servicesNumber; i++){
       $('#id_btn_service_' + entry.id + '_' + (i-1)).clone(true).attr('id', 'id_btn_service_' + entry.id + '_' + i).insertAfter('#id_content-btn_service_' + entry.id + '_' + (i-1));
@@ -143,10 +133,21 @@ function CloneServices(entry) {
   }
 }
 
-function LoadServiceDetail(entry, serviceNumber) {
+function CloneDefaultService (entry, serviceToCreate){
+  let elementCloned = $('#id_btn_service_0_0').clone(true).attr('id', 'id_btn_service_' + entry.id + '_' + serviceToCreate)
+  $('#id_content-btn_person_' + entry.id).append(elementCloned)
+  document.getElementById('id_btn_service_' + entry.id + '_' + serviceToCreate).setAttribute('href', '#id_content-btn_service_' + entry.id + '_' + serviceToCreate)
+  document.getElementById('id_btn_service_' + entry.id + '_' + serviceToCreate).innerHTML = "Servizio " + serviceToCreate
+ 
+  $('#id_content-btn_person_' + entry.id).append($('#id_content-btn_service_0_0').clone(true).attr('id', 'id_content-btn_service_' + entry.id + '_' + serviceToCreate))
+  elements = $('#id_content-btn_service_' + entry.id + '_' + serviceToCreate).find('*[id$=_0_0]');
+  for(let j = 0; j < elements.length; j++){
+    elements[j].id = elements[j].id.replace('_0_0', '_' + entry.id + '_' + serviceToCreate)
+  }
+}
 
-  // $("#id_select_service_" + entry.id + "_" + serviceNumber + " option:contains(" + entry.servicesList[serviceNumber-1].dptName  +")").attr("selected", true)
-  
+function LoadServiceDetail(entry, serviceNumber) {
+ 
   month = (1 + entry.servicesList[serviceNumber-1].serviceDate.getMonth()).toString();
   month = month.length > 1 ? month : '0' + month;
   day = entry.servicesList[serviceNumber-1].serviceDate.getDate().toString();
@@ -203,10 +204,10 @@ function ServicesSelectPopulate () {
 
 function DoctorsSelectPopulate (doctorsArraySelect, id_content_service) {
 
-  //remove all options 
+  //remove all options from select doctor
    let $div = document.body.querySelector('#' + id_content_service).querySelector('#id_optGroup_doctors')
   $($div).find("option").remove()
-  //populate
+  //populate select doctor 
   let depArray = Array.from(departments)
   for(i = 0; i < doctorsArraySelect.length; i++) {
     let option = document.createElement("option")
@@ -219,11 +220,10 @@ function DoctorsSelectPopulate (doctorsArraySelect, id_content_service) {
 
 function UpdatePatientObjectData(inputArray, idPatient) {
   
-  var patientToUpdate = patients.find(item=>item.id==idPatient);
-  for(var i in inputArray)
+  let patientToUpdate = patients.find(item=>item.id==idPatient);
+  for(let i in inputArray)
     patientToUpdate[inputArray[i].name] = inputArray[i].value
-
-    var dateObject = new Date(patientToUpdate.birthDate);
+    let dateObject = new Date(patientToUpdate.birthDate);
     patientToUpdate.birthDate = dateObject
 
   UpdateButtonPerson(patientToUpdate, idPatient)
@@ -231,12 +231,11 @@ function UpdatePatientObjectData(inputArray, idPatient) {
 
 function UpdatePatientObjectServiceData(inputArray, idPatient, idService) {
 
-  var patientToUpdate = patients.find(item=>item.id==idPatient);
-  // var serviceToUpdate = patientToUpdate.servicesList.find(item=>item.serviceId==idService);
-  for(var i in inputArray)
-    patientToUpdate.servicesList[idService-1][inputArray[i].name] = inputArray[i].value
+  let patientToUpdate = patients.find(item=>item.id==idPatient);
 
-  var dateObject = new Date(patientToUpdate.servicesList[idService-1].serviceDate);
+  for(let i in inputArray)
+    patientToUpdate.servicesList[idService-1][inputArray[i].name] = inputArray[i].value
+    let dateObject = new Date(patientToUpdate.servicesList[idService-1].serviceDate);
   patientToUpdate.servicesList[idService-1].serviceDate = dateObject
 
 }
@@ -249,15 +248,27 @@ function CreateNewPatient(){
   CloneBtnPerson(patients[patients.length-1], true)
 
   AddListener(document.getElementById("id_btn_person_" + newPatientId))
-  console.log(0,patients)
+  
 }
 
-function CreateNewService(patientID) {
+function CreateNewService(patientId) {
   
   patientIndex = patients.findIndex(x => x.id == patientId)
-  console.log(patientID, patientIndex)
-  let newSeviceId= Math.max(...patients[patientIndex].servicesList.map(o => o.serviceId)) + 1
-  console.log(newSeviceId)
+  
+  let newServiceId= Math.max(...patients[patientIndex].servicesList.map(o => o.serviceId)) + 1
+  
+  if(newServiceId== -Infinity)
+    newServiceId = 1
+
+  patients[patientIndex].servicesNumber = newServiceId
+
+  CloneDefaultService (patients[patientIndex], newServiceId)
+
+  patients[patientIndex].addService(new PatientService(newServiceId, '',null , '','',new Date(), '', ''))
+  document.body.querySelector('#id_btn_person_' + patientId).querySelector('#p_id_servicesNumber_' + patientId)
+    .innerHTML =  newServiceId
+  AddListener(document.getElementById("id_btn_service_" + patients[patientIndex].id + "_" + newServiceId))
+
 }
 
 // main
@@ -329,8 +340,10 @@ elem = document.getElementById('id_btn_person_0');
 document.getElementById(elem.id).style.display = 'none';
 
 var buttonClasses =  Array.from(document.getElementsByClassName("btn_btn-person"))
-for (let i = 0; i < buttonClasses.length; i++) 
+for (let i = 0; i < buttonClasses.length; i++) {
   AddListener(buttonClasses[i])
+}
+  
  // end main 
 
 
@@ -390,24 +403,28 @@ $('.btn_btn-person').click (function() {
   id = parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
   var entry = patients.find(entry => entry.id === id)
 
-  CloneServices(entry)
+  CloneServicesInitialLoad(entry)
 })
 
-$(document).on('click', ".class_btn_patient_update", function () {
-  console.log(1,patients)
-  idPatient = parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
-  let inputArray = $('#id_form_patient_' + idPatient).serializeArray()
+$(document).on('click', ".class_btn_update_patient", function () {
 
-  var form = document.getElementById('id_form_patient_' + idPatient);
+  idPatient = parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
+  
+  let form = document.getElementById('id_form_patient_' + idPatient);
+  console.log('b', form.elements.length)
   for(var i=0; i < form.elements.length; i++){
-    if(form.elements[i].value.trim() == '' && form.elements[i].hasAttribute('required')){
-      form.elements[i].value = " "
-      console.log(form.elements[i])
-      alert('I campi evidenziati devono essere compilati!!');
+    console.log('c' + i, form, (form.elements[i].value.trim() == '' && form.elements[i].hasAttribute('required')))
+    if((form.elements[i].value.trim() == '' && form.elements[i].hasAttribute('required'))){
+      console.log('d' + i, form.elements[i], 'value' + form.elements[i].value)
+      document.getElementById('id_form_patient_' + id).value = " "
+      alert('I campi evidenziati devono essere compilati correttamente!!');
+      
       return false;
     }
-  }
 
+  }
+  let inputArray = $('#id_form_patient_' + idPatient).serializeArray()
+  console.log('a', inputArray)
   UpdatePatientObjectData(inputArray, idPatient)
   
   alert("Dati del paziente aggiornati!!")
@@ -415,7 +432,7 @@ $(document).on('click', ".class_btn_patient_update", function () {
 
 });
 
-$('.class_btn_service_update').click(function () {
+$('.class_btn_update_service').click(function () {
   let service = "visit"
   if(this.id.indexOf("surgery") != -1)
     service = "surgery"
@@ -471,9 +488,7 @@ function changePhoto(elem) {
 }
 
 $('#id_button_add_patient').click(function(){
-  
    CreateNewPatient()  
-   
 })
 
 $(document).on('click', ".btn_add_service", function () {

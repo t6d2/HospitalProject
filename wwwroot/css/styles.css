@@ -230,6 +230,13 @@ button[class^='btn_add_']  {
   background-color: inherit;
 }
 
+button[class^='class_btn_update_']  {
+
+  width: auto; 
+  min-width:160; 
+  background-color: inherit;
+}
+
 form{
   padding: 5px
 }
@@ -263,7 +270,7 @@ label {
   padding: 0px 0px 0px 10px;
 }
 
-input[class^='class_input_'] , textarea {
+input[class^='class_input_'] , select[class^='class_input_'], textarea {
   font-size: 12px;
   padding: 0;
   background-color: aliceblue;
@@ -291,7 +298,7 @@ select {
 
 select:invalid { 
   color: gray;
-  margin: 10px 0px 0px 0px
+  margin: 0px 0px 0px 0px
  }
 
  footer {
