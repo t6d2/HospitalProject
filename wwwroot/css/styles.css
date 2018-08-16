@@ -1,26 +1,47 @@
 
+
+
 body {
   margin: 0;
   padding: 0;
   background-color: #afd5e0;
-  overflow-y:scroll
+  overflow-y:scroll;
+  
 }
 
 .main-container {
   margin: 0 auto;
   width: 90%;
   display:block;
-  align-content: center
+  align-content: center;
+  overflow-y: auto
 }
 
+.header_container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .page-header {
+  position:relative;
+  display:block;
+  background-image: url('../images/header.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  font-family: chalkduster;
+  width: 100%;
+  text-align: center;
+  padding: 4em;
+  margin: 0px;
+} */
 
 .page-header {
-background-image: url('../images/header.jpg');
-background-size: 100%;
-background-repeat: no-repeat;
-font-family: chalkduster;
-padding: 3em;
-margin: 0px;
+  background-image: url('../images/header.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  font-family: chalkduster;
+  padding: 3em;
+  margin: 0px;
 }
 
 .page-header h1 {
@@ -38,8 +59,20 @@ margin: 0px;
 
 .title-wrapper {
   text-align: center;
-  margin-top: 0.2em;
+  margin-top: 0.5em;
 }
+
+/* nav {
+  position:relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  background-color: #afd5e0;
+  
+
+} */
 
 nav {
   display: flex;
@@ -48,6 +81,8 @@ nav {
   align-items: center;
   padding: 5px;
   background-color: #afd5e0;
+  margin-top: 0em;
+  float:top
 }
 
 nav a {
@@ -65,7 +100,7 @@ nav a:active img {
 .menu-item {
   margin: 5px;
   padding: 0.5em 1em;
-  background-color: #555;
+  background-color: rgb(150, 141, 141);
   color: white;
   font-family: tahoma;
   font-size: 16px;
@@ -74,7 +109,7 @@ nav a:active img {
 }
 
 .menu-item:hover {
-  background-color: #333;
+  background-color: rgb(117, 93, 93);
 }
 
 .grow-more {
@@ -117,6 +152,8 @@ h1 {
   margin: 2px 0px 0px 0px;
   padding: 5px 0px 0px 0px;
   text-align: left;
+  display: flex; 
+  flex-direction: row;
   outline: none;
   font-size: 15px;
 }
@@ -135,11 +172,12 @@ h1 {
 .btn_btn-person:after {
     content: '\02795';
     display: inline-flex;
-    align-content: center;
+    align-content: right;
     font-size: 13px;
     color: white;
     float: right;
-    margin-left: 5px;
+    margin: 0em 1em 0em 0em;
+    margin-left: auto;
 } 
 
 .btn_btn-person.active:after {
@@ -172,16 +210,24 @@ h1 {
 
 .btn_btn-service:after {
     content: '\02795';
-    display: inline-flex;
     align-content: center;
     font-size: 13px;
     color: white;
     float: right;
-    margin-left: 5px;
+    margin: 0em 1em 0em 0em;
+    margin-left: auto;
 } 
 
 .btn_btn-service.active:after {
     content: '\02796'; 
+}
+
+button[class^='btn_add_']  {
+
+  margin-left: auto;
+  width: auto; 
+  min-width:160; 
+  background-color: inherit;
 }
 
 form{
@@ -223,6 +269,8 @@ input[class^='class_input_'] , textarea {
   background-color: aliceblue;
   margin: 0;
 }
+
+
 
 /* td {
   width: 40%;

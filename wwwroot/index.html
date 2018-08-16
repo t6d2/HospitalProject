@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -10,28 +10,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="classes/class.js"></script>
+  </head>
 
-</head>
-
-
-<body id="body">
-    <nav>
+  <body id="body">
+    <nav >
       <a href="/">
         <img src="home-icon.png" height="60px;" />
       </a>
       <a href="#Anamnesi pazienti" class="menu-item">Anamnesi pazienti</a>
       <a href="#Dottori" class="menu-item">Dottori</a>
       <a href="#Pazienti" class="menu-item">Pazienti</a>
-
     </nav>
 
     <header class="page-header">
+      
       <div class="title-wrapper">
         <h1 id="my-title" class="my-title">Hospital</h1>
       </div>
       <div class="title-wrapper">
         <p>Anamnesi Pazienti</p>
       </div>
+     
     </header>
 
     <hr>
@@ -42,80 +41,94 @@
           <p style="padding:0px 0px 0px 10px; width:400px">Cognome Nome </p>
           <p style="width:200px">Data di nascita</p>
           <p style="width:100px">Numero servizi</p>
+          <button id ="id_button_add_patient" class="btn_add_person" >Aggiungi Paziente</button>
         </div>
-        <button href="#content-btn_person_0" id="id_btn_person_0" 
-                type="button" class="btn_btn-person" data-toggle="collapse">
-          <div style="display: flex; flex-direction: row; align-items:center; width:80%">
-            <p id="p_id_fullName_0" style="padding:0px 0px 0px 10px; width: 400px; height:auto;">full_name </p>
-            <p id="p_id_birthDate_0" style="width:200px">birth_date</p>
-            <p id="p_id_servicesNumber_0" style="width:100px">services_number</p>
-          </div>
-        </button>
-        <div id="content-btn_person_0" class="collapse" >
-          <table>
-              <tr>
-                <td id="id_imgSource_0" class="class_input_imgSource"
-                    width="200px"align="center">
-                    <!-- <input type="file" name="PicturePath" id="id_photoFile" accept="image/*" style="display:none"><br>
-                    <img id="id_photo_img" class='img img-responsive img-thumbnail' 
-                        src="images/patients_photos/mario_rossi.jpg" 
-                        style="cursor:pointer;" alt="Patient's Photo"
-                        onclick='return OpenFileBrowser(event)' /> -->
 
-                        <input type="file" id="id_photoFile_0" accept="image/*" name="img" onchange="changePhoto(this);" style="visibility: hidden; width: 1px; height: 1px"/>            
-                        <a href="" onclick="document.getElementById('id_photoFile_0').click(); return false">
-                          <img id="id_photo_image" class='img img-responsive img-thumbnail'  
-                              src="images/patients_photos/.jpg" alt="Patient's Photo" style="cursor:pointer; width: 100px; height: 140px;"/></a>
-                   
-                </td>
-                <td width="60%">
-                    <form id="id_form_patient_0">
-                      <ul class="flex-outer">
-                        <li>
-                          <label for="first-name">Nome</label>
-                          <input type="text" id="id_name_0" name ="name" class="class_input_name" placeholder="Inserire il nome" required>
-                        </li>
-                        <li>
-                          <label for="last-name">Cognome</label>
-                          <input type="text" id="id_surname_0" name ="surname" class="class_input_surname" placeholder="Inserire il cognome" required>
-                        </li>
-                        <li>
-                            <label for="gender">Sesso</label>
-                            <input type="text" id="id_gender_0" name = "gender" class="class_input_gender" placeholder="Inserire il genere" required>
-                          </li>
-                        <li>
-                        <li>
-                            <label for="birthDate">Data di nascita</label>
-                            <input type="date" id="id_birthDate_0" name = "birthDate"  class="class_input_birthDate" placeholder="Selezionare la data" required>
-                          </li>
-                        <li>
-                          <label for="address">Indirizzo</label>
-                          <input type="text" id="id_address_0" name = "address" class="class_input_address" placeholder="Inseire l'indirizzo" required>
-                        </li>
-                        <li>
-                          <label for="civicNumber">Numero</label>
-                          <input type="text" id="id_number_0" name = "number" class="class_input_number" placeholder="Numero civixo" required>
-                        </li>
-                        <li>
-                            <label for="city">Città</label>
-                            <input type="text" id="id_city_0" name = "city" class="class_input_city" placeholder="Inserire la città" required>
-                          </li>
-                        <li>
-                          <label for="zipCode">CAP</label>
-                          <input type="text" id="id_zip_0" name = "zip" class="class_input_zip" placeholder="CAP" required
-                            maxlength="5" max-width="20px">
-                        </li>
-                      </ul>
-                    </form>
+          <button href="#id_content-btn_person_0" id="id_btn_person_0"
+            type="button" class="btn_btn-person" data-toggle="collapse"
+            style="align-items:center; display: inline-flex">
+            <p id="p_id_fullName_0" style="width:410px; padding:0px 0px 0px 10px; justify-self: flex-start">full_name </p>
+            <p id="p_id_birthDate_0" style="width:220px; justify-self: flex-end">birth_date</p>
+            <p id="p_id_servicesNumber_0" style="width:100px; justify-self: flex-end">services_number</p>
+          </button>
 
-                    <button id="id_btn_patient_update_0" class="class_btn_patient_update">Aggiorna</button>
+        <div id="id_content-btn_person_0" class="collapse">
+          <table style="text-align: center;">
+            <tr>
+              <td id="id_imgSource_0" class="class_input_imgSource"
+                  width="200px"align="center">
+                  <!-- <input type="file" name="PicturePath" id="id_photoFile" accept="image/*" style="display:none"><br>
+                  <img id="id_photo_img" class='img img-responsive img-thumbnail'
+                      src="images/patients_photos/mario_rossi.jpg"
+                      style="cursor:pointer;" alt="Patient's Photo"
+                      onclick='return OpenFileBrowser(event)' /> -->
 
-                </td>
-              </tr>
+                      <input type="file" id="id_photoFile_0" accept="image/*" name="img" onchange="changePhoto(this);" style="visibility: hidden; width: 1px; height: 1px"/>
+                      <a href="" onclick="document.getElementById('id_photoFile_0').click(); return false">
+                        <img id="id_photo_image" class='img img-responsive img-thumbnail'
+                            src="images/patients_photos/.jpg" alt="Foto Paziente, clicca qui per cambiare" style="cursor:pointer; width: 100px; height: 140px;"/></a>
+
+              </td>
+              <td width="70%">
+                  <form id="id_form_patient_0">
+                    <ul class="flex-outer">
+                      <li>
+                        <label for="first-name">Nome</label>
+                        <input type="text" id="id_name_0" name ="name" class="class_input_name" 
+                                placeholder="Inserire il nome" required pattern="[A-Za-z]+" autofocus>
+                      </li>
+                      <li>
+                        <label for="last-name">Cognome</label>
+                        <input type="text" id="id_surname_0" name ="surname" class="class_input_surname" 
+                                placeholder="Inserire il cognome"  pattern="[A-Za-z]+"  required  >
+                      </li>
+                      <li>
+                          <label for="gender">Sesso</label>
+                          <input type="text" id="id_gender_0" name = "gender" class="class_input_gender" placeholder="Inserire il genere" required>
+                      </li>
+                      <li>
+                      <li>
+                          <label for="birthDate">Data di nascita</label>
+                          <input type="date" id="id_birthDate_0" name = "birthDate"  class="class_input_birthDate" placeholder="Selezionare la data" required>
+                      </li>
+                      <li>
+                        <label for="address">Indirizzo</label>
+                        <input type="text" id="id_address_0" name = "address" class="class_input_address" 
+                                placeholder="Inserire l'indirizzo" pattern="[A-Za-z]+" required>
+                      </li>
+                      <li>
+                        <label for="civicNumber">Numero</label>
+                        <input type="text" id="id_number_0" name = "number" class="class_input_number" 
+                            placeholder="Numero civico" pattern="[1-9A-Za-z]+" required>
+                      </li>
+                      <li>
+                          <label for="city">Città</label>
+                          <input type="text" id="id_city_0" name = "city" class="class_input_city"
+                                  placeholder="Inserire la città" required pattern="[A-Za-z][A-Za-z' -]+">
+                      </li>
+                      <li>
+                        <label for="zipCode">CAP</label>
+                        <input type="text" id="id_zip_0" name = "zip" class="class_input_zip" placeholder="CAP" required
+                              pattern ="[0-9]{5}" maxlength="5" max-width="20px">
+                      </li>
+                    </ul>
+                    <!-- <input type=submit id="id_btn_patient_update_0" class="class_btn_patient_update" value="Aggiorna"/> -->
+                  </form>
+              </td>
+              <td width="10%" valign="top" padding="10px 0px 0px 0px">
+                  <button id ="id_button_add_service_0" class="btn_add_service" >Aggiungi Servizio</button>
+              </td>
+            </tr>
+            <tr >
+              <td colspan=3>
+                  <button id="id_btn_patient_update_0" class="class_btn_patient_update">Aggiorna</button>
+              </td>
+            </tr>
+            
 
           </table>
-          <button href="#id_content-btn_service_0_0" id="id_btn_service_0_0"  
-                  type="button" class="btn_btn-service" data-toggle="collapse" >Servizio 1 
+          <button href="#id_content-btn_service_0_0" id="id_btn_service_0_0"
+                  type="button" class="btn_btn-service" data-toggle="collapse" >Servizio 1
             <!-- <div style="display: flex; flex-direction: row; align-items:center" margin="0" > -->
               <!-- <p id="p_id_Service_0" style="padding:0px 0px 0px 10px; width: 400px; height:auto;">Servizio 1 </p> -->
             <!-- </div> -->
@@ -136,7 +149,7 @@
                             </optgroup>
                       </select>
 
-                  </form> 
+                  </form>
                 </td>
                 <td width="50%">
                     <form>
@@ -148,56 +161,57 @@
 
                             </optgroup>
                         </select>
-                    </form> 
+                    </form>
                 </td>
               </tr>
               <tr id="id_tr_visit_0_0" class="class_input_tr_visit" style="display:none">
                 <td colspan="2">
-                    <div margin="auto" style="text-align:center;"></div>
-                      <p>centro</p>
-                      <form id="id_form_visit_0_0">
-                        <div class="row">
-                          <div class="col-lg-8">
-                            
-                              <div class="input-group">
-                                
-                                <label for="checkupStatus" >Condizioni di salute &nbsp&nbsp</label>
-                                <select id="id_visitConditions_0_0" class="class_input_select" required>
-                                  <optgroup label="Condizione di salute" ></optgroup>
-                                    <option value="" disabled selected hidden>Selezionare lo stato di salute...</option>
-                                    <option value="1">Buona salute</option>
-                                    <option value="2">Qualche acciacco</option>
-                                    <option value="3">Salute cagionevole</option>
-                                    <option value="4">Condizioni gravi</option>
-                                  </optgroup>
-                                </select>
-                                <label for="checkuptDate">Data della visita &nbsp</label>
-                                <input type="date" id="id_visitDate_0_0" name="serviceDate" class="class_input_visitDate" style="min-width:110" placeholder="Selezionare la data..." required>
-                        
-                              </div><br />
-                              <div class="input-group">
-                                <label for="notes">Note &nbsp</label>
-                                <textarea id="id_visitNotes_0_0" name="serviceNotes" class="class_input_note" rows="3" cols = "230" width="100%" placeholder="Aggiungi eventuali note"></textarea>
-                              </div>
-                            
-                          </div>
+                  <div margin="auto" style="text-align:center;">
+                    <p>centro</p>
+                    <form id="id_form_visit_0_0">
+                      <div class="row">
+                        <div class="col-lg-8">
+
+                            <div class="input-group">
+
+                              <label for="checkupStatus" >Condizioni di salute &nbsp&nbsp</label>
+                              <select id="id_visitConditions_0_0" class="class_input_select" required>
+                                <optgroup label="Condizione di salute" ></optgroup>
+                                  <option value="" disabled selected hidden>Selezionare lo stato di salute...</option>
+                                  <option value="1">Buona salute</option>
+                                  <option value="2">Qualche acciacco</option>
+                                  <option value="3">Salute cagionevole</option>
+                                  <option value="4">Condizioni gravi</option>
+                                </optgroup>
+                              </select>
+                              <label for="checkuptDate">Data della visita &nbsp</label>
+                              <input type="date" id="id_visitDate_0_0" name="visitDate" class="class_input_visitDate" style="min-width:110" placeholder="Selezionare la data..." required>
+
+                            </div><br />
+                            <div class="input-group">
+                              <label for="notes">Note &nbsp</label>
+                              <textarea id="id_visitNotes_0_0" name="visitNotes" class="class_input_note" rows="3" cols = "230" width="100%" placeholder="Aggiungi eventuali note"></textarea>
+                            </div>
+
                         </div>
-                      </form>
-                      <button id="id_btn_visit_update_0_0" class="class_btn_service_update">Aggiorna</button>
-                    </div>
+                      </div>
+                    </form>
+                    <button id="id_btn_visit_update_0_0" class="class_btn_service_update">Aggiorna</button>
+                  </div>
                 </td>
-                
+
               </tr>
+
               <tr id="id_tr_surgery_0_0" class="class_input_tr_surgery" style="display:none">
                 <td colspan="2">
-                  <div margin="auto" style="text-align:center;"></div>
+                  <div margin="auto" style="text-align:center;">
                     <p>centro</p>
                     <form id="id_form_surgery_0_0">
                       <div class="row">
                         <div class="col-lg-8">
-                         
+
                             <div class="input-group">
-                              
+
                               <label for="surgeryResult">Esito dell'intervento &nbsp</label>
                               <select id="id_surgeryConditions_0_0" class="class_input_select_surgery_result" required>
                                 <optgroup label="Condizione di salute"></optgroup>
@@ -208,23 +222,23 @@
                                 </optgroup>
                               </select>
                               <label for="surgeryDate">Data dell'intervento &nbsp</label>
-                              <input type="date" id="id_surgeryDate_0_0" name="serviceDate" class="class_input_surgeryDate" style="min-width:110" placeholder="Selezionare la data..." required>
-                      
+                              <input type="date" id="id_surgeryDate_0_0" name="surgeryDate" class="class_input_surgeryDate" style="min-width:110" placeholder="Selezionare la data..." required>
+
                             </div><br />
                             <div class="input-group">
                                 <label for="notes">Note &nbsp</label>
-                                <textarea id="id_surgeryNotes_0_0" name="serviceNotes" class="class_input_note" rows="3" cols="230" width ="100%" box-sizing="boder-box"  id="message" width="100%" placeholder="Aggiungi eventuali note"></textarea>
+                                <textarea id="id_surgeryNotes_0_0" name="surgeryNotes" class="class_input_note" rows="3" cols="230" width ="100%" box-sizing="boder-box"  id="message" width="100%" placeholder="Aggiungi eventuali note"></textarea>
                             </div>
-                          
+
                         </div>
                       </div>
                     </form>
                     <button id="id_btn_surgery_update_0_0" class="class_btn_service_update">Aggiorna</button>
                 </td>
-              
+
               </tr>
             </table>
-            
+
           </div>
         </div>
 
@@ -234,29 +248,6 @@
     <script src='scripts/jscript.js'>
     </script>
 
-    <!-- <script>
-      $( ".btn_btn-person" ).click(function() {
-      $( ".btn_btn-person" ).css('content', '\2796');
-      });
-    </script> -->
-    <!-- <script>
-      var coll = document.getElementsByClassName("collapsible_person");
-      var i;
-
-      for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function() {
-              this.classList.toggle("active");
-              var content = this.nextElementSibling;
-              if (content.style.display === "block") {
-                  content.style.display = "none";
-              } else {
-                  content.style.display = "block";
-              }
-          });
-      }
-    </script> -->
-
   </body>
-
 
 </html>
