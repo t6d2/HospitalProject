@@ -57,7 +57,6 @@ patients[2].addService(new PatientService(3, 'cardiologia', 3,'intervento','Comp
 patients[3].addService(new PatientService(1, 'ortopedia', 22,'visita','Qualche acciacco',new Date("2018-03-21"), 'Anca sinistra non in buone condizioni - prescritta risonanaza', 0,0,0,0))
 patients[3].addService(new PatientService(2, 'ortopedia', 23,'intervento','Successo',new Date("2018-06-21"), 'Inserita protesi anca sinistra - decorso operatorio normale', 0,0,25,2))
 
-
 PatientsFullNameSort()
 
  // populate dropdown services
@@ -75,7 +74,6 @@ var buttonClasses =  Array.from(document.getElementsByClassName("btn_btn-person"
 for (let i = 0; i < buttonClasses.length; i++) {
   AddListener(buttonClasses[i])
 }
-  
  // end main 
 
 function PatientsFullNameSort() {
@@ -106,8 +104,6 @@ function ServicesSelectPopulate () {
     }
   }
 }
-
-
 
 function CloneBtnPerson(entry, isNewPatient) {
 
@@ -294,8 +290,12 @@ function LoadServiceDetail(entry, serviceNumber) {
       .setAttribute('value', dateString)
     elementCreated = document.body.querySelector('#id_surgeryNotes_' + entry.id + '_' + serviceNumber)
       .value =  entry.servicesList[serviceNumber-1].serviceNotes
+    
     $("#id_surgeryConditions_" + entry.id + "_" + serviceNumber + " option:contains(" + entry.servicesList[serviceNumber-1].serviceConditions  +")").attr("selected", true)
-
+    for(elem of Array.from(entry.servicesList[serviceNumber-1].pointsList)){
+      document.body.querySelector('#id_' + elem['surgeryElement'] + '_' + entry.id + '_' + serviceNumber)
+        .setAttribute('value', elem['number'])
+    }
   }
 
   //set selectedItem service 
@@ -444,7 +444,7 @@ $(document).on('click', ".class_btn_update_patient", function () {
 
   }
   let inputArray = $('#id_form_patient_' + idPatient).serializeArray()
-
+  console.log(inputArray)
   UpdatePatientObjectData(inputArray, idPatient)
   
   alert("Dati del paziente aggiornati!!")
@@ -483,15 +483,17 @@ $(document).on('click', ".class_btn_update_patient", function () {
 
 });
 
-$('.class_btn_update_service').click(function () {
+$(document).on('click', ".class_btn_update_service", function () {
+
   let service = "visit"
   if(this.id.indexOf("surgery") != -1)
     service = "surgery"
 
   let idPatient = this.id.substring(/\d/.exec(this.id).index, (this.id).lastIndexOf('_'))
   let idService = this.id.substring((this.id).lastIndexOf('_') + 1)
+  $('id_form_' + service + '_' + idPatient + '_' + idService).submit();
+  let inputArray = $('#id_form_' + service + '_' + idPatient + '_' + idService).serializeArray()
   
-  let inputArray =[]
   inputArray.push({ 
     name: 'dptName',
     value: $("#id_select_service_" + idPatient + '_' + idService + " option:selected").text() 
@@ -504,18 +506,11 @@ $('.class_btn_update_service').click(function () {
     name: 'serviceType',
     value: (service == 'visit') ? 'visita' : 'intervento'
   });
-  inputArray.push({ 
-    name: 'serviceConditions',
-    value: $("#id_" + service + "Conditions_" + idPatient + '_' + idService + " option:selected").text() 
-  });
-  inputArray.push({ 
-    name: 'serviceDate',
-    value: $("#id_" + service + "Date_" + idPatient + '_' + idService).val() 
-  });
-  inputArray.push({ 
-    name: 'serviceNotes',
-    value: $("#id_" + service + "Notes_" + idPatient + '_' + idService).val() 
-  });
+
+  inputArray.find(v => v.name == service + 'Notes').name= 'serviceNotes'
+  inputArray.find(v => v.name == service + 'Date').name= 'serviceDate'
+  inputArray.find(v => v.name == service + 'Conditions').name= 'serviceConditions'
+  inputArray.find(v => v.name == 'serviceConditions').value= $("#id_" + service + "Conditions_" + idPatient + '_' + idService + " option:selected").text() 
 
   UpdatePatientObjectServiceData(inputArray, idPatient, idService)
 

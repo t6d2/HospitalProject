@@ -56,7 +56,7 @@
         <div id="id_content-btn_person_0" class="collapse">
           <table style="text-align: center;">
             <tr>
-              <td id="id_imgSource_0" class="class_input_imgSource"
+              <td id="id_imgSource_0" width="20%" class="class_input_imgSource"
                   width="200px"align="center">
                   <!-- <input type="file" name="PicturePath" id="id_photoFile" accept="image/*" style="display:none"><br>
                   <img id="id_photo_img" class='img img-responsive img-thumbnail'
@@ -85,15 +85,14 @@
                       </li>
                       <li>
                           <label for="gender">Genere</label>
-                          <select required="required" id="id_gender_0" name="gender" class="class_input_gender">
+                          <select id="id_gender_0" name="gender" class="class_input_gender" required>
                             <option disabled selected value="" >genere...</option>
                             <option value="maschio">maschio</option>
-                            <option value="female">femmina</option>
+                            <option value="femmina">femmina</option>
                             <option value="altro">altro</option>
                           </select>
                           <!-- <input type="text" id="id_gender_0" name = "gender" class="class_input_gender" placeholder="Inserire il genere" required> -->
                       </li>
-                      <li>
                       <li>
                           <label for="birthDate">Data di nascita</label>
                           <input type="date" id="id_birthDate_0" name = "birthDate"  class="class_input_birthDate" placeholder="Selezionare la data" required>
@@ -144,9 +143,9 @@
             <table style="text-align: center;">
               <tr>
                 <td width="50%">
-                  <form>
+                  <form method="post" action ="" id="id_form_service_0_0">
                       <label for="label_select_service" >Servizio &nbsp</label>
-                      <select id="id_select_service_0_0" class="class_input_select" required>
+                      <select id="id_select_service_0_0" name="dptName" class="class_input_select_dpt" required>
                           <option value="" disabled selected hidden>Selezionare un servizio...</option>
                           <optgroup id="id_optGroup_visits" label="Visite">
                               // loaded dynamically
@@ -161,7 +160,7 @@
                 <td width="50%">
                     <form>
                         <label ="label_select_doctor" >Dottore &nbsp&nbsp</label>
-                        <select id="id_select_doctor_0_0" class="class_input_select" required>
+                        <select id="id_select_doctor_0_0" name="doctorId" class="class_input_select_id" required>
                             <!-- onchange="selectFront(this.value.split(',')[0]);selectBack(this.value.split(',')[1]);"> -->
                             <optgroup id="id_optGroup_doctors" label="Medici"></optgroup>
                               <option value="" disabled selected hidden>Selezionare un dottore...</option>
@@ -173,16 +172,16 @@
               </tr>
               <tr id="id_tr_visit_0_0" class="class_input_tr_visit" style="display:none">
                 <td colspan="2">
-                  <div margin="auto" style="text-align:center;">
-                    <p>centro</p>
-                    <form id="id_form_visit_0_0">
+                  <!-- <div margin="auto" style="text-align:center;"> -->
+                    <p>Visita</p>
+                    <form method="post" action ="" id="id_form_visit_0_0">
                       <div class="row">
                         <div class="col-lg-8">
 
                             <div class="input-group">
 
                               <label for="checkupStatus" >Condizioni di salute &nbsp&nbsp</label>
-                              <select id="id_visitConditions_0_0" class="class_input_select" required>
+                              <select id="id_visitConditions_0_0" name="visitConditions" class="class_input_serviceConditions" required>
                                 <optgroup label="Condizione di salute" ></optgroup>
                                   <option value="" disabled selected hidden>Selezionare lo stato di salute...</option>
                                   <option value="1">Buona salute</option>
@@ -203,44 +202,65 @@
                         </div>
                       </div>
                     </form>
-                    <button id="id_btn_visit_update_0_0" class="class_btn_update_service">Aggiorna</button>
-                  </div>
+                    <button type="submit" id="id_btn_visit_update_0_0" class="class_btn_update_service">Aggiorna</button>
+                  <!-- </div> -->
                 </td>
 
               </tr>
 
               <tr id="id_tr_surgery_0_0" class="class_input_tr_surgery" style="display:none">
                 <td colspan="2">
-                  <div margin="auto" style="text-align:center;">
-                    <p>centro</p>
-                    <form id="id_form_surgery_0_0">
+                  <!-- <div margin="auto" style="text-align:center;"> -->
+                    <p>Intervento</p>
+                    <form method="post" action ="" id="id_form_surgery_0_0">
                       <div class="row">
                         <div class="col-lg-8">
 
-                            <div class="input-group">
+                          <div class="input-group">
 
-                              <label for="surgeryResult">Esito dell'intervento &nbsp</label>
-                              <select id="id_surgeryConditions_0_0" class="class_input_select_surgery_result" required>
-                                <optgroup label="Condizione di salute"></optgroup>
-                                  <option value="" disabled selected hidden>Selezionare l'esito dell'intervento...</option>
-                                  <option value="1">Successo</option>
-                                  <option value="2">Complicazioni</option>
-                                  <option value="3">Decesso</option>
-                                </optgroup>
-                              </select>
-                              <label for="surgeryDate">Data dell'intervento &nbsp</label>
-                              <input type="date" id="id_surgeryDate_0_0" name="surgeryDate" class="class_input_surgeryDate" style="min-width:110" placeholder="Selezionare la data..." required>
+                            <label for="surgeryResult">Esito dell'intervento &nbsp</label>
+                            <select id="id_surgeryConditions_0_0" name="surgeryConditions" class="class_input_surgeryConditions" required>
+                              <optgroup label="Condizione di salute"></optgroup>
+                                <option value="" disabled selected hidden>Selezionare l'esito dell'intervento...</option>
+                                <option value="1">Successo</option>
+                                <option value="2">Complicazioni</option>
+                                <option value="3">Decesso</option>
+                              </optgroup>
+                            </select>
+                            <label for="surgeryDate">Data dell'intervento &nbsp</label>
+                            <input type="date" id="id_surgeryDate_0_0" name="surgeryDate" class="class_input_surgeryDate" style="min-width:110" placeholder="Selezionare la data..." required>
+                            
+                            <ul class="flex-outer">
+                              
+                              <li>
+                                <label for="byPassNumber">N° di bypass</label>
+                                <input type="text" id="id_bypassNumber_0_0" name="bypassNumber" class="class_input_bypassNumber">
+                              </li>
+                              <li>
+                                <label for="heartValvesNumber">N° di valvole</label>
+                                <input type="text" id="id_heartValvesNumber_0_0" name="heartValvesNumber" class="class_input_heartValvesNumber">
+                              </li>
+                              <li>
+                                <label for="stitchesNumber">N° di punti</label>
+                                <input type="text" id="id_stitchesNumber_0_0" name="stitchesNumber" class="class_input_stitchesNumber">
+                              </li>
+                              <li>
+                                <label for="metalPlatesNumber">Numero</label>
+                                <input type="text" id="id_metalPlatesNumber_0_0" name="metalPlatesNumber" class="class_input_metalPlatesNumber">
+                              </li>
+                            </ul>
 
-                            </div><br />
-                            <div class="input-group">
-                                <label for="notes">Note &nbsp</label>
-                                <textarea id="id_surgeryNotes_0_0" name="surgeryNotes" class="class_input_note" rows="3" cols="230" width ="100%" box-sizing="boder-box"  id="message" width="100%" placeholder="Aggiungi eventuali note"></textarea>
-                            </div>
+                          </div><br />
+                          <div class="input-group">
+                              <label for="notes">Note &nbsp</label>
+                              <textarea id="id_surgeryNotes_0_0" name="surgeryNotes" class="class_input_Notes" rows="3" cols="230" width ="100%" box-sizing="boder-box"  id="message" width="100%" placeholder="Aggiungi eventuali note"></textarea>
+                          </div>
 
                         </div>
                       </div>
                     </form>
-                    <button id="id_btn_surgery_update_0_0" class="class_btn_service_update">Aggiorna</button>
+                    <button type="submit" id="id_btn_surgery_update_0_0" class="class_btn_update_service">Aggiorna</button>
+                    
                 </td>
 
               </tr>

@@ -68,7 +68,7 @@ class Department
 // }
 
 class PatientService {
-  constructor(serviceId, dptName, doctorId, serviceType, serviceConditions, serviceDate, serviceNotes, bypassNumber, heartValveNumber, stitchesNumber, metalPlatesNumber){
+  constructor(serviceId, dptName, doctorId, serviceType, serviceConditions, serviceDate, serviceNotes, bypassNumber, heartValvesNumber, stitchesNumber, metalPlatesNumber){
     this.serviceId = serviceId
     this.dptName = dptName
     this.doctorId = doctorId
@@ -77,9 +77,9 @@ class PatientService {
     this.serviceDate = serviceDate
     this.serviceNotes = serviceNotes
     this.pointsList = [
-      {surgeryElements: 'bypass', number: bypassNumber}, 
-      {surgeryElements: 'valvole', number: heartValveNumber},
-      {surgeryElements: 'punti di sutura', number: stitchesNumber}, 
-      {surgeryElements: 'placche', number: metalPlatesNumber}]  
+      {surgeryElement: 'bypassNumber', number: bypassNumber}, 
+      {surgeryElement: 'heartValvesNumber', number: heartValvesNumber},
+      {surgeryElement: 'stitchesNumber', number: stitchesNumber}, 
+      {surgeryElement: 'metalPlatesNumber', number: metalPlatesNumber}]  
   }
 }
