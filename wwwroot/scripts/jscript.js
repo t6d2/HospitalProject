@@ -43,15 +43,20 @@ function CloneBtnPerson(entry, isNewPatient) {
 function UpdateButtonPerson(entry, idCurrent) {
 
   let contentPatientElement = document.body.querySelector('#id_btn_person_' + entry.id)
-
   let elementToModify = contentPatientElement.querySelector('#p_id_fullName_' + idCurrent);
   elementToModify.innerHTML = entry.fullName
   elementToModify.setAttribute('id', 'p_id_fullName_' + entry.id)
-  var month = (1 + entry.birthDate.getMonth()).toString();
-  month = month.length > 1 ? month : '0' + month;
-  var day = entry.birthDate.getDate().toString();
-  day = day.length > 1 ? day : '0' + day;
-  var dateString = day + "/" + month + "/" + entry.birthDate.getFullYear()
+  if(entry.birthDate.toDateString() == new Date().toDateString()){
+    dateString = ""
+  }          
+  else { 
+    var month = (1 + entry.birthDate.getMonth()).toString();
+    month = month.length > 1 ? month : '0' + month;
+    var day = entry.birthDate.getDate().toString();
+    day = day.length > 1 ? day : '0' + day;
+    var dateString = day + "/" + month + "/" + entry.birthDate.getFullYear()
+    
+  }
   elementToModify = contentPatientElement.querySelector('#p_id_birthDate_' + idCurrent);
   elementToModify.innerHTML = dateString
   elementToModify.setAttribute('id', 'p_id_birthDate_' + entry.id)
@@ -69,11 +74,17 @@ function UpdatePersonFieldsPage(entry){
     if(elementCreated != null){
 
       if(key == 'birthDate'){
-        month = (1 + entry[key].getMonth()).toString();
-        month = month.length > 1 ? month : '0' + month;
-        day = entry[key].getDate().toString();
-        day = day.length > 1 ? day : '0' + day;
-        dateString = entry[key].getFullYear() + "-" + month + "-" + day
+
+        if(entry[key].toDateString() == new Date().toDateString()){
+          dateString = ""
+        }          
+        else {
+          month = (1 + entry[key].getMonth()).toString();
+          month = month.length > 1 ? month : '0' + month;
+          day = entry[key].getDate().toString();
+          day = day.length > 1 ? day : '0' + day;
+          dateString = entry[key].getFullYear() + "-" + month + "-" + day
+        }
         elementCreated.setAttribute('value', dateString)
       } else if(key != 'imgSource'){
         elementCreated.setAttribute('value', entry[key])
@@ -85,6 +96,7 @@ function UpdatePersonFieldsPage(entry){
     $("#id_gender_" + entry.id +  " option:contains(" + entry.gender  +")").attr("selected", true)
   else
     $("#id_gender_" + entry.id).attr("selectedIndex", -1);
+
   let $div =  document.body.querySelector('#id_content-btn_person_' + entry.id).querySelector('#id_btn_patient_update_0')
   $div.setAttribute('id', 'id_btn_patient_update_' + entry.id)
   
@@ -222,7 +234,14 @@ function UpdatePatientObjectData(inputArray, idPatient) {
   
   let patientToUpdate = patients.find(item=>item.id==idPatient);
   for(let i in inputArray)
-    patientToUpdate[inputArray[i].name] = inputArray[i].value
+    if(inputArray[i].name == "name" || inputArray[i].name == "surname" || inputArray[i].name == "address" || inputArray[i].name == "city"){
+      patientToUpdate[inputArray[i].name] = inputArray[i].value.slice(0,1).toUpperCase()+inputArray[i].value.slice(1)
+    }
+    else {
+      
+      patientToUpdate[inputArray[i].name] = inputArray[i].value
+    }
+   
     let dateObject = new Date(patientToUpdate.birthDate);
     patientToUpdate.birthDate = dateObject
 
@@ -243,8 +262,8 @@ function UpdatePatientObjectServiceData(inputArray, idPatient, idService) {
 function CreateNewPatient(){
 
   let newPatientId= Math.max(...patients.map(o => o.id)) + 1
-  patients.push(new Patient(newPatientId, '','', '', new Date(), '', '', '','', 0, 'images/patients_photos/.jpg' ));
-
+  patients.push(new Patient(newPatientId, '','', '', new Date(), '', '', '','', 0, 'images/patients_photos/.jpg'));
+  
   CloneBtnPerson(patients[patients.length-1], true)
 
   AddListener(document.getElementById("id_btn_person_" + newPatientId))
@@ -270,6 +289,7 @@ function CreateNewService(patientId) {
   AddListener(document.getElementById("id_btn_service_" + patients[patientIndex].id + "_" + newServiceId))
 
 }
+
 
 // main
 var departments = []
@@ -326,7 +346,8 @@ patients[1].addService(new PatientService(1, 'generale', 26,'visita','Salute cag
 patients[2].addService(new PatientService(1, 'ortopedia', 23,'visita','Buona salute',new Date("2018-02-07"), 'Ginocchio in condizioni critiche prevedere intervento', ''))
 patients[2].addService(new PatientService(2, 'nefrologia', 16,'visita','Qualche acciacco',new Date("2018-04-11"), 'Dolori persistenti zona renale - prescritta ecografia', ''))
 patients[2].addService(new PatientService(3, 'cardiologia', 3,'intervento','Complicazioni',new Date("2018-07-20"), 'Eseguito intervento con bypass - anestesia più lunga del previsto dovuta a complicaziioni . Prognosi riservata', ''))
-patients.sort(dynamicSort("fullName"));
+
+PatientsFullNameSort()
 
  // populate dropdown services
  ServicesSelectPopulate()
@@ -387,16 +408,15 @@ $('select[id^=id_select_service_]').on('change', function(){
 
 });
 
-function dynamicSort(property) {
-  var sortOrder = 1;
-  if(property[0] === "-") {
-      sortOrder = -1;
-      property = property.substr(1);
-  }
-  return function (a,b) {
-      var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
-      return result * sortOrder;
-  }
+function PatientsFullNameSort() {
+  patients.sort(function(a, b){
+    if (a.fullName.toLowerCase() < b.fullName.toLowerCase())
+        return -1;
+    if (a.fullName.toLowerCase() > b.fullName.toLowerCase())
+        return 1;
+    else
+        return 0;
+  });
 }
 
 $('.btn_btn-person').click (function() {
@@ -409,26 +429,56 @@ $('.btn_btn-person').click (function() {
 $(document).on('click', ".class_btn_update_patient", function () {
 
   idPatient = parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
-  
+
+  $('id_form_patient_' + idPatient).submit();
   let form = document.getElementById('id_form_patient_' + idPatient);
-  console.log('b', form.elements.length)
   for(var i=0; i < form.elements.length; i++){
-    console.log('c' + i, form, (form.elements[i].value.trim() == '' && form.elements[i].hasAttribute('required')))
-    if((form.elements[i].value.trim() == '' && form.elements[i].hasAttribute('required'))){
-      console.log('d' + i, form.elements[i], 'value' + form.elements[i].value)
-      document.getElementById('id_form_patient_' + id).value = " "
-      alert('I campi evidenziati devono essere compilati correttamente!!');
-      
-      return false;
-    }
+       if(form.elements[i].hasAttribute('required') && (form.elements[i].value.trim() == '' || form.elements[i].value == null )){
+        form.elements[i].value = ""
+        alert('I campi evidenziati devono essere compilati correttamente!!');
+        document.getElementById(form.elements[i].id).focus();
+        return false;
+      }
 
   }
   let inputArray = $('#id_form_patient_' + idPatient).serializeArray()
-  console.log('a', inputArray)
+
   UpdatePatientObjectData(inputArray, idPatient)
   
   alert("Dati del paziente aggiornati!!")
   document.getElementById('id_button_add_service_' + idPatient).style.display = 'initial'
+  
+  //delete all patients' buttons and contents
+  // buttonClasses =  Array.from(document.getElementsByClassName("btn_btn-person"))
+  for(entry of patients){
+    var elem = document.getElementById("id_btn_person_" + entry.id);
+    elem.parentElement.removeChild(elem);
+    elem = document.getElementById("id_content-btn_person_" + entry.id);
+    elem.parentElement.removeChild(elem);
+  }
+  // restore display attribute on defaultsections
+  elem = document.getElementById('id_content-btn_person_0');
+  document.getElementById(elem.id).removeAttribute("display");
+  elem = document.getElementById('id_btn_person_0');
+  document.getElementById(elem.id).style.display = 'inline-flex';
+  
+  PatientsFullNameSort()
+
+  for(entry of patients){
+    CloneBtnPerson(entry, false)
+    CloneServicesInitialLoad(entry)
+  }
+  // afterc loning set display none on default sections
+  elem = document.getElementById('id_content-btn_person_0');
+  document.getElementById(elem.id).style.display = 'none';
+  elem = document.getElementById('id_btn_person_0');
+  document.getElementById(elem.id).style.display = 'none';
+  
+  let buttonClasses =  Array.from(document.getElementsByClassName("btn_btn-person"))
+  for (let i = 0; i < buttonClasses.length; i++) 
+    AddListener(buttonClasses[i])  
+
+  console.log(buttonClasses)
 
 });
 

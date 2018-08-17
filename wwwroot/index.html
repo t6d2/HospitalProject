@@ -44,13 +44,13 @@
           <button id ="id_button_add_patient" class="btn_add_person" >Aggiungi Paziente</button>
         </div>
 
-          <button href="#id_content-btn_person_0" id="id_btn_person_0"
-            type="button" class="btn_btn-person" data-toggle="collapse"
-            style="align-items:center; display: inline-flex">
-            <p id="p_id_fullName_0" style="width:410px; padding:0px 0px 0px 10px; justify-self: flex-start">full_name </p>
-            <p id="p_id_birthDate_0" style="width:220px; justify-self: flex-end">birth_date</p>
-            <p id="p_id_servicesNumber_0" style="width:100px; justify-self: flex-end">services_number</p>
-          </button>
+        <button href="#id_content-btn_person_0" id="id_btn_person_0"
+          type="button" class="btn_btn-person" data-toggle="collapse"
+          style="align-items:center; display: inline-flex">
+          <p id="p_id_fullName_0" style="width:410px; padding:0px 0px 0px 10px; justify-self: flex-start">full_name </p>
+          <p id="p_id_birthDate_0" style="width:220px; justify-self: flex-end">birth_date</p>
+          <p id="p_id_servicesNumber_0" style="width:100px; justify-self: flex-end">services_number</p>
+        </button>
 
         <div id="id_content-btn_person_0" class="collapse">
           <table style="text-align: center;">
@@ -70,22 +70,22 @@
 
               </td>
               <td width="70%">
-                  <form id="id_form_patient_0">
+                  <form method="post" action ="" id="id_form_patient_0">
                     <ul class="flex-outer">
                       <li>
                         <label for="first-name">Nome</label>
                         <input type="text" id="id_name_0" name ="name" class="class_input_name" 
-                                placeholder="Inserire il nome" required pattern="[A-Za-z]+" >
+                                placeholder="Inserire il nome" required pattern="[A-Za-z ]+" >
                       </li>
                       <li>
                         <label for="last-name">Cognome</label>
                         <input type="text" id="id_surname_0" name ="surname" class="class_input_surname" 
-                                placeholder="Inserire il cognome" required pattern="[A-Za-z]+"    >
+                                placeholder="Inserire il cognome" required pattern="[A-Za-z][A-Za-z' -]+"    >
                       </li>
                       <li>
                           <label for="gender">Genere</label>
-                          <select id="id_gender_0" name="gender" class="class_input_gender" required>
-                            <option value="" disabled selected hidden>genere...</option>
+                          <select required="required" id="id_gender_0" name="gender" class="class_input_gender">
+                            <option disabled selected value="" >genere...</option>
                             <option value="maschio">maschio</option>
                             <option value="female">femmina</option>
                             <option value="altro">altro</option>
@@ -100,17 +100,17 @@
                       <li>
                         <label for="address">Indirizzo</label>
                         <input type="text" id="id_address_0" name = "address" class="class_input_address" 
-                                placeholder="Inserire l'indirizzo" required pattern="[A-Za-z]+" >
+                                placeholder="Inserire l'indirizzo" required pattern="[A-Za-z][A-Za-z' -]+" >
                       </li>
                       <li>
                         <label for="civicNumber">Numero</label>
                         <input type="text" id="id_number_0" name = "number" class="class_input_number" 
-                            placeholder="Numero civico" required pattern="[1-9A-Za-z]+" >
+                            placeholder="Numero civico" required pattern="[1-9A-Za-z -/]+" >
                       </li>
                       <li>
                           <label for="city">Città</label>
                           <input type="text" id="id_city_0" name = "city" class="class_input_city"
-                                  placeholder="Inserire la città" required pattern="[A-Za-z][A-Za-z' -]+">
+                                  placeholder="Inserire la città" required pattern="[A-Za-z][A-Za-z' -.]+">
                       </li>
                       <li>
                         <label for="zipCode">CAP</label>
@@ -118,11 +118,11 @@
                                 placeholder="CAP" required pattern ="[0-9]{5}" maxlength="5" max-width="20px">
                       </li>
                     </ul>
-                    
+                    <!-- <input type="submit" id="id_btn_patient_update_0" class="class_btn_update_patient">Aggiorna</input> -->
                   </form>
               </td>
               <td width="10%" valign="top" padding="10px 0px 0px 0px">
-                  <button id ="id_button_add_service_0" class="btn_add_service" >Aggiungi Servizio</button>
+                  <button id ="id_button_add_service_0" class="btn_add_service" onclick="checkInput()">Aggiungi Servizio</button>
               </td>
             </tr>
             <tr >
