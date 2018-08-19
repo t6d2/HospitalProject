@@ -208,7 +208,7 @@ function UpdatePersonFieldsPage(entry){
   
 }
 
-function CloneServicesInitialLoad(entry) {
+function CloneServices(entry) {
 
   // remove all services
   let $contenitor = $("#id_content-btn_person_" + entry.id).find("button[id^='id_btn_service_']")
@@ -345,10 +345,26 @@ function UpdatePatientObjectServiceData(inputArray, idPatient, idService) {
 
   let patientToUpdate = patients.find(item=>item.id==idPatient);
 
-  for(let i in inputArray)
-    patientToUpdate.servicesList[idService-1][inputArray[i].name] = inputArray[i].value
-    let dateObject = new Date(patientToUpdate.servicesList[idService-1].serviceDate);
+  for(let i in inputArray){
+    // console.log(0, i, inputArray[i].name, inputArray[i].value, patientToUpdate.servicesList[idService-1].pointsList)
+    
+    objIndex = patientToUpdate.servicesList[idService-1].pointsList.findIndex((obj => obj.surgeryElement == [inputArray[i].name]));
+    if(objIndex != -1){
+      // console.log(1, objIndex, patientToUpdate.servicesList[idService-1].pointsList[objIndex].surgeryElement)
+      patientToUpdate.servicesList[idService-1].pointsList
+        .find(v => v.surgeryElement == [inputArray[i].name]).number= inputArray[i].value
+    } else{
+      // console.log(1, objIndex)
+      patientToUpdate.servicesList[idService-1][inputArray[i].name] = inputArray[i].value
+    }
+      
+    
+  }
+  
+  let dateObject = new Date(patientToUpdate.servicesList[idService-1].serviceDate);
+  // console.log(2, patientToUpdate)
   patientToUpdate.servicesList[idService-1].serviceDate = dateObject
+  // console.log(3, patients)
 
 }
 
@@ -425,12 +441,12 @@ $('.btn_btn-person').click (function() {
   id = parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
   var entry = patients.find(entry => entry.id === id)
 
-  CloneServicesInitialLoad(entry)
+  CloneServices(entry)
 })
 
 $(document).on('click', ".class_btn_update_patient", function () {
 
-  idPatient = parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
+  idPatient =  parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
 
   $('id_form_patient_' + idPatient).submit();
   let form = document.getElementById('id_form_patient_' + idPatient);
@@ -444,7 +460,7 @@ $(document).on('click', ".class_btn_update_patient", function () {
 
   }
   let inputArray = $('#id_form_patient_' + idPatient).serializeArray()
-  console.log(inputArray)
+  // console.log(4, patients)
   UpdatePatientObjectData(inputArray, idPatient)
   
   alert("Dati del paziente aggiornati!!")
@@ -464,10 +480,10 @@ $(document).on('click', ".class_btn_update_patient", function () {
   document.getElementById(elem.id).style.display = 'inline-flex';
   
   PatientsFullNameSort()
-
+  // console.log(6, patients)
   for(entry of patients){
     CloneBtnPerson(entry, false)
-    CloneServicesInitialLoad(entry)
+    CloneServices(entry)
   }
   // after cloning set display none on default sections
   elem = document.getElementById('id_content-btn_person_0');
