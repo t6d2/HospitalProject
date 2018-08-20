@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hospital</title>
+    <!-- <link rel="icon" href="/hfavicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/hfavicon.ico" type="image/x-icon" /> -->
     <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href='css/styles.css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -54,8 +56,7 @@
         <div id="id_content-btn_person_0" class="collapse">
           <table>
               <tr>
-                <td id="id_imgSource_0" width="30%" class="class_input_imgSource"
-                  align="center">
+                <td id="id_imgSource_0" width="30%" class="class_input_imgSource" align="center">
   
                   <input type="file" id="id_photoFile_0" accept="image/*" name="img" onchange="changePhoto(this);" style="visibility: hidden; width: 1px; height: 1px"/>
                   <a href="" onclick="document.getElementById('id_photoFile_0').click(); return false">
@@ -80,7 +81,7 @@
                         </div>
                       </div>
                       <div class="row">
-                        <div class="input-group">
+                        <div class="input-group no-grow">
                           <label>Genere</label>
                           <select id="id_gender_0" name="gender" class="class_input_gender" required 
                           title="Selezionare il genere">
@@ -92,8 +93,8 @@
                         </div>
                         <div class="input-group no-grow">
                           <label>Data di nascita</label>
-                          <input type="date" id="id_birthDate_0" name = "birthDate"  class="class_input_birthDate" placeholder="Selezionare la data" required 
-                          title="Inserire la data di nascita"/>
+                          <input type="date" id="id_birthDate_0" name = "birthDate"  class="class_input_birthDate" 
+                          placeholder="Selezionare la data" required title="Inserire la data di nascita"/>
                         </div>
                       </div>
                       <div class="row">
@@ -105,7 +106,7 @@
                         </div>
                         <div class="input-group no-grow">
                           <label>Numero</label>
-                          <input type="text" id="id_number_0" name = "number" class="class_input_number" 
+                          <input type="text" id="id_number_0" name = "number" class="class_input_number" style="max-width:4em"
                                   placeholder="Numero civico" required pattern="[1-9][0-9A-Za-z -/]*" 
                                   title="Il nnumero civico deve iniziare con un numero"/>
                         </div>
@@ -120,14 +121,10 @@
                         <div class="input-group no-grow">
                           <label>CAP</label>
                           <input type="text" id="id_zip_0" name = "zip" class="class_input_zip" 
-                          placeholder="CAP" required pattern ="[0-9]{5}" maxlength="5" max-width="20px" 
+                          placeholder="CAP" required pattern ="[0-9]{5}" maxlength="5" style="max-width:4em" 
                           title="Il CAP deve contenere 5 cifre"/>
                         </div>
                       </div>
-                      <!-- <div class="row" style="align-items:center; justify-content: center; padding:0em">
-                        <button type="submit" id="id_btn_patient_update_0" class="class_btn_update_patient">Aggiorna</button>
-                      </div> -->
-                    <!-- <input type="submit" id="id_btn_patient_update_0" class="class_btn_update_patient">Aggiorna</input> -->
                     </form>
                 </td>
                 <td width="10%" valign="top">
@@ -143,43 +140,39 @@
           </table>
           <button href="#id_content-btn_service_0_0" id="id_btn_service_0_0"
                   type="button" class="btn_btn-service" data-toggle="collapse" >Servizio
-            <!-- <div style="display: flex; flex-direction: row; align-items:center" margin="0" > -->
-              <!-- <p id="p_id_Service_0" style="padding:0px 0px 0px 10px; width: 400px; height:auto;">Servizio 1 </p> -->
-            <!-- </div> -->
           </button>
           <div id="id_content-btn_service_0_0" class="collapse" >
             <table>
               <tr>
-                <td width="50%">
-                 
-                  <div class="row" style="padding:1em 1em 0em 3em">
-                    <div class="input-group no-grow" width="4em">
-                      <label>Servizio &nbsp</label>
-                      <select id="id_select_service_0_0" name="dptName" class="class_input_select_dpt" required>
-                        <option value="" disabled selected hidden>Selezionare un servizio...</option>
-                        <optgroup id="id_optGroup_visits" label="Visite">
+                <td colspan=2>
+                  <form id="id_form_select_service_0_0">
+                    <div class="row" style="padding:1em 1em 0em 3.5em">
+                      <div class="input-group no-grow" style="width:50%">
+                        <label>Servizio &nbsp</label>
+                        <select id="id_select_service_0_0" name="dptName" class="class_input_select_dpt" required>
+                          <option value="" disabled selected hidden>Selezionare un servizio...</option>
+                          <optgroup id="id_optGroup_visits" label="Visite">
+                              <!-- // loaded dynamically -->
+                            </optgroup>
+                          <optgroup id="id_optGroup_surgeries" label="Interventi">
                             <!-- // loaded dynamically -->
                           </optgroup>
-                        <optgroup id="id_optGroup_surgeries" label="Interventi">
-                          <!-- // loaded dynamically -->
-                        </optgroup>
-                      </select>
-                    </div>
-                  </div>
-                </td>
-                <td width="50%">
-                  <div class="row" style="padding:1em 1em 0em 3em">
-                    <div class="input-group no-grow" width="4em">
-                      <label>Dottore &nbsp</label>
-                      <select id="id_select_doctor_0_0" name="doctorId" class="class_input_select_id" require>
-                        <optgroup id="id_optGroup_doctors" label="Medici"></optgroup>
-                          <option value="" disabled selected hidden>Selezionare un dottore...</option>
-                        </optgroup>
-                      </select>
-                    </div>
-                  </div> 
-                </td>
+                        </select>
+                      </div>
+                      <div class="input-group no-grow" style="width:50%">
+                        <label>Dottore &nbsp</label>
+                        <select id="id_select_doctor_0_0" name="doctorId" class="class_input_select_doctorId" required>
+                          <optgroup id="id_optGroup_doctors" label="Medici" required>
 
+                          </optgroup>
+                            <option value="" disabled selected hidden>Selezionare un dottore...</option>
+                          </optgroup>
+                        </select>
+                      </div>
+                    </div> 
+                  </form>
+                </td>
+              
               </tr>
 
               <tr id="id_tr_visit_0_0" class="class_input_tr_visit" style="display:none">
@@ -187,7 +180,7 @@
                   <p class="center_aligned" >Visita</p>
                   <form method="post" action ="" id="id_form_visit_0_0" class="form_service">
                     <div class="row">
-                      <div class="input-group no-grow" width="6em">
+                      <div class="input-group no-grow">
                         <label>Condizioni di salute</label>
                         <select id="id_visitConditions_0_0" name="visitConditions" class="class_input_serviceConditions" required>
                           <optgroup label="Condizione di salute" ></optgroup>
@@ -199,7 +192,7 @@
                           </optgroup>
                         </select>
                       </div>
-                      <div class="input-group no-grow" width="6em">
+                      <div class="input-group no-grow" >
                         <label>Data della visita</label>
                         <input type="date" id="id_visitDate_0_0" name="visitDate" class="class_input_visitDate" placeholder="Selezionare la data..." required>
                       </div>
@@ -208,7 +201,7 @@
                     <div class="row">
                       <div class="input-group">
                         <label for="notes">Note &nbsp</label>
-                        <textarea id="id_visitNotes_0_0" name="visitNotes" class="class_input_note" rows="3" cols = "100"  placeholder="Aggiungere eventuali note"></textarea>
+                        <textarea id="id_visitNotes_0_0" name="visitNotes" class="class_input_note" rows="3" cols = "160"  placeholder="Aggiungere eventuali note"></textarea>
                       </div>
                     </div>
                     
@@ -218,10 +211,7 @@
               </tr> 
               
 
-              
-
               <tr id="id_tr_surgery_0_0" class="class_input_tr_surgery" style="display:none">
-              <!-- <tr id="id_tr_surgery_0_0" class="class_input_tr_surgery"> -->
                 <td colspan="2">
                   <p class="center_aligned">Intervento</p>
                   <form method="post" action ="" id="id_form_surgery_0_0" class="form_service">
@@ -237,34 +227,34 @@
                           </optgroup>
                         </select>
                       </div>
-                      <div class="input-group">
+                      <div class="input-group no-grow">
                         <label for="surgeryDate">Data dell'intervento &nbsp</label>
                         <input type="date" id="id_surgeryDate_0_0" name="surgeryDate" class="class_input_surgeryDate"  placeholder="Selezionare la data..." required>
                       </div>
                     </div>
                     <div class="row">
-                      <div class="input-group">
+                      <div class="input-group no-grow">
                         <label for="byPassNumber">N° di bypass</label>
-                        <input type="text" id="id_bypassNumber_0_0" name="bypassNumber" class="class_input_bypassNumber">
+                        <input type="number" min="0" id="id_bypassNumber_0_0" name="bypassNumber" class="class_input_bypassNumber">
                       </div>
-                      <div class="input-group">
+                      <div class="input-group no-grow">
                         <label for="heartValvesNumber">N° di valvole</label>
-                        <input type="text" id="id_heartValvesNumber_0_0" name="heartValvesNumber" class="class_input_heartValvesNumber">
+                        <input type="number" min="0" id="id_heartValvesNumber_0_0" name="heartValvesNumber" class="class_input_heartValvesNumber">
                       </div>
-                      <div class="input-group">
+                      <div class="input-group no-grow">
                         <label for="stitchesNumber">N° di punti</label>
-                        <input type="text" id="id_stitchesNumber_0_0" name="stitchesNumber" class="class_input_stitchesNumber">
+                        <input type="number" min="0" id="id_stitchesNumber_0_0" name="stitchesNumber" class="class_input_stitchesNumber">
                       </div>
-                      <div class="input-group">
+                      <div class="input-group no-grow">
                         <label for="metalPlatesNumber">N° di placche</label>
-                        <input type="text" id="id_metalPlatesNumber_0_0" name="metalPlatesNumber" class="class_input_metalPlatesNumber">
+                        <input type="number" min="0" id="id_metalPlatesNumber_0_0" name="metalPlatesNumber" class="class_input_metalPlatesNumber">
                       </div>
                     </div> 
 
                     <div class="row">
                       <div class="input-group">
                         <label for="notes">Note &nbsp</label>
-                        <textarea id="id_surgeryNotes_0_0" name="surgeryNotes" class="class_input_Notes" rows="3" cols="100"  id="message" placeholder="Aggiungere eventuali note"></textarea>
+                        <textarea id="id_surgeryNotes_0_0" name="surgeryNotes" class="class_input_Notes" rows="3" cols="160"  id="message" placeholder="Aggiungere eventuali note"></textarea>
                       </div>
                     </div>
                     
