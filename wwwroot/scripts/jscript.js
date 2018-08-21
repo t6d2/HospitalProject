@@ -354,13 +354,14 @@ function UpdatePatientObjectServiceData(inputArray, idPatient, idService) {
   patientToUpdate.servicesList[idService-1].serviceDate = dateObject
 }
 
-function CreateNewPatient(){
+function CreateNewPatient(newPatientObj){
   let newPatientId= Math.max(...patients.map(o => o.id)) + 1
   patients.push(new Patient(newPatientId, '','', '', new Date(), '', '', '','', 0, 'images/patients_photos/.jpg'));
   
   CloneBtnPerson(patients[patients.length-1], true)
 
   AddListener(document.getElementById("id_btn_person_" + newPatientId))
+  newPatientObj.newPatient = newPatientId
 }
 
 function CreateNewService(patientId, newServiceObj) {
@@ -541,7 +542,10 @@ function changePhoto(elem) {
 }
 
 $('#id_button_add_patient').click(function(){
-   CreateNewPatient()  
+  let newPatientObj ={newPatient:0}
+  CreateNewPatient(newPatientObj)
+
+  $("html, body").scrollTop($("#id_content-btn_person_" + newPatientObj.newPatient).offset().top);
 })
 
 $(document).on('click', ".btn_add_service", function () {
@@ -550,25 +554,15 @@ $(document).on('click', ".btn_add_service", function () {
   let newServiceObj ={newService:0}
   CreateNewService(patientId, newServiceObj) 
 
-  alert("Completa il nuovo 'Servizio" + newServiceObj.newService + "'")
+  // alert("Completa il nuovo 'Servizio" + newServiceObj.newService + "'")
    
   $('#id_btn_service_' + patientId + '_' + newServiceObj.newService).trigger("click")
   document.getElementById('id_btn_service_' + patientId + '_' + newServiceObj.newService).classList.add('active')
   document.getElementById('id_content-btn_service_' + patientId + '_' + newServiceObj.newService).className ='collapse in'
   document.getElementById('id_content-btn_service_' + patientId + '_' + newServiceObj.newService).style.display ='block'
-    
-  //disable all buttons except th current
-  // let buttons = document.getElementsByTagName('button')
-  // console.log(this.id, Array.from(buttons))
-  // for(;i < Array.from(buttons).length;){
-  //   console.log(Array.from(buttons)[i])
-  //   Array.from(buttons)[i].disabled = true;
-  // }
   
-  // document.getElementById(this.id).disabled = false;
-
- 
-  //
+  $("html, body").scrollTop($('#id_content-btn_service_' + patientId + '_' + newServiceObj.newService).offset().top);
+  
 })
 
 

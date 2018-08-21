@@ -1,5 +1,5 @@
-
 body {
+  
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -7,6 +7,7 @@ body {
   padding: 0;
   width: 100%;
   background-color: #afd5e0;
+  overflow:scroll;
 }
 
 .main-container {
@@ -24,25 +25,21 @@ body {
   box-sizing: border-box;
   width:100%;
   height:auto;
-  overflow-y:auto;
   height: 100%;
   margin: 0;
   margin-bottom: 1em;
   padding: 1em;
 }
 
-.header_container {
-  display: flex;
-  flex-direction: column;
-}
-
 .page-header {
+  flex-direction: column;
   background-image: url('../images/header.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
   font-family: chalkduster;
   padding: 3em;
   margin: 0px;
+  width: 100%;
 }
 
 .page-header h1 {
