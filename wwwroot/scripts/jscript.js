@@ -490,8 +490,7 @@ $(document).on('click', ".class_btn_update_service", function () {
   let idService = this.id.substring((this.id).lastIndexOf('_') + 1)
   let invalidForm1 = document.body.querySelector("form[id='id_form_select_service_" + idPatient + "_" + idService + "']:invalid");
   let invalidForm2 = document.body.querySelector("form[id='id_form_" + service + "_" + idPatient + "_" + idService + "']:invalid");
-  console.log(invalidForm1)
-  if (invalidForm1 || invalidForm2) {
+    if (invalidForm1 || invalidForm2) {
     alert('Dati mancanti o non corretti !!!')
     return false;
   }
@@ -545,7 +544,6 @@ $(document).on('click', "button[id^=id_btn_person_]", function () {
 $(document).on('click', "button[id^=id_btn_service_]", function () {
   positionX = document.getElementById(this.id).offsetLeft
   positionY = document.getElementById(this.id).offsetTop
-  console.log(positionX, positionY)
   document.getElementById('id_main_name').scrollTo(positionX, positionY);  
 })
 
