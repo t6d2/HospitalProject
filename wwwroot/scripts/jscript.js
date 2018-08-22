@@ -64,7 +64,7 @@ PatientsFullNameSort()
 // create person section
 for(entry of patients)
   CloneBtnPerson(entry, false)
-
+// hide deafult sections
 var elem = document.getElementById('id_content-btn_person_0');
 document.getElementById(elem.id).style.display = 'none';
 elem = document.getElementById('id_btn_person_0');
@@ -147,7 +147,7 @@ function UpdateButtonPerson(entry, idCurrent) {
   let contentPatientElement = document.body.querySelector('#id_btn_person_' + entry.id)
   let elementToModify = contentPatientElement.querySelector('#p_id_fullName_' + idCurrent);
   elementToModify.innerHTML = entry.fullName
-  elementToModify.setAttribute('id', 'p_id_fullName_' + entry.id)
+  elementToModify.setAttribute('id', 'p_id_fullName_' + entry.id);
   if(entry.birthDate.toDateString() == new Date().toDateString()){
     dateString = ""
   }          
@@ -301,8 +301,6 @@ function LoadServiceDetail(entry, serviceNumber) {
     let doctorCompletName = doctors.find(item=>item.id==entry.servicesList[serviceNumber-1].doctorId).completeName;
     $("#id_select_doctor_" + entry.id + "_" + serviceNumber + " option:contains(" + doctorCompletName  +")").attr("selected", true)
   }
-  
-  
 }
 
 function DoctorsSelectPopulate (doctorsArraySelect, id_content_service) {
@@ -330,9 +328,8 @@ function UpdatePatientObjectData(inputArray, idPatient) {
       
       patientToUpdate[inputArray[i].name] = inputArray[i].value
     }
-   
-    let dateObject = new Date(patientToUpdate.birthDate);
-    patientToUpdate.birthDate = dateObject
+  let dateObject = new Date(patientToUpdate.birthDate);
+  patientToUpdate.birthDate = dateObject
 
   UpdateButtonPerson(patientToUpdate, idPatient)
 }
@@ -356,7 +353,7 @@ function UpdatePatientObjectServiceData(inputArray, idPatient, idService) {
 
 function CreateNewPatient(newPatientObj){
   let newPatientId= Math.max(...patients.map(o => o.id)) + 1
-  patients.push(new Patient(newPatientId, '','', '', new Date(), '', '', '','', 0, 'images/patients_photos/.jpg'));
+  patients.push(new Patient(newPatientId, '','', '', new Date(), '', '', '','', 0, 'images/default.jpg'));
   
   CloneBtnPerson(patients[patients.length-1], true)
 
@@ -491,9 +488,9 @@ $(document).on('click', ".class_btn_update_service", function () {
 
   let idPatient = this.id.substring(/\d/.exec(this.id).index, (this.id).lastIndexOf('_'))
   let idService = this.id.substring((this.id).lastIndexOf('_') + 1)
-  let invalidForm1 = document.querySelector("form[id='id_form_select_service_" + idPatient + "_" + idService + "']:invalid");
-  let invalidForm2 = document.querySelector("form[id='id_form_" + service + "_" + idPatient + "_" + idService + "']:invalid");
- 
+  let invalidForm1 = document.body.querySelector("form[id='id_form_select_service_" + idPatient + "_" + idService + "']:invalid");
+  let invalidForm2 = document.body.querySelector("form[id='id_form_" + service + "_" + idPatient + "_" + idService + "']:invalid");
+  console.log(invalidForm1)
   if (invalidForm1 || invalidForm2) {
     alert('Dati mancanti o non corretti !!!')
     return false;
@@ -541,10 +538,20 @@ function changePhoto(elem) {
   }
 }
 
+$(document).on('click', "button[id^=id_btn_person_]", function () {
+  document.getElementById(this.id).scrollIntoView({behavior: "smooth", block: "start"});
+})
+
+$(document).on('click', "button[id^=id_btn_service_]", function () {
+  positionX = document.getElementById(this.id).offsetLeft
+  positionY = document.getElementById(this.id).offsetTop
+  console.log(positionX, positionY)
+  document.getElementById('id_main_name').scrollTo(positionX, positionY);  
+})
+
 $('#id_button_add_patient').click(function(){
   let newPatientObj ={newPatient:0}
   CreateNewPatient(newPatientObj)
-
   $("html, main").scrollTop($("#id_btn_person_" + newPatientObj.newPatient).offset().top);
 })
 
@@ -560,26 +567,21 @@ $(document).on('click', ".btn_add_service", function () {
   document.getElementById('id_content-btn_service_' + patientId + '_' + newServiceObj.newService).style.display ='block'
   
   $("html, main").scrollTop($('#id_btn_service_' + patientId + '_' + newServiceObj.newService).offset().top);
+})
+
+$(document).on('change', "input, date, select", function (e) {
+  CheckInput($(this), e)
+})
+
+$(document).on('focusout', "input, date, select", function (e) {
+  CheckInput($(this), e)
+})
+
+function CheckInput(inputElement, e) {
+  inputElement.css('border','');
   
-})
-
-$(document).on('focusout', "input, select", function (e) {
-    
-    var code = e.keyCode || e.which;
-    $(this).css('border','');
-    console.log(0, code, $(this).val)
-    if (code == '0') {        
-        if($(this).val()=='' || $(this).val()==null){
-          console.log(1, e,  $(this).val, $(this).next())
-          $(this).next().html('Campo obbligatorio!');
-            $(this).css('border','2px solid red');
-            $(this).focus();
-            return;
-        } 
-      
-    }
-
-})
-
-
-
+  if (e.currentTarget.value == "") {        
+        inputElement.next().html('Campo obbligatorio!');
+        inputElement.css('border','2px inset red');
+  }
+}

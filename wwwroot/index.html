@@ -12,7 +12,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="classes/class.js"></script>
-    
   </head>
 
   <body id="body">
@@ -41,8 +40,7 @@
       <p style="width:14%; margin:0">Numero servizi</p>
       <button id ="id_button_add_patient" style="margin:0 2em 0 auto;" class="btn_add_person" >Aggiungi Paziente</button>
     </div>
-    <!-- <div style="height: 100%; overflow: hidden"> -->
-      <main class="main-container">
+      <main class="main-container" id="id_main_name">
         <div id="id_btns_container" class="container">
           <button href="#id_content-btn_person_0" id="id_btn_person_0"
             type="button" class="btn_btn-person" data-toggle="collapse"
@@ -60,7 +58,7 @@
                   <input type="file" id="id_photoFile_0" accept="image/*" name="img" onchange="changePhoto(this);" style="visibility: hidden; width: 1px; height: 1px"/>
                   <a href="" onclick="document.getElementById('id_photoFile_0').click(); return false">
                     <img id="id_photo_image" class='img img-responsive img-thumbnail' title="clicca sull'immagine per cambiarla"
-                        src="images/patients_photos/.jpg" alt="Clicca qui per caricare la foto" style="cursor:pointer; width: 100px; height: 140px;"/></a>
+                        src="images/default.jpg" alt="Clicca qui per caricare la foto" style="cursor:pointer; width: 100px; height: 140px;"/></a>
 
                 </td>
                 <td width="60%">
@@ -68,15 +66,15 @@
                     <div class="row" padding="0.5em 0em 0em 5em">
                       <div class="input-group">
                         <label>Nome</label>
-                        <input type="text" id="id_name_0" name ="name" class="class_input_name" 
-                                placeholder="Inserire il nome" required pattern="[A-Za-z][A-Za-z' -]+"
-                                title="Il nome deve contenere almeno due caratteri alfabetici"/>
+                        <input type="text" id="id_name_0" name="name" class="class_input_name" 
+                                placeholder="Inserire il nome" pattern="[A-Za-z][A-Za-z][A-Za-z' -]*"
+                                title="Il nome deve iniziare con almeno due caratteri alfabetici" required="true" />
                       </div>
                       <div class="input-group">
                         <label>Cognome</label>
-                        <input type="text" id="id_surname_0" name ="surname" class="class_input_surname" 
-                                placeholder="Inserire il cognome" required pattern="[A-Za-z][A-Za-z' -]+" 
-                                title="Il cognome deve contenere almeno due caratteri alfabetici"/>
+                        <input type="text" id="id_surname_0" name="surname" class="class_input_surname" 
+                                placeholder="Inserire il cognome"  pattern="[A-Za-z][A-Za-z'][A-Za-z' -]*" 
+                                title="Il cognome deve contenere almeno due caratteri" required/>
                       </div>
                     </div>
                     <div class="row">
@@ -92,20 +90,20 @@
                       </div>
                       <div class="input-group no-grow">
                         <label>Data di nascita</label>
-                        <input type="date" id="id_birthDate_0" name = "birthDate"  class="class_input_birthDate" 
+                        <input type="date" id="id_birthDate_0" name="birthDate"  class="class_input_birthDate" 
                         placeholder="Selezionare la data" required title="Data di nascita non inserita"/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-group">
                         <label>Indirizzo</label>
-                        <input type="text" id="id_address_0" name = "address" class="class_input_address" 
-                                placeholder="Inserire l'indirizzo" required pattern="[A-Za-z][A-Za-z' -]+"
-                                title="L'indirizzo deve contenere almeno due caratteri"/>
+                        <input type="text" id="id_address_0" name="address" class="class_input_address" 
+                                placeholder="Inserire l'indirizzo" required pattern="[A-Za-z][A-Za-z][0-9A-Za-z' -°^/]*"
+                                title="L'indirizzo deve iniziare almeno due caratteri"/>
                       </div>
                       <div class="input-group no-grow">
                         <label>Numero</label>
-                        <input type="text" id="id_number_0" name = "number" class="class_input_number" style="max-width:4em"
+                        <input type="text" id="id_number_0" name="number" class="class_input_number" style="max-width:4.1em"
                                 placeholder="Numero civico" required pattern="[1-9][0-9A-Za-z -/]*" 
                                 title="Il numero civico deve iniziare con un numero"/>
                       </div>
@@ -113,13 +111,13 @@
                     <div class="row">
                       <div class="input-group">
                         <label>Città</label>
-                        <input type="text" id="id_city_0" name = "city" class="class_input_city"
-                                placeholder="Inserire la città" required pattern="[A-Za-z][A-Za-z' -.]+" 
-                                title="La città deve contenere almeno due caratteri"/>
+                        <input type="text" id="id_city_0" name="city" class="class_input_city"
+                                placeholder="Inserire la città" required pattern="[A-Za-z][A-Za-z'][A-Za-z' -.]*" 
+                                title="La città deve iniziareo due caratteri"/>
                       </div>
                       <div class="input-group no-grow">
                         <label>CAP</label>
-                        <input type="text" id="id_zip_0" name = "zip" class="class_input_zip" 
+                        <input type="text" id="id_zip_0" name="zip" class="class_input_zip" 
                         placeholder="CAP" required pattern ="[0-9]{5}" maxlength="5" style="max-width:4em" 
                         title="Il CAP deve contenere 5 cifre"/>
                       </div>
@@ -146,8 +144,8 @@
                   <td colspan=2>
                     <form id="id_form_select_service_0_0">
                       <div class="row" style="padding:1em 1em 0em 3.5em">
-                        <div class="input-group no-grow" style="width:50%">
-                          <label>Servizio &nbsp</label>
+                        <div class="input-group no-grow" style="width:50%;">
+                          <label>Servizio &nbsp;</label>
                           <select id="id_select_service_0_0" name="dptName" class="class_input_select_dpt" required>
                             <option value="" disabled selected hidden>Selezionare un servizio...</option>
                             <optgroup id="id_optGroup_visits" label="Visite">
@@ -159,12 +157,10 @@
                           </select>
                         </div>
                         <div class="input-group no-grow" style="width:50%">
-                          <label>Dottore &nbsp</label>
+                          <label>Dottore &nbsp;</label>
                           <select id="id_select_doctor_0_0" name="doctorId" class="class_input_select_doctorId" required>
-                            <optgroup id="id_optGroup_doctors" label="Medici" required>
-
-                            </optgroup>
-                              <option value="" disabled selected hidden>Selezionare un dottore...</option>
+                            <option value="" disabled selected hidden>Selezionare un dottore...</option>
+                            <optgroup id="id_optGroup_doctors" label="Medici">
                             </optgroup>
                           </select>
                         </div>
@@ -181,8 +177,8 @@
                         <div class="input-group no-grow">
                           <label>Condizioni di salute</label>
                           <select id="id_visitConditions_0_0" name="visitConditions" class="class_input_serviceConditions" required>
-                            <optgroup label="Condizione di salute" ></optgroup>
-                              <option value="" disabled selected hidden>Selezionare lo stato di salute...</option>
+                            <option value="" disabled selected hidden>Selezionare lo stato di salute...</option>
+                            <optgroup label="Condizione di salute" >
                               <option value="1">Buona salute</option>
                               <option value="2">Qualche acciacco</option>
                               <option value="3">Salute cagionevole</option>
@@ -198,8 +194,8 @@
 
                       <div class="row">
                         <div class="input-group">
-                          <label for="notes">Note &nbsp</label>
-                          <textarea id="id_visitNotes_0_0" name="visitNotes" class="class_input_note" rows="3" cols = "160"  placeholder="Aggiungere eventuali note"></textarea>
+                          <label for="notes">Note &nbsp;</label>
+                          <textarea id="id_visitNotes_0_0" name="visitNotes" class="class_input_note" rows="3" cols="160" placeholder="Aggiungere eventuali note"></textarea>
                         </div>
                       </div>
                     </form>
@@ -213,10 +209,10 @@
                     <form method="post" action ="" id="id_form_surgery_0_0" class="form_service">
                       <div class="row">
                         <div class="input-group no-grow" width="6em">
-                          <label>Esito dell'intervento &nbsp</label>
+                          <label>Esito dell'intervento &nbsp;</label>
                           <select id="id_surgeryConditions_0_0" name="surgeryConditions" class="class_input_surgeryConditions" required>
-                            <optgroup label="Condizione di salute"></optgroup>
-                              <option value="" disabled selected hidden>Selezionare l'esito dell'intervento...</option>
+                            <option value="" disabled selected hidden>Selezionare l'esito dell'intervento...</option>
+                            <optgroup label="Condizione di salute">
                               <option value="1">Successo</option>
                               <option value="2">Complicazioni</option>
                               <option value="3">Decesso</option>
@@ -224,7 +220,7 @@
                           </select>
                         </div>
                         <div class="input-group no-grow">
-                          <label for="surgeryDate">Data dell'intervento &nbsp</label>
+                          <label for="surgeryDate">Data dell'intervento &nbsp;</label>
                           <input type="date" id="id_surgeryDate_0_0" name="surgeryDate" class="class_input_surgeryDate"  placeholder="Selezionare la data..." required>
                         </div>
                       </div>
@@ -249,7 +245,7 @@
 
                       <div class="row">
                         <div class="input-group">
-                          <label for="notes">Note &nbsp</label>
+                          <label for="notes">Note &nbsp;</label>
                           <textarea id="id_surgeryNotes_0_0" name="surgeryNotes" class="class_input_Notes" rows="3" cols="160"  id="message" placeholder="Aggiungere eventuali note"></textarea>
                         </div>
                       </div>
@@ -260,18 +256,14 @@
               </table>
             </div>
           </div>
-
         </div>
       </main>
-    <!-- </div> -->
     <footer class="footer">
       &copy; 2018 DanTon
     </footer>
 
     <script src='scripts/jscript.js'>
     </script>
-
   </body>
-  
 
 </html>
