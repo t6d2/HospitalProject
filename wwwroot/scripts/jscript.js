@@ -411,6 +411,12 @@ $('select[id^=id_select_service_]').on('change', function(){
   }
 
   DoctorsSelectPopulate(doctorsArraySelect, 'id_content-btn_service_' + idPatient + '_' + idService)
+  if (this.value > 0){
+    $("#id_surgeryConditions_" + idPatient + '_' + idService).trigger("focusout")
+    // console.log('b', $("#id_surgeryConditions_" + idPatient + '_' + idService))
+  }
+    
+
 });
 
 $('.btn_btn-person').click (function() {
@@ -546,15 +552,19 @@ $(document).on('click', "button[id^=id_btn_service_]", function () {
 })
 
 $('#id_button_add_patient').click(function(){
+  
   let newPatientObj ={newPatient:0}
   CreateNewPatient(newPatientObj)
+  $("#id_gender_" + newPatientObj.newPatient).trigger("focusout")
   document.getElementById('id_btn_person_' + newPatientObj.newPatient).scrollIntoView({behavior: "smooth", block: "start"});
 })
 
 $(document).on('click', ".btn_add_service", function () {
   let patientId = parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
   let newServiceObj ={newService:0}
-  CreateNewService(patientId, newServiceObj) 
+  CreateNewService(patientId, newServiceObj)
+  $("#id_select_service_" + patientId + '_' + newServiceObj.newService).trigger("focusout")
+  $("#id_select_doctor_" + patientId + '_' + newServiceObj.newService).trigger("focusout")
 
   $('#id_btn_service_' + patientId + '_' + newServiceObj.newService).trigger("click")
   document.getElementById('id_btn_service_' + patientId + '_' + newServiceObj.newService).classList.add('active')
@@ -564,18 +574,19 @@ $(document).on('click', ".btn_add_service", function () {
   $("html, main").scrollTop($('#id_btn_service_' + patientId + '_' + newServiceObj.newService).offset().top);
 })
 
-// $(document).on('change', "input, date, select", function (e) {
-//   CheckInput($(this), e)
-// })
+$(document).on('change', "input, date, select", function (e) {
+  CheckInput($(this), e)
+})
 
-// $(document).on('focusout', "input, date, select", function (e) {
-//   CheckInput($(this), e)
-// })
+$(document).on('focusout', "input, date, select", function (e) {
+
+  CheckInput($(this), e)
+})
 
 function CheckInput(inputElement, e) {
   inputElement.css('border','');
-  
-  if (e.currentTarget.value == "") {        
+  // console.log('c', e.isTrigger, e.currentTarget.value, e)
+  if (e.currentTarget.value == "" || e.currentTarget.value == null) {        
         inputElement.next().html('Campo obbligatorio!');
         inputElement.css('border','2px inset red');
   }

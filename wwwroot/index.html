@@ -80,8 +80,8 @@
                     <div class="row">
                       <div class="input-group no-grow">
                         <label>Genere</label>
-                        <select id="id_gender_0" name="gender" class="class_input_gender" required 
-                                title="Genere non selezionato">
+                        <select id="id_gender_0" name="gender" class="class_input_gender" required="required"
+                                 title="Genere non selezionato">
                           <option disabled selected value="" >Genere...</option>
                           <option value="maschio">maschio</option>
                           <option value="femmina">femmina</option>
@@ -91,7 +91,7 @@
                       <div class="input-group no-grow">
                         <label>Data di nascita</label>
                         <input type="date" id="id_birthDate_0" name="birthDate"  class="class_input_birthDate" 
-                        placeholder="Selezionare la data" title="Data di nascita non inserita" required />
+                        placeholder="Selezionare la data" pattern="\d{1,2}/\d{1,2}/\d{4}" title="Data di nascita non inserita" required />
                       </div>
                     </div>
                     <div class="row">
@@ -188,7 +188,7 @@
                         </div>
                         <div class="input-group no-grow" >
                           <label>Data della visita</label>
-                          <input type="date" id="id_visitDate_0_0" name="visitDate" class="class_input_visitDate" placeholder="Selezionare la data..." required>
+                          <input type="date" id="id_visitDate_0_0" name="visitDate" class="class_input_visitDate" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Selezionare la data..." required>
                         </div>
                       </div> 
 
@@ -221,7 +221,7 @@
                         </div>
                         <div class="input-group no-grow">
                           <label for="surgeryDate">Data dell'intervento &nbsp;</label>
-                          <input type="date" id="id_surgeryDate_0_0" name="surgeryDate" class="class_input_surgeryDate"  placeholder="Selezionare la data..." required>
+                          <input type="date" id="id_surgeryDate_0_0" name="surgeryDate" class="class_input_surgeryDate" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Selezionare la data..." required>
                         </div>
                       </div>
                       <div class="row">
