@@ -268,8 +268,8 @@ td > .form_patient, td > .form_service {
   min-width: 18em;
 }
 
-input[type="date"] {
-  min-width: 9em;
+.no-grow > input[type="date"] {
+  min-width: 10em;
 }
 
 input[pattern]:invalid{

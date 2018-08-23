@@ -411,11 +411,8 @@ $('select[id^=id_select_service_]').on('change', function(){
   }
 
   DoctorsSelectPopulate(doctorsArraySelect, 'id_content-btn_service_' + idPatient + '_' + idService)
-  if (this.value > 0){
-    $("#id_surgeryConditions_" + idPatient + '_' + idService).trigger("focusout")
-    // console.log('b', $("#id_surgeryConditions_" + idPatient + '_' + idService))
-  }
-    
+  if (this.value > 0)
+    $("select[id$='Conditions_" + idPatient + "_" + idService + "']").trigger("focusout")
 
 });
 
@@ -490,9 +487,9 @@ $(document).on('click', ".class_btn_update_service", function () {
 
   let idPatient = this.id.substring(/\d/.exec(this.id).index, (this.id).lastIndexOf('_'))
   let idService = this.id.substring((this.id).lastIndexOf('_') + 1)
-  let invalidForm1 = document.body.querySelector("form[id='id_form_select_service_" + idPatient + "_" + idService + "']:invalid");
-  let invalidForm2 = document.body.querySelector("form[id='id_form_" + service + "_" + idPatient + "_" + idService + "']:invalid");
-    if (invalidForm1 || invalidForm2) {
+  let invalidForm1 = document.querySelector("form[id=id_form_select_service_" + idPatient + "_" + idService + "]:invalid")
+  let invalidForm2 = document.querySelector("form[id=id_form_" + service + "_" + idPatient + "_" + idService + "]:invalid")
+  if (invalidForm2 || invalidForm1) {
     alert('Dati mancanti o non corretti !!!')
     return false;
   }
@@ -563,8 +560,7 @@ $(document).on('click', ".btn_add_service", function () {
   let patientId = parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
   let newServiceObj ={newService:0}
   CreateNewService(patientId, newServiceObj)
-  $("#id_select_service_" + patientId + '_' + newServiceObj.newService).trigger("focusout")
-  $("#id_select_doctor_" + patientId + '_' + newServiceObj.newService).trigger("focusout")
+  
 
   $('#id_btn_service_' + patientId + '_' + newServiceObj.newService).trigger("click")
   document.getElementById('id_btn_service_' + patientId + '_' + newServiceObj.newService).classList.add('active')
@@ -572,6 +568,8 @@ $(document).on('click', ".btn_add_service", function () {
   document.getElementById('id_content-btn_service_' + patientId + '_' + newServiceObj.newService).style.display ='block'
   
   $("html, main").scrollTop($('#id_btn_service_' + patientId + '_' + newServiceObj.newService).offset().top);
+  $("#id_select_service_" + patientId + '_' + newServiceObj.newService).trigger("focusout")
+  $("#id_select_doctor_" + patientId + '_' + newServiceObj.newService).trigger("focusout")
 })
 
 $(document).on('change', "input, date, select", function (e) {
@@ -579,13 +577,11 @@ $(document).on('change', "input, date, select", function (e) {
 })
 
 $(document).on('focusout', "input, date, select", function (e) {
-
   CheckInput($(this), e)
 })
 
 function CheckInput(inputElement, e) {
   inputElement.css('border','');
-  // console.log('c', e.isTrigger, e.currentTarget.value, e)
   if (e.currentTarget.value == "" || e.currentTarget.value == null) {        
         inputElement.next().html('Campo obbligatorio!');
         inputElement.css('border','2px inset red');
