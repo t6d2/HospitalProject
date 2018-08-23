@@ -107,7 +107,7 @@ function ServicesSelectPopulate () {
 function CloneBtnPerson(entry, isNewPatient) {
   var container = document.getElementById('id_btns_container')
   let item = document.getElementById('id_btn_person_0');
-  cloneItem = item.cloneNode(true);
+  let cloneItem = item.cloneNode(true);
   cloneItem.setAttribute('href', "#content-btn_person_" + entry.id)
   cloneItem.id= "id_btn_person_" + entry.id
   container.appendChild(cloneItem);
@@ -119,7 +119,7 @@ function CloneBtnPerson(entry, isNewPatient) {
   cloneItem.setAttribute('id', "id_content-btn_person_" + entry.id);
   container.appendChild(cloneItem);
 
-  contentPatientElement = document.body.querySelector('#id_content-btn_person_' + entry.id)
+  let contentPatientElement = document.body.querySelector('#id_content-btn_person_' + entry.id)
   contentPatientElement.querySelector('#id_photoFile_0').setAttribute('id', 'id_photoFile_' + entry.id)
   contentPatientElement.querySelector('a').setAttribute('href', '#id_photoFile_' + entry.id)
   contentPatientElement.querySelector('a').setAttribute('onclick', "document.getElementById('id_photoFile_" + entry.id + "').click(); return false")
@@ -134,7 +134,7 @@ function CloneBtnPerson(entry, isNewPatient) {
     UpdatePersonFieldsPage(entry)
    
   if(isNewPatient){
-    var elem = document.getElementById('id_content-btn_person_' + entry.id);
+    let elem = document.getElementById('id_content-btn_person_' + entry.id);
     document.getElementById(elem.id).style.display = 'block';
     elem = document.getElementById('id_btn_person_' + entry.id);
     document.getElementById(elem.id).style.display = 'inline-flex';
@@ -148,17 +148,15 @@ function UpdateButtonPerson(entry, idCurrent) {
   let elementToModify = contentPatientElement.querySelector('#p_id_fullName_' + idCurrent);
   elementToModify.innerHTML = entry.fullName
   elementToModify.setAttribute('id', 'p_id_fullName_' + entry.id);
-  if(entry.birthDate.toDateString() == new Date().toDateString()){
-    dateString = ""
-  }          
-  else { 
-    var month = (1 + entry.birthDate.getMonth()).toString();
+  let dateString = ""
+  if(entry.birthDate.toDateString() != new Date().toDateString()){
+    let month = (1 + entry.birthDate.getMonth()).toString();
     month = month.length > 1 ? month : '0' + month;
-    var day = entry.birthDate.getDate().toString();
+    let day = entry.birthDate.getDate().toString();
     day = day.length > 1 ? day : '0' + day;
-    var dateString = day + "/" + month + "/" + entry.birthDate.getFullYear()
-    
+    dateString = day + "/" + month + "/" + entry.birthDate.getFullYear()
   }
+
   elementToModify = contentPatientElement.querySelector('#p_id_birthDate_' + idCurrent);
   elementToModify.innerHTML = dateString
   elementToModify.setAttribute('id', 'p_id_birthDate_' + entry.id)
@@ -168,13 +166,12 @@ function UpdateButtonPerson(entry, idCurrent) {
 }
 
 function UpdatePersonFieldsPage(entry){
-  for(var key in entry){
+  for(let key in entry){
 
     let elementCreated = document.body.querySelector('#id_content-btn_person_' + entry.id).querySelector('.class_input_' + key);
     if(elementCreated != null){
 
       if(key == 'birthDate'){
-
         if(entry[key].toDateString() == new Date().toDateString()){
           dateString = ""
         }          
@@ -242,7 +239,6 @@ function CloneServices(entry) {
         AddListener(document.getElementById("id_btn_service_" + entry.id + "_" + i))
 
         LoadServiceDetail(entry, i)
-
     }
   }
 }
@@ -261,11 +257,11 @@ function CloneDefaultService (entry, serviceToCreate){
 }
 
 function LoadServiceDetail(entry, serviceNumber) {
-  month = (1 + entry.servicesList[serviceNumber-1].serviceDate.getMonth()).toString();
+  let month = (1 + entry.servicesList[serviceNumber-1].serviceDate.getMonth()).toString();
   month = month.length > 1 ? month : '0' + month;
-  day = entry.servicesList[serviceNumber-1].serviceDate.getDate().toString();
+  let day = entry.servicesList[serviceNumber-1].serviceDate.getDate().toString();
   day = day.length > 1 ? day : '0' + day;
-  dateString = entry.servicesList[serviceNumber-1].serviceDate.getFullYear() + "-" + month + "-" + day
+  let dateString = entry.servicesList[serviceNumber-1].serviceDate.getFullYear() + "-" + month + "-" + day
   if(entry.servicesList[serviceNumber-1].serviceType == "")
     return
   if(entry.servicesList[serviceNumber-1].serviceType == "visita") {
@@ -392,7 +388,7 @@ function AddListener($elem) {
 }
 
 $('select[id^=id_select_service_]').on('change', function(){
-  var selected = $("option:selected", this);
+  let selected = $("option:selected", this);
   let idPatient = this.id.substring(/\d/.exec(this.id).index, (this.id).lastIndexOf('_'))
   let idService = this.id.substring((this.id).lastIndexOf('_') + 1)
 
@@ -425,7 +421,7 @@ $('.btn_btn-person').click (function() {
 })
 
 $(document).on('click', ".class_btn_update_patient", function () {
-  idPatient =  parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
+  let idPatient =  parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
   let invalidForm = document.querySelector("form[id='id_form_patient_" + idPatient + "']:invalid");
   if (invalidForm) {
     alert('Dati mancanti o non corretti !!!')
@@ -450,13 +446,13 @@ $(document).on('click', ".class_btn_update_patient", function () {
   
   //delete all patients' buttons and contents
   for(entry of patients){
-    var elem = document.getElementById("id_btn_person_" + entry.id);
+    let elem = document.getElementById("id_btn_person_" + entry.id);
     elem.parentElement.removeChild(elem);
     elem = document.getElementById("id_content-btn_person_" + entry.id);
     elem.parentElement.removeChild(elem);
   }
   // before cloning restore display attribute on defaultsections
-  elem = document.getElementById('id_content-btn_person_0');
+  let elem = document.getElementById('id_content-btn_person_0');
   document.getElementById(elem.id).removeAttribute("display");
   elem = document.getElementById('id_btn_person_0');
   document.getElementById(elem.id).style.display = 'inline-flex';
@@ -524,7 +520,7 @@ $(document).on('click', ".class_btn_update_service", function () {
 
 function changePhoto(elem) {
   if (elem.files && elem.files[0]) {
-      var reader = new FileReader();
+      let reader = new FileReader();
 
       reader.onload = function (e) {
           $('#id_photo_image')
@@ -542,20 +538,21 @@ $(document).on('click', "button[id^=id_btn_person_]", function () {
 })
 
 $(document).on('click', "button[id^=id_btn_service_]", function () {
-  positionX = document.getElementById(this.id).offsetLeft
-  positionY = document.getElementById(this.id).offsetTop
-  document.getElementById('id_main_name').scrollTo(positionX, positionY);  
+  let top = $(this).position().top
+  currentScroll = $(this.parentElement).scrollTop();
+  $('#id_main_name').animate({
+      scrollTop: currentScroll + top 
+    }, 1000);
 })
 
 $('#id_button_add_patient').click(function(){
   let newPatientObj ={newPatient:0}
   CreateNewPatient(newPatientObj)
-  $("html, main").scrollTop($("#id_btn_person_" + newPatientObj.newPatient).offset().top);
+  document.getElementById('id_btn_person_' + newPatientObj.newPatient).scrollIntoView({behavior: "smooth", block: "start"});
 })
 
 $(document).on('click', ".btn_add_service", function () {
-  patientId = parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
-  
+  let patientId = parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
   let newServiceObj ={newService:0}
   CreateNewService(patientId, newServiceObj) 
 
