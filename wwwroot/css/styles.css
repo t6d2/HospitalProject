@@ -272,6 +272,10 @@ input[type="date"] {
   min-width: 9em;
 }
 
+input[pattern]:invalid{
+  color:red;
+}
+
 table {
   border: 2px solid #FFFFFFFF;
   width: 100%;

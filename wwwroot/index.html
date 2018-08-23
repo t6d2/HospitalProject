@@ -68,7 +68,7 @@
                         <label>Nome</label>
                         <input type="text" id="id_name_0" name="name" class="class_input_name" 
                                 placeholder="Inserire il nome" pattern="[A-Za-z][A-Za-z][A-Za-z' -]*"
-                                title="Il nome deve iniziare con almeno due caratteri alfabetici" required="true" />
+                                title="Il nome deve iniziare con almeno due caratteri alfabetici" required />
                       </div>
                       <div class="input-group">
                         <label>Cognome</label>
@@ -91,35 +91,35 @@
                       <div class="input-group no-grow">
                         <label>Data di nascita</label>
                         <input type="date" id="id_birthDate_0" name="birthDate"  class="class_input_birthDate" 
-                        placeholder="Selezionare la data" required title="Data di nascita non inserita"/>
+                        placeholder="Selezionare la data" title="Data di nascita non inserita" required />
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-group">
                         <label>Indirizzo</label>
                         <input type="text" id="id_address_0" name="address" class="class_input_address" 
-                                placeholder="Inserire l'indirizzo" required pattern="[A-Za-z][A-Za-z][0-9A-Za-z' -°^/]*"
-                                title="L'indirizzo deve iniziare almeno due caratteri"/>
+                                placeholder="Inserire l'indirizzo" pattern="[A-Za-z][A-Za-z][0-9A-Za-z' -°^/]*"
+                                title="L'indirizzo deve iniziare almeno due caratteri" required />
                       </div>
                       <div class="input-group no-grow">
                         <label>Numero</label>
                         <input type="text" id="id_number_0" name="number" class="class_input_number" style="max-width:4.1em"
-                                placeholder="Numero civico" required pattern="[1-9][0-9A-Za-z -/]*" 
-                                title="Il numero civico deve iniziare con un numero"/>
+                                placeholder="Numero civico" pattern="[1-9][0-9A-Za-z -/]*" 
+                                title="Il numero civico deve iniziare con un numero" required/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-group">
                         <label>Città</label>
                         <input type="text" id="id_city_0" name="city" class="class_input_city"
-                                placeholder="Inserire la città" required pattern="[A-Za-z][A-Za-z'][A-Za-z' -.]*" 
-                                title="La città deve iniziareo due caratteri"/>
+                                placeholder="Inserire la città" pattern="[A-Za-z][A-Za-z'][A-Za-z' -.]*" 
+                                title="La città deve iniziareo due caratteri" required/>
                       </div>
                       <div class="input-group no-grow">
                         <label>CAP</label>
                         <input type="text" id="id_zip_0" name="zip" class="class_input_zip" 
-                        placeholder="CAP" required pattern ="[0-9]{5}" maxlength="5" style="max-width:4em" 
-                        title="Il CAP deve contenere 5 cifre"/>
+                        placeholder="CAP" pattern ="[0-9]{5}" maxlength="5" style="max-width:4em" 
+                        title="Il CAP deve contenere 5 cifre" required/>
                       </div>
                     </div>
                   </form>
