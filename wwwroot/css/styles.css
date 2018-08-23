@@ -274,6 +274,7 @@ input[type="date"] {
 
 input[pattern]:invalid{
   color:red;
+  border: 2px inset red;
 }
 
 table {

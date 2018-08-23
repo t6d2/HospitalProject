@@ -564,13 +564,13 @@ $(document).on('click', ".btn_add_service", function () {
   $("html, main").scrollTop($('#id_btn_service_' + patientId + '_' + newServiceObj.newService).offset().top);
 })
 
-$(document).on('change', "input, date, select", function (e) {
-  CheckInput($(this), e)
-})
+// $(document).on('change', "input, date, select", function (e) {
+//   CheckInput($(this), e)
+// })
 
-$(document).on('focusout', "input, date, select", function (e) {
-  CheckInput($(this), e)
-})
+// $(document).on('focusout', "input, date, select", function (e) {
+//   CheckInput($(this), e)
+// })
 
 function CheckInput(inputElement, e) {
   inputElement.css('border','');
