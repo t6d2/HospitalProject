@@ -113,7 +113,7 @@
                         <label>Città</label>
                         <input type="text" id="id_city_0" name="city" class="class_input_city"
                                 placeholder="Inserire la città" pattern="[A-Za-z][A-Za-z'][A-Za-z' -.]*" 
-                                title="La città deve iniziareo due caratteri" required/>
+                                title="La città deve iniziare con due caratteri" required/>
                       </div>
                       <div class="input-group no-grow">
                         <label>CAP</label>
@@ -176,7 +176,7 @@
                       <div class="row">
                         <div class="input-group no-grow">
                           <label>Condizioni di salute</label>
-                          <select id="id_visitConditions_0_0" name="visitConditions" class="class_input_serviceConditions" required>
+                          <select id="id_visitConditions_0_0" name="visitConditions" class="class_input_serviceConditions" required="required">
                             
                             <optgroup label="Condizione di salute" >
                               <option value="" disabled selected hidden>Selezionare lo stato di salute...</option>
@@ -211,7 +211,7 @@
                       <div class="row">
                         <div class="input-group no-grow" >
                           <label>Esito dell'intervento &nbsp;</label>
-                          <select id="id_surgeryConditions_0_0" name="surgeryConditions" class="class_input_surgeryConditions" required>
+                          <select id="id_surgeryConditions_0_0" name="surgeryConditions" class="class_input_surgeryConditions" required="required">
                             <option value="" disabled selected hidden>Selezionare l'esito dell'intervento...</option>
                             <optgroup label="Condizione di salute">
                               <option value="1">Successo</option>
@@ -222,7 +222,7 @@
                         </div>
                         <div class="input-group no-grow">
                           <label for="surgeryDate">Data dell'intervento</label>
-                          <input type="date" id="id_surgeryDate_0_0" name="surgeryDate" class="class_input_surgeryDate" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Selezionare la data..." required />
+                          <input type="date" id="id_surgeryDate_0_0" name="surgeryDate" class="class_input_surgeryDate" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Selezionare la data..." required="required" />
                         </div>
                       </div>
                       <div class="row">

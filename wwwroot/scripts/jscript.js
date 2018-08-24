@@ -239,6 +239,7 @@ function CloneServices(entry) {
         AddListener(document.getElementById("id_btn_service_" + entry.id + "_" + i))
 
         LoadServiceDetail(entry, i)
+
     }
   }
 }
@@ -257,6 +258,7 @@ function CloneDefaultService (entry, serviceToCreate){
   }
   // following instr added just for Edge
   $('select[id="id_visitConditions_' + entry.id + '_' + serviceToCreate + '"]').val("")
+  $('select[id="id_surgeryConditions_' + entry.id + '_' + serviceToCreate + '"]').val("")
   
 }
 
@@ -318,7 +320,8 @@ function DoctorsSelectPopulate (doctorsArraySelect, id_content_service) {
     option.text = doctorsArraySelect[i][1]
     $div.appendChild(option)
   }
-  $(document.body.querySelector('#' + id_content_service).querySelector('select[id^="id_select_doctor_"]')).val(null)
+  if( $(document.body.querySelector('#' + id_content_service).querySelector('select[id^="id_select_service_"]')).value == "")
+    $(document.body.querySelector('#' + id_content_service).querySelector('select[id^="id_select_doctor_"]')).val(null)
 }
 
 function UpdatePatientObjectData(inputArray, idPatient) {
@@ -418,6 +421,7 @@ $('select[id^=id_select_service_]').on('change', function(){
   }
 
   DoctorsSelectPopulate(doctorsArraySelect, 'id_content-btn_service_' + idPatient + '_' + idService)
+
   if (this.value > 0)
     $("select[id$='Conditions_" + idPatient + "_" + idService + "']").trigger("focusout")
 
@@ -433,6 +437,7 @@ $('.btn_btn-person').click (function() {
 $(document).on('click', ".class_btn_update_patient", function () {
   let idPatient =  parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
   let invalidForm = document.querySelector("form[id='id_form_patient_" + idPatient + "']:invalid");
+
   if (invalidForm) {
     alert('Dati mancanti o non corretti !!!')
     return false;
@@ -494,18 +499,39 @@ $(document).on('click', ".class_btn_update_service", function () {
 
   let idPatient = this.id.substring(/\d/.exec(this.id).index, (this.id).lastIndexOf('_'))
   let idService = this.id.substring((this.id).lastIndexOf('_') + 1)
-  let invalidForm1 = document.querySelector("form[id^='id_form_select_service_" + idPatient + "_" + idService + "']:invalid")
-  let invalidForm2 = document.querySelector("form[id^='id_form_" + service + "_" + idPatient + "_" + idService + "']:invalid")
-  //PROBLEM with Edge --> not recognise invalid input
-  // console.log('a', $("form[id^='id_form_select_service_" + idPatient + "_" + idService + "']"))
-  // console.log('b', invalidForm2)
-  if (invalidForm2 || invalidForm1) {
-    alert('Dati mancanti o non corretti !!!')
+  
+  let isInputOk = true
+  $("id_form_select_service_" + idPatient + "_" + idService).submit();
+  let form = document.getElementById("id_form_select_service_" + idPatient + "_" + idService);
+  for(var i=0; i < form.elements.length; i++){
+    if(form.elements[i].hasAttribute('required') && (form.elements[i].value.trim() == '' || form.elements[i].value == null )){
+      isInputOk = false
+      form.elements[i].value = ""
+      break
+    }
+  }
+  if (isInputOk){
+    $("id_form_" + service + "_" + idPatient + "_" + idService).submit();
+    let form = document.getElementById("id_form_" + service + "_" + idPatient + "_" + idService);
+    for(var i=0; i < form.elements.length; i++){
+      if(form.elements[i].hasAttribute('required') && (form.elements[i].value.trim() == '' || form.elements[i].value == null )){
+        form.elements[i].value = ""
+        isInputOk = false
+        document.getElementById(form.elements[i].id).focus();
+        break
+      }
+    }
+  }
+
+  if(!isInputOk){
+    alert('I campi evidenziati devono essere compilati correttamente!!');
+    document.getElementById(form.elements[i].id).focus();
     return false;
   }
 
   $('id_form_' + service + '_' + idPatient + '_' + idService).submit();
   let inputArray = $('#id_form_' + service + '_' + idPatient + '_' + idService).serializeArray()
+
   inputArray.push({ 
     name: 'dptName',
     value: $("#id_select_service_" + idPatient + '_' + idService + " option:selected").text() 
