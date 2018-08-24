@@ -177,8 +177,9 @@
                         <div class="input-group no-grow">
                           <label>Condizioni di salute</label>
                           <select id="id_visitConditions_0_0" name="visitConditions" class="class_input_serviceConditions" required>
-                            <option value="" disabled selected hidden>Selezionare lo stato di salute...</option>
+                            
                             <optgroup label="Condizione di salute" >
+                              <option value="" disabled selected hidden>Selezionare lo stato di salute...</option>
                               <option value="1">Buona salute</option>
                               <option value="2">Qualche acciacco</option>
                               <option value="3">Salute cagionevole</option>
@@ -188,13 +189,13 @@
                         </div>
                         <div class="input-group no-grow" >
                           <label>Data della visita</label>
-                          <input type="date" id="id_visitDate_0_0" name="visitDate" class="class_input_visitDate" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Selezionare la data..." required/>
+                          <input type="date" id="id_visitDate_0_0" name="visitDate" class="class_input_visitDate" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Selezionare la data..." required="required">/>
                         </div>
                       </div> 
 
                       <div class="row">
                         <div class="input-group">
-                          <label for="notes">Note &nbsp;</label>
+                          <label>Note &nbsp;</label>
                           <textarea id="id_visitNotes_0_0" name="visitNotes" class="class_input_note" rows="3" cols="160" placeholder="Aggiungere eventuali note"></textarea>
                         </div>
                       </div>
@@ -226,26 +227,26 @@
                       </div>
                       <div class="row">
                         <div class="input-group no-grow">
-                          <label for="byPassNumber">N° di bypass</label>
+                          <label>N° di bypass</label>
                           <input type="number" min="0" id="id_bypassNumber_0_0" name="bypassNumber" class="class_input_bypassNumber"/>
                         </div>
                         <div class="input-group no-grow">
-                          <label for="heartValvesNumber">N° di valvole</label>
+                          <label>N° di valvole</label>
                           <input type="number" min="0" id="id_heartValvesNumber_0_0" name="heartValvesNumber" class="class_input_heartValvesNumber"/>
                         </div>
                         <div class="input-group no-grow">
-                          <label for="stitchesNumber">N° di punti</label>
+                          <label>N° di punti</label>
                           <input type="number" min="0" id="id_stitchesNumber_0_0" name="stitchesNumber" class="class_input_stitchesNumber"/>
                         </div>
                         <div class="input-group no-grow">
-                          <label for="metalPlatesNumber">N° di placche</label>
+                          <label>N° di placche</label>
                           <input type="number" min="0" id="id_metalPlatesNumber_0_0" name="metalPlatesNumber" class="class_input_metalPlatesNumber"/>
                         </div>
                       </div> 
 
                       <div class="row">
                         <div class="input-group">
-                          <label for="notes">Note &nbsp;</label>
+                          <label>Note &nbsp;</label>
                           <textarea id="id_surgeryNotes_0_0" name="surgeryNotes" class="class_input_Notes" rows="3" cols="160"  id="message" placeholder="Aggiungere eventuali note"></textarea>
                         </div>
                       </div>

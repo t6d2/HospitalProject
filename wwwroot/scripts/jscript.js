@@ -249,11 +249,15 @@ function CloneDefaultService (entry, serviceToCreate){
   document.getElementById('id_btn_service_' + entry.id + '_' + serviceToCreate).setAttribute('href', '#id_content-btn_service_' + entry.id + '_' + serviceToCreate)
   document.getElementById('id_btn_service_' + entry.id + '_' + serviceToCreate).innerHTML = "Servizio " + serviceToCreate
  
+  
   $('#id_content-btn_person_' + entry.id).append($('#id_content-btn_service_0_0').clone(true).attr('id', 'id_content-btn_service_' + entry.id + '_' + serviceToCreate))
   elements = $('#id_content-btn_service_' + entry.id + '_' + serviceToCreate).find('*[id$=_0_0]');
   for(let j = 0; j < elements.length; j++){
     elements[j].id = elements[j].id.replace('_0_0', '_' + entry.id + '_' + serviceToCreate)
   }
+  // following instr added just for Edge
+  $('select[id="id_visitConditions_' + entry.id + '_' + serviceToCreate + '"]').val("")
+  
 }
 
 function LoadServiceDetail(entry, serviceNumber) {
@@ -262,8 +266,11 @@ function LoadServiceDetail(entry, serviceNumber) {
   let day = entry.servicesList[serviceNumber-1].serviceDate.getDate().toString();
   day = day.length > 1 ? day : '0' + day;
   let dateString = entry.servicesList[serviceNumber-1].serviceDate.getFullYear() + "-" + month + "-" + day
-  if(entry.servicesList[serviceNumber-1].serviceType == "")
+  if(entry.servicesList[serviceNumber-1].serviceType == ""){
+    
     return
+  }
+    
   if(entry.servicesList[serviceNumber-1].serviceType == "visita") {
     $("#id_select_service_" + entry.id + "_" + serviceNumber + " > optgroup[id='id_optGroup_visits']")
     .find("option:contains(" + entry.servicesList[serviceNumber-1].dptName  +")")
@@ -280,9 +287,8 @@ function LoadServiceDetail(entry, serviceNumber) {
       .attr("selected","selected");
     document.body.querySelector('#id_surgeryDate_' + entry.id + '_' + serviceNumber)
       .setAttribute('value', dateString)
-    elementCreated = document.body.querySelector('#id_surgeryNotes_' + entry.id + '_' + serviceNumber)
+    document.body.querySelector('#id_surgeryNotes_' + entry.id + '_' + serviceNumber)
       .value =  entry.servicesList[serviceNumber-1].serviceNotes
-    
     $("#id_surgeryConditions_" + entry.id + "_" + serviceNumber + " option:contains(" + entry.servicesList[serviceNumber-1].serviceConditions  +")").attr("selected", true)
     for(elem of Array.from(entry.servicesList[serviceNumber-1].pointsList)){
       document.body.querySelector('#id_' + elem['surgeryElement'] + '_' + entry.id + '_' + serviceNumber)
@@ -290,6 +296,7 @@ function LoadServiceDetail(entry, serviceNumber) {
     }
   }
 
+  
   //set selectedItem service 
   $("#id_select_service_" + entry.id + "_" + serviceNumber).change(); 
   // set selectedItem doctor
@@ -367,7 +374,7 @@ function CreateNewService(patientId, newServiceObj) {
 
   CloneDefaultService (patients[patientIndex], newServiceId)
 
-  patients[patientIndex].addService(new PatientService(newServiceId, '',null , '','',new Date(), '', ''))
+  patients[patientIndex].addService(new PatientService(newServiceId, '',null , '','',new Date(), '', 0,0,0,0))
   document.body.querySelector('#id_btn_person_' + patientId).querySelector('#p_id_servicesNumber_' + patientId)
     .innerHTML =  newServiceId
   AddListener(document.getElementById("id_btn_service_" + patients[patientIndex].id + "_" + newServiceId))
@@ -391,10 +398,10 @@ $('select[id^=id_select_service_]').on('change', function(){
   let selected = $("option:selected", this);
   let idPatient = this.id.substring(/\d/.exec(this.id).index, (this.id).lastIndexOf('_'))
   let idService = this.id.substring((this.id).lastIndexOf('_') + 1)
-
+  
   selected.parent()[0].label=="Visite"?$("tr[id^='id_tr_visit_" + idPatient + '_' + idService + "']").show(): $("tr[id='id_tr_visit_" + idPatient + '_' + idService + "']").hide();
   selected.parent()[0].label=="Interventi"?$("tr[id^='id_tr_surgery_" + idPatient + '_' + idService + "']").show(): $("tr[id^='id_tr_surgery_" + idPatient + '_' + idService + "']").hide();
-
+ 
   // create array with doctors available for selected service
   let dptsArray = Array.from(departments)
   let doctorsArray = Array.from(doctors)
@@ -487,8 +494,11 @@ $(document).on('click', ".class_btn_update_service", function () {
 
   let idPatient = this.id.substring(/\d/.exec(this.id).index, (this.id).lastIndexOf('_'))
   let idService = this.id.substring((this.id).lastIndexOf('_') + 1)
-  let invalidForm1 = document.querySelector("form[id=id_form_select_service_" + idPatient + "_" + idService + "]:invalid")
-  let invalidForm2 = document.querySelector("form[id=id_form_" + service + "_" + idPatient + "_" + idService + "]:invalid")
+  let invalidForm1 = document.querySelector("form[id^='id_form_select_service_" + idPatient + "_" + idService + "']:invalid")
+  let invalidForm2 = document.querySelector("form[id^='id_form_" + service + "_" + idPatient + "_" + idService + "']:invalid")
+  //PROBLEM with Edge --> not recognise invalid input
+  // console.log('a', $("form[id^='id_form_select_service_" + idPatient + "_" + idService + "']"))
+  // console.log('b', invalidForm2)
   if (invalidForm2 || invalidForm1) {
     alert('Dati mancanti o non corretti !!!')
     return false;
