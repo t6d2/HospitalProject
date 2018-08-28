@@ -314,7 +314,6 @@ function DoctorsSelectPopulate (doctorsArraySelect, id_content_service) {
    let $div = document.body.querySelector('#' + id_content_service).querySelector('#id_optGroup_doctors')
   $($div).find("option").remove()
   //populate select doctor 
-  let depArray = Array.from(departments)
   for(i = 0; i < doctorsArraySelect.length; i++) {
     let option = document.createElement("option")
     option.setAttribute('Value', doctorsArraySelect[i][0])
@@ -335,9 +334,10 @@ function UpdatePatientObjectData(inputArray, idPatient) {
       
       patientToUpdate[inputArray[i].name] = inputArray[i].value
     }
+
   let dateObject = new Date(patientToUpdate.birthDate);
   patientToUpdate.birthDate = dateObject
-
+ 
   UpdateButtonPerson(patientToUpdate, idPatient)
 }
 
@@ -455,6 +455,7 @@ $(document).on('click', ".class_btn_update_patient", function () {
       }
   }
   let inputArray = $('#id_form_patient_' + idPatient).serializeArray()
+
   UpdatePatientObjectData(inputArray, idPatient)
   
   alert("Dati del paziente aggiornati!!")
