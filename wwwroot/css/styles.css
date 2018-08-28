@@ -1,3 +1,17 @@
+:root {
+  box-sizing: border-box;
+  }
+
+  *,
+::before,
+::after {
+    box-sizing: inherit;
+}
+
+.third-party-component {
+  box-sizing: content-box;
+  }
+
 html {
   height: 100%;
 }
@@ -81,7 +95,7 @@ nav {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 5px;
+  padding: 0.3em 0 0.3em 0.3em;
   background-color: #afd5e0;
   margin-top: 0em;
 }
@@ -131,7 +145,7 @@ nav a:active img {
   text-align: left;
   display: flex;
   flex-direction: row;
-  font-size: 15px;
+  font-size: 1.1em;
 }
 
 .btn_btn-service {
@@ -142,7 +156,7 @@ nav a:active img {
   width: 90%;
   padding: 0.2em 0 0.2em 0.7em;
   text-align: left;
-  font-size: 15px;
+  font-size: 1em;
 }
 
 .content-btn_person .content-btn_service {
@@ -303,10 +317,10 @@ select {
   font-size: 1em;
 }
 
-select:invalid {
+/* select:invalid {
   color: gray;
   margin: 0
- }
+ } */
 
  .footer {
   height: 20px;
