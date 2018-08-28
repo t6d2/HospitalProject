@@ -140,7 +140,7 @@ nav a:active img {
   cursor: pointer;
   border-radius: 10px black;
   width: 90%;
-  padding: 0.2em 0 0.2em 0;
+  padding: 0.2em 0 0.2em 0.7em;
   text-align: left;
   font-size: 15px;
 }
@@ -229,8 +229,6 @@ td > .form_patient, td > .form_service {
   flex-grow: 0;
   margin: 0 0.5em 0.5em;
 }
-
-
 
 .input-group > input {
   flex-grow: 2;

@@ -74,6 +74,7 @@ var buttonClasses =  Array.from(document.getElementsByClassName("btn_btn-person"
 for (let i = 0; i < buttonClasses.length; i++) {
   AddListener(buttonClasses[i])
 }
+
  // end main 
 
 function PatientsFullNameSort() {
