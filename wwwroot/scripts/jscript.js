@@ -178,8 +178,7 @@ function UpdatePersonFieldsPage(entry){
   else
     $("#id_gender_" + entry.id).attr("selectedIndex", -1);
 
-  let $div =  document.body.querySelector('#id_content-btn_person_' + entry.id).querySelector('#id_btn_patient_update_0')
-  $div.setAttribute('id', 'id_btn_patient_update_' + entry.id)
+  $('#id_content-btn_person_' + entry.id+ ' #id_btn_patient_update_0').attr('id', 'id_btn_patient_update_' + entry.id)
 }
 
 function CloneServices(entry) {
@@ -192,9 +191,8 @@ function CloneServices(entry) {
   if($contenitor.length > 0){
     $contenitor.remove()
   }
-  if(entry.servicesNumber == 0){
+  if(entry.servicesNumber == 0)
     return
-  }
 
   //create first service from default 0_0
   CloneDefaultService (entry, 1)
@@ -251,11 +249,9 @@ function LoadServiceDetail(entry, serviceNumber) {
   let day = entry.servicesList[serviceNumber-1].serviceDate.getDate().toString();
   day = day.length > 1 ? day : '0' + day;
   let dateString = entry.servicesList[serviceNumber-1].serviceDate.getFullYear() + "-" + month + "-" + day
-  if(entry.servicesList[serviceNumber-1].serviceType == ""){
-    
+  if(entry.servicesList[serviceNumber-1].serviceType == "")
     return
-  }
-    
+  
   if(entry.servicesList[serviceNumber-1].serviceType == "visita") {
     $("#id_select_service_" + entry.id + "_" + serviceNumber + " > optgroup[id='id_optGroup_visits']")
     .find("option:contains(" + entry.servicesList[serviceNumber-1].dptName  +")")
@@ -301,15 +297,15 @@ function DoctorsSelectPopulate (doctorsArraySelect, id_content_service) {
 
 function UpdatePatientObjectData(inputArray, idPatient) {
   let patientToUpdate = patients.find(item=>item.id==idPatient);
-  for(let i in inputArray)
+  for(let i in inputArray){
     if(inputArray[i].name == "name" || inputArray[i].name == "surname" || inputArray[i].name == "address" || inputArray[i].name == "city"){
       patientToUpdate[inputArray[i].name] = inputArray[i].value.slice(0,1).toUpperCase()+inputArray[i].value.slice(1)
     }
     else {
       patientToUpdate[inputArray[i].name] = inputArray[i].value
     }
-
-    patientToUpdate.imgSource = $('#id_content-btn_person_' + idPatient + ' img').attr('src'); 
+  }
+  patientToUpdate.imgSource = $('#id_content-btn_person_' + idPatient + ' img').attr('src'); 
   let dateObject = new Date(patientToUpdate.birthDate);
   patientToUpdate.birthDate = dateObject
  
@@ -328,6 +324,7 @@ function UpdatePatientObjectServiceData(inputArray, idPatient, idService) {
       patientToUpdate.servicesList[idService-1][inputArray[i].name] = inputArray[i].value
     }
   }
+  
   
   let dateObject = new Date(patientToUpdate.servicesList[idService-1].serviceDate);
   patientToUpdate.servicesList[idService-1].serviceDate = dateObject
