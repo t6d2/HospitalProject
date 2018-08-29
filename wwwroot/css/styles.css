@@ -69,7 +69,7 @@ body {
   background-size: 100%;
   background-repeat: no-repeat;
   font-family: chalkduster;
-  padding: 2em;
+  padding: 4em;
   margin: 0px;
   width: 100%;
 }
@@ -92,43 +92,6 @@ body {
   margin-top: 0.5em;
 }
 
-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.3em 0 0.3em 0.3em;
-  background-color: #afd5e0;
-  margin-top: 0em;
-}
-
-nav a {
-  flex-grow: 0;
-}
-
-nav a:hover img {
-  background-color: #bbb;
-}
-
-nav a:active img {
-  background-color: #999;
-}
-
-.menu-item {
-  margin: 5px;
-  padding: 0.5em 1em;
-  background-color: rgb(150, 141, 141);
-  color: white;
-  font-family: tahoma;
-  font-size: 16px;
-  flex-grow: 1;
-  text-align: center;
-}
-
-.menu-item:hover {
-  background-color: rgb(117, 93, 93);
-}
-
 .grow-more {
   flex-grow: 1;
 }
@@ -141,7 +104,6 @@ nav a:active img {
   background-color: rgb(240, 116, 116);
   color: #444;
   cursor: pointer;
-  /* border-radius: 50px black; */
   width: 100%;
   padding: 0.3em 0 0.3em 0;
   text-align: left;
@@ -154,7 +116,6 @@ nav a:active img {
   background-color: rgb(54, 170, 54);
   color: #444;
   cursor: pointer;
-  /* border-radius: 10px black; */
   width: 88%;
   padding: 0.2em 0 0.2em 0.7em;
   text-align: left;
@@ -203,7 +164,6 @@ nav a:active img {
 
 button[class^='btn_add_']  {
   margin-left: auto;
-  /* border-radius: 0.5em; */
   width: auto;
   min-width: 10em;
   height: 2.2em;
@@ -212,7 +172,6 @@ button[class^='btn_add_']  {
 
 button[class^='class_btn_update_']  {
   margin: 0em 0em 0.5em 0em;
-  /* border-radius: 0.5em; */
   color: black;
   font-size: 1.1em;
 }
@@ -318,7 +277,6 @@ img {
 select {
   font-size: 1em;
 }
-
 
  .footer {
   height: 20px;
