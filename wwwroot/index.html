@@ -5,24 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Hospital</title>
-    <!-- <link rel="icon" href="/hfavicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="/hfavicon.ico" type="image/x-icon" /> -->
     <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href='css/styles.css'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="classes/class.js"></script>
+    <script src="classes/models.js"></script>
   </head>
 
   <body id="body">
-    <nav id="id_nav_menu">
-      <a href="/">
-        <img src="home_icon.png" height="60px;"/>
-      </a>
-      <a id="id_menu_item_1" href="#Anamnesi pazienti" class="menu-item">Anamnesi pazienti</a>
-      <a href="#Dottori" class="menu-item">Dottori</a>
-      <a href="#Pazienti" class="menu-item">Pazienti</a>
-    </nav>
 
     <header class="page-header">
       
@@ -35,10 +25,10 @@
      
     </header>
     <div class="title_container"  >
-      <p style="padding:0 0 0 1.8em; width:33.5%; margin:0">Cognome Nome </p>
+      <p style="padding:0 0 0 1.5em; width:33.5%; margin:0">Cognome Nome </p>
       <p style="width:14%; margin:0">Data di nascita</p>
       <p style="width:14%; margin:0">Numero servizi</p>
-      <button id ="id_button_add_patient" style="margin:0 2.5em 0 auto;" class="btn_add_person" >Aggiungi Paziente</button>
+      <button id ="id_button_add_patient" style="margin:0 1.8em 0 auto;" class="btn_add_person" >Aggiungi Paziente</button>
     </div>
       <main id="id_main_name" class="main-container" >
         <div id="id_btns_container" class="container">
@@ -53,7 +43,7 @@
           <div id="id_content-btn_person_0" class="collapse">
             <table>
               <tr>
-                <td id="id_imgSource_0" width="30%" class="class_input_imgSource" align="center">
+                <td id="id_imgSource_0" width="30%" class="class_input_imgSource" style="text-align:center">
 
                   <input type="file" id="id_photoFile_0" accept="image/*" name="img" onchange="changePhoto(this);" style="visibility: hidden; width: 1px; height: 1px"/>
                   <a href="" onclick="document.getElementById('id_photoFile_0').click(); return false">
@@ -124,12 +114,12 @@
                     </div>
                   </form>
                 </td>
-                <td width="10%" valign="top">
+                <td width="10%" style="vertical-align:bottom">
                   <button id ="id_button_add_service_0" class="btn_add_service">Aggiungi Servizio</button>
                 </td>
               </tr>
               <tr >
-                <td colspan=3 align="center">
+                <td colspan=3 style="text-align:center">
                   <button type="submit" id="id_btn_patient_update_0" class="class_btn_update_patient">Aggiorna</button>
                 </td>
               </tr>
