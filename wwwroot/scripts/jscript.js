@@ -193,12 +193,13 @@ function CloneServices(entry) {
   }
   if(entry.servicesNumber == 0)
     return
-
+  
   //create first service from default 0_0
+
   CloneDefaultService (entry, 1)
 
   AddListener($("#id_btn_service_" + entry.id + "_" + 1)[0])
-
+  
   LoadServiceDetail(entry, 1)
 
   //clone all services from the previous till servicesNumber 
@@ -230,21 +231,20 @@ function CloneDefaultService (entry, serviceToCreate){
   $('#id_content-btn_person_' + entry.id).append(elementCloned)
   $('#id_btn_service_' + entry.id + '_' + serviceToCreate).attr('href', '#id_content-btn_service_' + entry.id + '_' + serviceToCreate)
   $('#id_btn_service_' + entry.id + '_' + serviceToCreate).html("Servizio " + serviceToCreate)
- 
   
   $('#id_content-btn_person_' + entry.id).append($('#id_content-btn_service_0_0').clone(true).attr('id', 'id_content-btn_service_' + entry.id + '_' + serviceToCreate))
   elements = $('#id_content-btn_service_' + entry.id + '_' + serviceToCreate).find('*[id$=_0_0]');
   for(let j = 0; j < elements.length; j++){
     elements[j].id = elements[j].id.replace('_0_0', '_' + entry.id + '_' + serviceToCreate)
   }
+ 
   // following instructions added just for Edge
   $('select[id="id_visitConditions_' + entry.id + '_' + serviceToCreate + '"]').val("")
   $('select[id="id_surgeryConditions_' + entry.id + '_' + serviceToCreate + '"]').val("")
-  
 }
 
 function LoadServiceDetail(entry, serviceNumber) {
-  let month = (1 + entry.servicesList[serviceNumber-1].serviceDate.getMonth()).toString();
+   let month = (1 + entry.servicesList[serviceNumber-1].serviceDate.getMonth()).toString();
   month = month.length > 1 ? month : '0' + month;
   let day = entry.servicesList[serviceNumber-1].serviceDate.getDate().toString();
   day = day.length > 1 ? day : '0' + day;
@@ -273,11 +273,14 @@ function LoadServiceDetail(entry, serviceNumber) {
   }
 
   //set selectedItem service 
+  
   $("#id_select_service_" + entry.id + "_" + serviceNumber).change(); 
   // set selectedItem doctor
   if(doctors.find(item=>item.id==entry.servicesList[serviceNumber-1].doctorId)!= undefined){
+    
     let doctorCompletName = doctors.find(item=>item.id==entry.servicesList[serviceNumber-1].doctorId).completeName;
     $("#id_select_doctor_" + entry.id + "_" + serviceNumber + " option:contains(" + doctorCompletName  +")").attr("selected", true)
+
   }
 }
 
@@ -291,8 +294,6 @@ function DoctorsSelectPopulate (doctorsArraySelect, id_content_service) {
 
   $('#' + id_content_service + ' select[id^="id_select_doctor_"]').val(null)
   $('#' + id_content_service + ' select[id^="id_select_doctor_"]').trigger("focusout")
-
- 
 }
 
 function UpdatePatientObjectData(inputArray, idPatient) {
@@ -371,10 +372,10 @@ function AddListener($elem) {
 }
 
 $('select[id^=id_select_service_]').on('change', function(){
+  
   let selected = $("option:selected", this);
   let idPatient = this.id.substring(/\d/.exec(this.id).index, (this.id).lastIndexOf('_'))
   let idService = this.id.substring((this.id).lastIndexOf('_') + 1)
-  
   selected.parent()[0].label=="Visite"?$("tr[id^='id_tr_visit_" + idPatient + '_' + idService + "']").show(): $("tr[id='id_tr_visit_" + idPatient + '_' + idService + "']").hide();
   selected.parent()[0].label=="Interventi"?$("tr[id^='id_tr_surgery_" + idPatient + '_' + idService + "']").show(): $("tr[id^='id_tr_surgery_" + idPatient + '_' + idService + "']").hide();
  
@@ -384,8 +385,11 @@ $('select[id^=id_select_service_]').on('change', function(){
   let doctorsArraySelect = []
   let servicesArray = []
 
-  if(selected.parent()[0].label=="Visite")
+  if(selected.parent()[0].label=="Visite"){
+    
     servicesArray = dptsArray[this.value].visitDoctorsList
+  }
+    
   if(selected.parent()[0].label=="Interventi")
     servicesArray = dptsArray[this.value].surgeryDoctorsList
   if(servicesArray.length > 0){
@@ -397,7 +401,6 @@ $('select[id^=id_select_service_]').on('change', function(){
 
   if (this.value > 0)
     $("select[id$='Conditions_" + idPatient + "_" + idService + "']").trigger("focusout")
-
 });
 
 $('.btn_btn-person').click (function() {
@@ -457,7 +460,6 @@ $(document).on('click', ".class_btn_update_patient", function () {
     AddListener(buttonClasses[i])  
   // click to leave open the patient section
  $('#id_btn_person_' + idPatient)[0].click()
- 
 });
 
 $(document).on('click', ".class_btn_update_service", function () {
@@ -520,7 +522,6 @@ $(document).on('click', ".class_btn_update_service", function () {
   UpdatePatientObjectServiceData(inputArray, idPatient, idService)
 
   alert("Dati del servizio aggiornati!")
-
 });
 
 function changePhoto(elem) {
@@ -548,11 +549,12 @@ $(document).on('click', "button[id^=id_btn_service_]", function () {
   $('#id_main_name').animate({
       scrollTop: currentScroll + top 
     }, 1000);
+    $('#' + this.nextElementSibling.id + ' select[id^="id_select_doctor_"]').trigger("focusout")
 })
 
 $('#id_button_add_patient').click(function(){
   
-  let newPatientObj ={newPatient:0}
+  let newPatientObj = {newPatient:0}
   CreateNewPatient(newPatientObj)
   $("#id_gender_" + newPatientObj.newPatient).trigger('focusout')
   document.getElementById('id_btn_person_' + newPatientObj.newPatient).scrollIntoView({behavior: "smooth", block: "start"});
@@ -575,7 +577,7 @@ $(document).on('click', ".btn_add_service", function () {
 })
 
 $(document).on('change', "input, date, select", function (e) {
-  CheckInput($(this), e)
+   CheckInput($(this), e)
 })
 
 $(document).on('focusout', "input, date, select", function (e) {
@@ -583,9 +585,9 @@ $(document).on('focusout', "input, date, select", function (e) {
 })
 
 function CheckInput(inputElement, e) {
-  inputElement.css('border','');
-  if (e.currentTarget.value == "" || e.currentTarget.value == null) {        
+  inputElement.css('border', '');
+   if (e.currentTarget.value == '' || e.currentTarget.value == null) {        
         inputElement.next().html('Campo obbligatorio!');
         inputElement.css('border','2px inset red');
   }
-}
+ }

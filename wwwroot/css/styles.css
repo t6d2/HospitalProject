@@ -1,5 +1,6 @@
 :root {
   box-sizing: border-box;
+  font: 15px/22.5px "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
   }
 
   *,
@@ -8,9 +9,9 @@
     box-sizing: inherit;
 }
 
-.third-party-component {
+/* .third-party-component {
   box-sizing: content-box;
-  }
+  } */
 
 html {
   height: 100%;
@@ -23,7 +24,7 @@ body {
   padding: 0;
   width: 100%;
   height:100%;
-  background-color: #afd5e0;
+  background-color: #80aab6;
 }
 
 .main-container {
@@ -47,12 +48,12 @@ body {
   max-width: 1280px;
   position:sticky;
   top: 0;
+  font-weight: bold;
 }
 
 .container {
-  background-color: lightgray;
-  border: 2px solid rgb(19, 17, 150);
-  /* border-radius: 5px; */
+  background-color: rgb(216, 196, 196);
+  border: 2px solid rgb(80, 120, 206);
   box-sizing: border-box;
   width:90%;
   max-width: 1280px;
@@ -63,34 +64,41 @@ body {
   padding: 1em;
 }
 
-.page-header {
+/* .page-header {
   flex-direction: column;
-  background-image: url('../images/header.jpg');
+  background-image: url('../images/header.jpg'); 
   background-size: 100%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; 
   font-family: chalkduster;
   padding: 4em;
   margin: 0px;
   width: 100%;
+} */
+
+.page-header {
+  background-color: inherit 0.5
 }
 
 .page-header h1 {
   margin: 0;
   display: inline;
-  font-size: 64px;
-  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 48px;
+  /* background-color: rgba(255, 255, 255, 0.5); */
 }
 
 .page-header p {
   display: inline;
-  font-size: 36px;
-  background-color: rgba(255, 255, 255, 0.5);
-}
+  font-size: 28px;
+  padding: 0 0 0 2em
+  /* background-color: rgba(255, 255, 255, 0.5); */
+} 
 
 .title-wrapper {
-  text-align: center;
-  margin-top: 0.5em;
-}
+  text-align: left;
+  margin-top: 1em;
+  margin:0 2em
+
+} 
 
 .grow-more {
   flex-grow: 1;
@@ -126,7 +134,7 @@ body {
   padding: 0 18px;
   display: none;
   overflow: hidden;
-  background-color: #b7c8f7;
+  background-color: inherit;
 }
 
 .btn_btn-person:hover {
@@ -167,7 +175,8 @@ button[class^='btn_add_']  {
   width: auto;
   min-width: 10em;
   height: 2.2em;
-  background-color: lightgray
+  background-color: rgb(156, 154, 154);
+
 }
 
 button[class^='class_btn_update_']  {
@@ -255,7 +264,7 @@ input[pattern]:invalid{
 table {
   border: 2px solid #FFFFFFFF;
   width: 100%;
-  background-color: lightgray;
+  background-color: inherit 
 }
 
 td .center_aligned{
