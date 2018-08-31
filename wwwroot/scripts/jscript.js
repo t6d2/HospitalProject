@@ -1,61 +1,62 @@
 // main
 var departments = []
-departments.push(new Department(0,'generale', [25, 26, 27, 28], []))
-departments.push(new Department(1,'cardiologia', [1, 2, 3], [2,3]))
-departments.push(new Department(2,'dermatologia', [4, 5], []))
-departments.push(new Department(3,'geriatria',  [18, 19], []))
-departments.push(new Department(4,'neurologia', [20,21], [21]))
-departments.push(new Department(5,'nefrologia', [16, 17], []))
-departments.push(new Department(6,'oculistica', [6, 7, 8], [6,7]))
-departments.push(new Department(7,'oncologia', [9, 10], []))
-departments.push(new Department(8,'ortopedia',[22, 23, 24],[22, 23]))
-departments.push(new Department(9,'otorinolaringoiatria', [11, 12, 13],[12, 13]))
-departments.push(new Department(10,'pneumologia', [14, 15], []))
+departments.push(new Department(0,'Generale', [25, 26, 27, 28], []))
+departments.push(new Department(1,'Cardiologia', [1, 2, 3], [2,3]))
+departments.push(new Department(2,'Dermatologia', [4, 5], []))
+departments.push(new Department(3,'Geriatria',  [18, 19], []))
+departments.push(new Department(4,'Neurologia', [20,21], [21]))
+departments.push(new Department(5,'Nefrologia', [16, 17], []))
+departments.push(new Department(6,'Oculistica', [6, 7, 8], [6,7]))
+departments.push(new Department(7,'Oncologia', [9, 10], []))
+departments.push(new Department(8,'Ortopedia',[22, 23, 24],[22, 23]))
+departments.push(new Department(9,'Otorinolaringoiatria', [11, 12, 13],[12, 13]))
+departments.push(new Department(10,'Pneumologia', [14, 15], []))
 
 var doctors = []
-doctors.push(new Doctor(1, 'Dott.','Albino', 'Arnaldi', 'cardiologia'))
-doctors.push(new Doctor(2, 'Prof.','Bruno', 'Brunetti', 'cardiologia'))
-doctors.push(new Doctor(3, 'Dott.ssa','Carla', 'Carlini', 'cardiologia'))
-doctors.push(new Doctor(4, 'Dott.ssa','Daniela', 'Dandini', 'dermatolgia'))
-doctors.push(new Doctor(5, 'Dott.ssa','Enrico', 'Ellero', 'dermatolgia'))
-doctors.push(new Doctor(6, 'Dott','Elio', 'Evani', 'oculistica'))
-doctors.push(new Doctor(7, 'Prof.','Fabrizio', 'Folli', 'oculistica'))
-doctors.push(new Doctor(8, 'Dott.ssa','Gabriella', 'Gatti', 'oculistica'))
-doctors.push(new Doctor(9, 'Dott.','Ivano', 'Ius', 'oncologia'))
-doctors.push(new Doctor(10, 'Dott.','Lorenzo', 'Limi', 'oncologia'))
-doctors.push(new Doctor(11, 'Dott.','Mauro', 'Milani', 'otorinolaringoiatria'))
-doctors.push(new Doctor(12, 'Dott.','Nevio', 'Nuvo', 'otorinolaringoiatria'))
-doctors.push(new Doctor(13, 'Prof.','Ottorino', 'Olli', 'otorinolaringoiatria'))
-doctors.push(new Doctor(14, 'Dott.','Piero', 'Pezzi', 'pneumologia'))
-doctors.push(new Doctor(15, 'Dott.ssa','Paola', 'Poletti', 'pneumologia'))
-doctors.push(new Doctor(16, 'Dott.ssa','Roberta', 'Renzulli', 'nefrologia'))
-doctors.push(new Doctor(17, 'Dott.','Sandro', 'Soleri', 'nefrologia'))
-doctors.push(new Doctor(18, 'Dott.','Toni', 'Timi', 'geriatria'))
-doctors.push(new Doctor(19, 'Dott.','Umberto', 'Ullu', 'geriatria'))
-doctors.push(new Doctor(20, 'Dott.','Valerio', 'Valeri', 'neurologia'))
-doctors.push(new Doctor(21, 'Dott.','Zeno', 'Zani', 'neurologia'))
-doctors.push(new Doctor(22, 'Dott.','Artemio', 'Arti', 'ortopedia'))
-doctors.push(new Doctor(23, 'Prof.','Manlio', 'Manin', 'ortopedia'))
-doctors.push(new Doctor(24, 'Dott.','Piero', 'Podi', 'ortopedia'))
-doctors.push(new Doctor(25, 'Dott.','Alessio', 'Albi', 'generale'))
-doctors.push(new Doctor(26, 'Dott.','Carlo', 'Cori', 'generale'))
-doctors.push(new Doctor(27, 'Dott.','Danilo', 'Dondi', 'generale'))
-doctors.push(new Doctor(28, 'Dott.','Fabio', 'Fabi', 'generale'))
+doctors.push(new Doctor(1, 'Dott.', 'Albino', 'Arnaldi', 'Cardiologia'))
+doctors.push(new Doctor(2, 'Prof.', 'Bruno', 'Brunetti', 'Cardiologia'))
+doctors.push(new Doctor(3, 'Dott.ssa', 'Carla', 'Carlini', 'Cardiologia'))
+doctors.push(new Doctor(4, 'Dott.ssa', 'Daniela', 'Dandini', 'Dermatolgia'))
+doctors.push(new Doctor(5, 'Dott.ssa', 'Enrico', 'Ellero', 'Dermatolgia'))
+doctors.push(new Doctor(6, 'Dott', 'Elio', 'Evani', 'Oculistica'))
+doctors.push(new Doctor(7, 'Prof.', 'Fabrizio', 'Folli', 'Oculistica'))
+doctors.push(new Doctor(8, 'Dott.ssa', 'Gabriella', 'Gatti', 'Oculistica'))
+doctors.push(new Doctor(9, 'Dott.', 'Ivano', 'Ius', 'Oncologia'))
+doctors.push(new Doctor(10, 'Dott.', 'Lorenzo', 'Limi', 'Oncologia'))
+doctors.push(new Doctor(11, 'Dott.', 'Mauro', 'Milani', 'Otorinolaringoiatria'))
+doctors.push(new Doctor(12, 'Dott.', 'Nevio', 'Nuvo', 'Otorinolaringoiatria'))
+doctors.push(new Doctor(13, 'Prof.', 'Ottorino', 'Olli', 'Otorinolaringoiatria'))
+doctors.push(new Doctor(14, 'Dott.', 'Piero', 'Pezzi', 'Pneumologia'))
+doctors.push(new Doctor(15, 'Dott.ssa', 'Paola', 'Poletti', 'Pneumologia'))
+doctors.push(new Doctor(16, 'Dott.ssa', 'Roberta', 'Renzulli', 'Nefrologia'))
+doctors.push(new Doctor(17, 'Dott.', 'Sandro', 'Soleri', 'Nefrologia'))
+doctors.push(new Doctor(18, 'Dott.', 'Toni', 'Timi', 'Geriatria'))
+doctors.push(new Doctor(19, 'Dott.', 'Umberto', 'Ullu', 'Geriatria'))
+doctors.push(new Doctor(20, 'Dott.', 'Valerio', 'Valeri', 'Neurologia'))
+doctors.push(new Doctor(21, 'Dott.', 'Zeno', 'Zani', 'Neurologia'))
+doctors.push(new Doctor(22, 'Dott.', 'Artemio', 'Arti', 'Ortopedia'))
+doctors.push(new Doctor(23, 'Prof.', 'Manlio', 'Manin', 'Ortopedia'))
+doctors.push(new Doctor(24, 'Dott.','Piero', 'Podi', 'Ortopedia'))
+doctors.push(new Doctor(25, 'Dott.','Alessio', 'Albi', 'Generale'))
+doctors.push(new Doctor(26, 'Dott.','Carlo', 'Cori', 'Generale'))
+doctors.push(new Doctor(27, 'Dott.','Danilo', 'Dondi', 'Generale'))
+doctors.push(new Doctor(28, 'Dott.','Fabio', 'Fabi', 'Generale'))
 
 var patients = [];
-patients.push(new Patient(1,'Mario','Rossi', 'maschio',new Date("1973-10-21"), 'Piazza Garibaldi',11,'Udine',33100, 2, 'images/patients_photos/mario_rossi.jpg' ));
+patients.push(new Patient(1,'Mario','Rossi', 'maschio',new Date("1973-10-21"), 'Piazza Garibaldi',11,'Udine',33100, 3, 'images/patients_photos/mario_rossi.jpg' ));
 patients.push(new Patient(2, 'Andrea','Bianchi', 'maschio',new Date("1980-03-23"), 'Via Roma',10,'Udine',33100, 1, 'images/patients_photos/andrea_bianchi.jpg' ));
 patients.push(new Patient(3, 'Anna','Rosi', 'femmina',new Date("1982-04-11"), 'Via Matteotti',13,'Cividale del Friuli',33043, 3, 'images/patients_photos/anna_rosi.jpg' ));
 patients.push(new Patient(4, 'Luisa','Verdi', 'femmina',new Date("1984-11-12"), 'Via Matteotti',13,'Pasian di Prato',33037, 2, 'images/patients_photos/luisa_verdi.jpg' ));
 
-patients[0].addService(new PatientService(1, 'oculistica', 7, 'visita','Buona salute',new Date("2018-00-15"), 'Miopia, prescrizione occhiali', 0,0,0,0))
-patients[0].addService(new PatientService(2, 'oculistica', 6, 'visita','Qualche acciacco', new Date("2018-03-20"), 'Irritazione continua agli occhi, prescritte gocce giornaliere', 0,0,0,0))
-patients[1].addService(new PatientService(1, 'generale', 26,'visita','Salute cagionevole',new Date("2018-02-04"), 'Pressione alta prescritte pillole - giramenti di testa dovuti alla cervicale ', 0,0,0,0))
-patients[2].addService(new PatientService(1, 'ortopedia', 23,'visita','Salute cagionevole',new Date("2018-02-07"), 'Ginocchio in condizioni critiche prevedere intervento', 0,0,0,0))
-patients[2].addService(new PatientService(2, 'nefrologia', 16,'visita','Qualche acciacco',new Date("2018-04-11"), 'Dolori persistenti zona renale - prescritta ecografia', 0,0,0,0))
-patients[2].addService(new PatientService(3, 'cardiologia', 3,'intervento','Complicazioni',new Date("2018-07-20"), 'Eseguito intervento con bypass - anestesia più lunga del previsto dovuta a complicaziioni . Prognosi riservata', 2,3,30,0))
-patients[3].addService(new PatientService(1, 'ortopedia', 22,'visita','Qualche acciacco',new Date("2018-03-21"), 'Anca sinistra non in buone condizioni - prescritta risonanaza', 0,0,0,0))
-patients[3].addService(new PatientService(2, 'ortopedia', 23,'intervento','Successo',new Date("2018-06-21"), 'Inserita protesi anca sinistra - decorso operatorio normale', 0,0,25,2))
+patients[0].addService(new PatientService(1, 'Oculistica', 7, 'visita','Buona salute',new Date("2018-01-15"), 'Miopia, prescrizione occhiali', 0,0,0,0))
+patients[0].addService(new PatientService(2, 'Oculistica', 6, 'visita','Qualche acciacco', new Date("2018-03-18"), 'Irritazione continua agli occhi, prescritte gocce giornaliere', 0,0,0,0))
+patients[0].addService(new PatientService(3, 'Otorinolaringoiatria', 11, 'visita', 'Buona salute', new Date("2018-05-28"), 'Orecchie otturate - Eseguita pulizia', 0,0,0,0))
+patients[1].addService(new PatientService(1, 'Generale', 26, 'visita','Salute cagionevole',new Date("2018-02-04"), 'Pressione alta prescritte pillole - giramenti di testa dovuti alla cervicale ', 0,0,0,0))
+patients[2].addService(new PatientService(1, 'Ortopedia', 23, 'visita','Salute cagionevole',new Date("2018-02-07"), 'Ginocchio in condizioni critiche prevedere intervento', 0,0,0,0))
+patients[2].addService(new PatientService(2, 'Nefrologia', 16, 'visita','Qualche acciacco',new Date("2018-04-11"), 'Dolori persistenti zona renale - prescritta ecografia', 0,0,0,0))
+patients[2].addService(new PatientService(3, 'Cardiologia', 3, 'intervento','Complicazioni',new Date("2018-07-20"), 'Eseguito intervento con bypass - anestesia più lunga del previsto dovuta a complicaziioni . Prognosi riservata', 2,3,30,0))
+patients[3].addService(new PatientService(1, 'Ortopedia', 22, 'visita','Qualche acciacco',new Date("2018-03-21"), 'Anca sinistra non in buone condizioni - prescritta risonanaza', 0,0,0,0))
+patients[3].addService(new PatientService(2, 'Ortopedia', 23, 'intervento','Successo',new Date("2018-06-21"), 'Inserita protesi anca sinistra - decorso operatorio normale', 0,0,25,2))
 
 PatientsFullNameSort()
 
@@ -213,6 +214,7 @@ function CloneServices(entry) {
 
         $('#id_content-btn_service_' + entry.id + '_' + (i-1)).clone(true).attr('id', 'id_content-btn_service_' + entry.id + '_' + i).insertAfter('#id_btn_service_' + entry.id + '_' + i);
         elements = $('#id_content-btn_service_' + entry.id + '_' + i).find('*[id$=_' + entry.id + '_' + (i-1) + ']');
+        
         for(let j = 0; j < elements.length; j++){
           elements[j].id = elements[j].id.replace('_' + entry.id + '_' + (i-1) , '_' + entry.id + '_' + i)
         }
@@ -258,15 +260,19 @@ function LoadServiceDetail(entry, serviceNumber) {
       .attr("selected","selected");
     $('#id_visitDate_' + entry.id + '_' + serviceNumber).attr('value', dateString)
     $('#id_visitNotes_' + entry.id + '_' + serviceNumber).val(entry.servicesList[serviceNumber-1].serviceNotes)
-    $("#id_visitConditions_" + entry.id + "_" + serviceNumber + " option:contains(" + entry.servicesList[serviceNumber-1].serviceConditions  +")").attr("selected", true)
-    
+    // $('#id_visitConditions_' + entry.id + '_' + serviceNumber + ' option:contains("' + entry.servicesList[serviceNumber-1].serviceConditions  + '")').attr('selected', true)
+    let value = $('select[id="id_visitConditions_' + entry.id + '_' + serviceNumber + '"] option:contains("' + entry.servicesList[serviceNumber-1].serviceConditions  + '")').val();
+    $('#id_visitConditions_' + entry.id + '_' + serviceNumber).val(value);
+
   } else {
     $("#id_select_service_" + entry.id + "_" + serviceNumber + " > optgroup[id='id_optGroup_surgeries']")
     .find("option:contains(" + entry.servicesList[serviceNumber-1].dptName  +")")
       .attr("selected","selected");
     $('#id_surgeryDate_' + entry.id + '_' + serviceNumber).attr('value', dateString)
     $('#id_surgeryNotes_' + entry.id + '_' + serviceNumber).val(entry.servicesList[serviceNumber-1].serviceNotes)
-    $("#id_surgeryConditions_" + entry.id + "_" + serviceNumber + " option:contains(" + entry.servicesList[serviceNumber-1].serviceConditions  +")").attr("selected", true)
+    // $('#id_surgeryConditions_' + entry.id + '_' + serviceNumber + ' option:contains("' + entry.servicesList[serviceNumber-1].serviceConditions  + '")').attr("selected", true)
+    let value = $('select[id="id_surgeryConditions_' + entry.id + '_' + serviceNumber + '"] option:contains("' + entry.servicesList[serviceNumber-1].serviceConditions  + '")').val();
+    $('#id_surgeryConditions_' + entry.id + '_' + serviceNumber).val(value);
     for(elem of Array.from(entry.servicesList[serviceNumber-1].pointsList)){
       $('#id_' + elem['surgeryElement'] + '_' + entry.id + '_' + serviceNumber).attr('value', elem['number'])
     }
@@ -276,11 +282,11 @@ function LoadServiceDetail(entry, serviceNumber) {
   
   $("#id_select_service_" + entry.id + "_" + serviceNumber).change(); 
   // set selectedItem doctor
-  if(doctors.find(item=>item.id==entry.servicesList[serviceNumber-1].doctorId)!= undefined){
-    
+  if(doctors.find(item=>item.id==entry.servicesList[serviceNumber-1].doctorId)!= undefined) {
     let doctorCompletName = doctors.find(item=>item.id==entry.servicesList[serviceNumber-1].doctorId).completeName;
-    $("#id_select_doctor_" + entry.id + "_" + serviceNumber + " option:contains(" + doctorCompletName  +")").attr("selected", true)
-
+    // $('#id_select_doctor_' + entry.id + '_' + serviceNumber + ' option:contains(' + doctorCompletName  + ')').attr('selected', true)
+    let value = $('select[id="id_select_doctor_' + entry.id + '_' + serviceNumber + '"] option:contains("' + doctorCompletName  + '")').val();
+    $('#id_select_doctor_' + entry.id + '_' + serviceNumber).val(value);
   }
 }
 
@@ -507,7 +513,7 @@ $(document).on('click', ".class_btn_update_service", function () {
     value: $("#id_select_service_" + idPatient + '_' + idService + " option:selected").text() 
   });
   inputArray.push({ 
-    name: 'doctorId',
+    name: 'doctor',
     value: parseInt($("#id_select_doctor_" + idPatient + '_' + idService + " option:selected").val())
   });
   inputArray.push({ 
