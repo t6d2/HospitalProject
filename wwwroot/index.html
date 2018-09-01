@@ -13,7 +13,6 @@
   </head>
 
   <body id="body">
-
     <header class="page-header">
       <div class="title">
         <h1 id="id_title" class="class_title">Ospedale di Udine “S. Maria della Misericordia” </h1>
@@ -42,12 +41,10 @@
             <table>
               <tr>
                 <td id="id_imgSource_0" width="25%" class="class_input_imgSource" style="text-align:center">
-
                   <input type="file" id="id_photoFile_0" accept="image/*" name="img" onchange="changePhoto(this);" style="visibility: hidden; width: 1px; height: 1px"/>
                   <a href="" onclick="document.getElementById('id_photoFile_0').click(); return false">
                     <img id="id_photo_image" class='img img-responsive img-thumbnail' title="clicca sull'immagine per cambiarla"
                         src="images/default.jpg" alt="Clicca qui per caricare la foto" style="cursor:pointer; width: 120px; height: 160px;"/></a>
-
                 </td>
                 <td width="63%">
                   <form  id="id_form_patient_0" class="form_patient">
@@ -61,15 +58,15 @@
                       <div class="input-group">
                         <label>Cognome</label>
                         <input type="text" id="id_surname_0" name="surname" class="class_input_surname" 
-                                placeholder="Inserire il cognome" pattern="[A-Za-z][A-Za-z'][A-Za-z' -]*" 
-                                title="Il cognome deve contenere almeno due caratteri" required/>
+                            placeholder="Inserire il cognome" pattern="[A-Za-z][A-Za-z'][A-Za-z' -]*" 
+                            title="Il cognome deve contenere almeno due caratteri" required/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-group no-grow">
                         <label>Genere</label>
                         <select id="id_gender_0" name="gender" class="class_input_gender" required="required"
-                                 title="Genere non selezionato">
+                            title="Genere non selezionato">
                           <option disabled selected value="" >Genere...</option>
                           <option value="maschio">maschio</option>
                           <option value="femmina">femmina</option>
@@ -79,35 +76,35 @@
                       <div class="input-group no-grow">
                         <label>Data di nascita</label>
                         <input type="date" id="id_birthDate_0" name="birthDate"  class="class_input_birthDate" 
-                        placeholder="Selezionare la data" pattern="\d{1,2}/\d{1,2}/\d{4}" title="Data di nascita non inserita" required />
+                            placeholder="Selezionare la data" pattern="\d{1,2}/\d{1,2}/\d{4}" title="Data di nascita non inserita" required />
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-group">
                         <label>Indirizzo</label>
                         <input type="text" id="id_address_0" name="address" class="class_input_address" 
-                                placeholder="Inserire l'indirizzo" pattern="[A-Za-z][A-Za-z][0-9A-Za-z' -°^/]*"
-                                title="L'indirizzo deve iniziare almeno due caratteri" required />
+                            placeholder="Inserire l'indirizzo" pattern="[A-Za-z][A-Za-z][0-9A-Za-z' -°^/]*"
+                            title="L'indirizzo deve iniziare almeno due caratteri" required />
                       </div>
                       <div class="input-group no-grow">
                         <label>Numero</label>
-                        <input type="text" id="id_number_0" name="number" class="class_input_number" style="max-width:4.1em"
-                                placeholder="Numero civico" pattern="[1-9][0-9A-Za-z -/]*" 
-                                title="Il numero civico deve iniziare con un numero" required/>
+                      <input type="text" id="id_number_0" name="number" class="class_input_number" style="max-width:4.1em"
+                          placeholder="Numero civico" pattern="[1-9][0-9A-Za-z -/]*" 
+                          title="Il numero civico deve iniziare con un numero" required/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-group">
                         <label>Città</label>
                         <input type="text" id="id_city_0" name="city" class="class_input_city"
-                                placeholder="Inserire la città" pattern="[A-Za-z][A-Za-z'][A-Za-z' -.]*" 
-                                title="La città deve iniziare con due caratteri" required/>
+                            placeholder="Inserire la città" pattern="[A-Za-z][A-Za-z'][A-Za-z' -.]*" 
+                            title="La città deve iniziare con due caratteri" required/>
                       </div>
                       <div class="input-group no-grow">
                         <label>CAP</label>
                         <input type="text" id="id_zip_0" name="zip" class="class_input_zip" 
-                        placeholder="CAP" pattern ="[0-9]{5}" maxlength="5" style="max-width:4em" 
-                        title="Il CAP deve contenere 5 cifre" required/>
+                            placeholder="CAP" pattern ="[0-9]{5}" maxlength="5" style="max-width:4em" 
+                            title="Il CAP deve contenere 5 cifre" required/>
                       </div>
                     </div>
                   </form>
@@ -121,8 +118,8 @@
                   <button type="submit" id="id_btn_patient_update_0" class="class_btn_update_patient">Aggiorna</button>
                 </td>
               </tr>
-                
             </table>
+
             <div id="id_buttons_service_container_0_0">
               <button href="#id_content-btn_service_0_0" id="id_btn_service_0_0"
                     type="button" class="btn_btn-service" data-toggle="collapse">Servizio
@@ -131,6 +128,7 @@
             </div>
             <div id="id_content-btn_service_0_0" class="collapse">
               <table>
+
                 <tr>
                   <td colspan=2>
                     <form id="id_form_select_service_0_0">
@@ -169,7 +167,6 @@
                         <div class="input-group no-grow">
                           <label>Condizioni di salute</label>
                           <select id="id_visitConditions_0_0" name="visitConditions" class="class_input_serviceConditions" required="required">
-                            
                             <optgroup label="Condizione di salute">
                               <option value="" disabled selected hidden>Selezionare lo stato di salute...</option>
                               <option value="1">Buona salute</option>
@@ -184,7 +181,6 @@
                           <input type="date" id="id_visitDate_0_0" name="visitDate" class="class_input_visitDate" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Selezionare la data..." required="required"/>
                         </div>
                       </div> 
-
                       <div class="row">
                         <div class="input-group">
                           <label>Note &nbsp;</label>
@@ -246,6 +242,7 @@
                     <button type="submit" id="id_btn_surgery_update_0_0" class="class_btn_update_service center_aligned">Aggiorna</button>
                   </td>
                 </tr>
+                
               </table>
             </div>
           </div>
