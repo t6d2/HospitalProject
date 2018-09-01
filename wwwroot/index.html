@@ -14,16 +14,6 @@
 
   <body id="body">
 
-    <!-- <header class="page-header">
-      
-      <div class="title-wrapper">
-        <h1 id="my-title" class="my-title">Ospedale di Udine “S. Maria della Misericordia” </h1>
-      </div>
-      <div class="title-wrapper">
-        <p>Anamnesi Pazienti</p>
-      </div>
-     
-    </header> -->
     <header class="page-header">
       <div class="title">
         <h1 id="id_title" class="class_title">Ospedale di Udine “S. Maria della Misericordia” </h1>
@@ -51,15 +41,15 @@
           <div id="id_content-btn_person_0" class="collapse">
             <table>
               <tr>
-                <td id="id_imgSource_0" width="30%" class="class_input_imgSource" style="text-align:center">
+                <td id="id_imgSource_0" width="25%" class="class_input_imgSource" style="text-align:center">
 
                   <input type="file" id="id_photoFile_0" accept="image/*" name="img" onchange="changePhoto(this);" style="visibility: hidden; width: 1px; height: 1px"/>
                   <a href="" onclick="document.getElementById('id_photoFile_0').click(); return false">
                     <img id="id_photo_image" class='img img-responsive img-thumbnail' title="clicca sull'immagine per cambiarla"
-                        src="images/default.jpg" alt="Clicca qui per caricare la foto" style="cursor:pointer; width: 100px; height: 140px;"/></a>
+                        src="images/default.jpg" alt="Clicca qui per caricare la foto" style="cursor:pointer; width: 120px; height: 160px;"/></a>
 
                 </td>
-                <td width="60%">
+                <td width="63%">
                   <form  id="id_form_patient_0" class="form_patient">
                     <div class="row" padding="0.5em 0em 0em 5em">
                       <div class="input-group">
@@ -122,8 +112,8 @@
                     </div>
                   </form>
                 </td>
-                <td width="10%" style="vertical-align:bottom">
-                  <button id ="id_button_add_service_0" class="btn_add_service">Aggiungi Servizio</button>
+                <td width="12%" style="vertical-align:top">
+                  <button id ="id_button_add_service_0" class="btn_add_service" style="display:none">Aggiungi Servizio</button>
                 </td>
               </tr>
               <tr >
@@ -133,9 +123,12 @@
               </tr>
                 
             </table>
-            <button href="#id_content-btn_service_0_0" id="id_btn_service_0_0"
+            <div id="id_buttons_service_container_0_0">
+              <button href="#id_content-btn_service_0_0" id="id_btn_service_0_0"
                     type="button" class="btn_btn-service" data-toggle="collapse">Servizio
-            </button>
+              </button>
+              <button id ="id_button_add_service_0_0" class="btn_add_service">Aggiungi Servizio</button>
+            </div>
             <div id="id_content-btn_service_0_0" class="collapse">
               <table>
                 <tr>

@@ -117,8 +117,8 @@ function CloneBtnPerson(entry, isNewPatient) {
   $('#id_content-btn_person_' + entry.id + ' #id_button_add_service_0').attr('id', 'id_button_add_service_' + entry.id)
  
   //remove default service from the content_person cloned
-  $('#id_content-btn_person_' + entry.id + ' #id_btn_service_0_0').remove()
   $('#id_content-btn_person_' + entry.id + ' #id_content-btn_service_0_0').remove()
+  $('#id_content-btn_person_' + entry.id + ' #id_buttons_service_container_0_0').remove()
   
   UpdatePersonFieldsPage(entry)
    
@@ -126,8 +126,9 @@ function CloneBtnPerson(entry, isNewPatient) {
     $('#id_content-btn_person_' + entry.id).css('display','block');
     $('#id_btn_person_' + entry.id).css('display','inline-flex');
     $('#id_btn_person_' + entry.id).attr('class','btn_btn-person active');
-    $('#id_button_add_service_' + entry.id).css('display','none');
-  }
+  } else if (entry.servicesNumber == 0)
+    //if ServicesNumber = 0 display Button Add Service on Person Data 
+    $('#id_button_add_service_' + entry.id).css('display','block');
 }
 
 function UpdateButtonPerson(entry, idCurrent) {
@@ -184,10 +185,11 @@ function UpdatePersonFieldsPage(entry){
 
 function CloneServices(entry) {
   // remove all services
-  let $contenitor = $("#id_content-btn_person_" + entry.id).find("button[id^='id_btn_service_']")
+  let $contenitor = $("#id_content-btn_person_" + entry.id).find("div[id^='id_buttons_service_container_']")
   if($contenitor.length > 0){
     $contenitor.remove()
   }
+
   $contenitor = $("#id_content-btn_person_" + entry.id).find("div[id^='id_content-btn_service_']")
   if($contenitor.length > 0){
     $contenitor.remove()
@@ -196,7 +198,6 @@ function CloneServices(entry) {
     return
   
   //create first service from default 0_0
-
   CloneDefaultService (entry, 1)
 
   AddListener($("#id_btn_service_" + entry.id + "_" + 1)[0])
@@ -208,11 +209,13 @@ function CloneServices(entry) {
     
     for (let i=2; i <= entry.servicesNumber; i++){
       if (0, entry.servicesList[i-1].dptName != "") {
-        $('#id_btn_service_' + entry.id + '_' + (i-1)).clone(true).attr('id', 'id_btn_service_' + entry.id + '_' + i).insertAfter('#id_content-btn_service_' + entry.id + '_' + (i-1));
+        $('#id_buttons_service_container_' + entry.id + '_' + (i-1)).clone(true).attr('id', 'id_buttons_service_container_' + entry.id + '_' + i).insertAfter('#id_content-btn_service_' + entry.id + '_' + (i-1));
+        $('#id_buttons_service_container_' + entry.id + '_' + i + ' #id_btn_service_' + entry.id + '_' + (i-1)).attr('id', 'id_btn_service_' + entry.id + '_' + i)
         $('#id_btn_service_' + entry.id + '_' + i).attr('href', '#id_content-btn_service_' + entry.id + '_' + i)
         $('#id_btn_service_' + entry.id + '_' + i).html("Servizio " + i)
+        $('#id_buttons_service_container_' + entry.id + '_' + i + ' #id_button_add_service_' + entry.id + '_' + (i-1)).attr('id', 'id_button_add_service_' + entry.id + '_' + i)
 
-        $('#id_content-btn_service_' + entry.id + '_' + (i-1)).clone(true).attr('id', 'id_content-btn_service_' + entry.id + '_' + i).insertAfter('#id_btn_service_' + entry.id + '_' + i);
+        $('#id_content-btn_service_' + entry.id + '_' + (i-1)).clone(true).attr('id', 'id_content-btn_service_' + entry.id + '_' + i).insertAfter('#id_buttons_service_container_' + entry.id + '_' + i);
         elements = $('#id_content-btn_service_' + entry.id + '_' + i).find('*[id$=_' + entry.id + '_' + (i-1) + ']');
         
         for(let j = 0; j < elements.length; j++){
@@ -221,19 +224,26 @@ function CloneServices(entry) {
       } else {
         CloneDefaultService (entry, i)
       }
-        AddListener($("#id_btn_service_" + entry.id + "_" + i)[0])
+      
+      AddListener($("#id_btn_service_" + entry.id + "_" + i)[0])
 
-        LoadServiceDetail(entry, i)
+      LoadServiceDetail(entry, i)
+
+      //hide previous Button Add Service on 
+      $('#id_button_add_service_' + entry.id + '_' + (i-1)).css('display','none');
     }
   }
 }
 
 function CloneDefaultService (entry, serviceToCreate){
-  let elementCloned = $('#id_btn_service_0_0').clone(true).attr('id', 'id_btn_service_' + entry.id + '_' + serviceToCreate)
+  let elementCloned = $('#id_buttons_service_container_0_0').clone(true).attr('id', 'id_buttons_service_container_' + entry.id + '_' + serviceToCreate)
   $('#id_content-btn_person_' + entry.id).append(elementCloned)
+  $('#id_buttons_service_container_' + entry.id + '_' + serviceToCreate + ' #id_btn_service_0_0').attr('id', 'id_btn_service_' + entry.id + '_' + serviceToCreate)
   $('#id_btn_service_' + entry.id + '_' + serviceToCreate).attr('href', '#id_content-btn_service_' + entry.id + '_' + serviceToCreate)
   $('#id_btn_service_' + entry.id + '_' + serviceToCreate).html("Servizio " + serviceToCreate)
-  
+  $('#id_buttons_service_container_' + entry.id + '_' + serviceToCreate + ' #id_button_add_service_0_0').attr('id', 'id_button_add_service_' + entry.id + '_' + serviceToCreate)
+
+
   $('#id_content-btn_person_' + entry.id).append($('#id_content-btn_service_0_0').clone(true).attr('id', 'id_content-btn_service_' + entry.id + '_' + serviceToCreate))
   elements = $('#id_content-btn_service_' + entry.id + '_' + serviceToCreate).find('*[id$=_0_0]');
   for(let j = 0; j < elements.length; j++){
@@ -260,7 +270,6 @@ function LoadServiceDetail(entry, serviceNumber) {
       .attr("selected","selected");
     $('#id_visitDate_' + entry.id + '_' + serviceNumber).attr('value', dateString)
     $('#id_visitNotes_' + entry.id + '_' + serviceNumber).val(entry.servicesList[serviceNumber-1].serviceNotes)
-    // $('#id_visitConditions_' + entry.id + '_' + serviceNumber + ' option:contains("' + entry.servicesList[serviceNumber-1].serviceConditions  + '")').attr('selected', true)
     let value = $('select[id="id_visitConditions_' + entry.id + '_' + serviceNumber + '"] option:contains("' + entry.servicesList[serviceNumber-1].serviceConditions  + '")').val();
     $('#id_visitConditions_' + entry.id + '_' + serviceNumber).val(value);
 
@@ -270,7 +279,6 @@ function LoadServiceDetail(entry, serviceNumber) {
       .attr("selected","selected");
     $('#id_surgeryDate_' + entry.id + '_' + serviceNumber).attr('value', dateString)
     $('#id_surgeryNotes_' + entry.id + '_' + serviceNumber).val(entry.servicesList[serviceNumber-1].serviceNotes)
-    // $('#id_surgeryConditions_' + entry.id + '_' + serviceNumber + ' option:contains("' + entry.servicesList[serviceNumber-1].serviceConditions  + '")').attr("selected", true)
     let value = $('select[id="id_surgeryConditions_' + entry.id + '_' + serviceNumber + '"] option:contains("' + entry.servicesList[serviceNumber-1].serviceConditions  + '")').val();
     $('#id_surgeryConditions_' + entry.id + '_' + serviceNumber).val(value);
     for(elem of Array.from(entry.servicesList[serviceNumber-1].pointsList)){
@@ -279,12 +287,10 @@ function LoadServiceDetail(entry, serviceNumber) {
   }
 
   //set selectedItem service 
-  
   $("#id_select_service_" + entry.id + "_" + serviceNumber).change(); 
   // set selectedItem doctor
   if(doctors.find(item=>item.id==entry.servicesList[serviceNumber-1].doctorId)!= undefined) {
     let doctorCompletName = doctors.find(item=>item.id==entry.servicesList[serviceNumber-1].doctorId).completeName;
-    // $('#id_select_doctor_' + entry.id + '_' + serviceNumber + ' option:contains(' + doctorCompletName  + ')').attr('selected', true)
     let value = $('select[id="id_select_doctor_' + entry.id + '_' + serviceNumber + '"] option:contains("' + doctorCompletName  + '")').val();
     $('#id_select_doctor_' + entry.id + '_' + serviceNumber).val(value);
   }
@@ -360,6 +366,7 @@ function CreateNewService(patientId, newServiceObj) {
   patients[patientIndex].addService(new PatientService(newServiceId, '',null , '','',new Date(), '', 0,0,0,0))
   $('#id_btn_person_' + patientId + ' #p_id_servicesNumber_' + patientId).html(newServiceId)
 
+  
   AddListener($("#id_btn_service_" + patients[patientIndex].id + "_" + newServiceId)[0])
 
   newServiceObj.newService = newServiceId
@@ -368,7 +375,11 @@ function CreateNewService(patientId, newServiceObj) {
 function AddListener($elem) {
   $elem.addEventListener("click", function() {
     this.classList.toggle("active");
-    var content = this.nextElementSibling;
+    let idString = this.id
+    if(idString.includes('service'))
+      var content = this.parentElement.nextElementSibling;
+    else
+      content = this.nextElementSibling;
     if (content.style.display === "block") {
       content.style.display = "none";
     } else {
@@ -418,7 +429,6 @@ $('.btn_btn-person').click (function() {
 
 $(document).on('click', ".class_btn_update_patient", function () {
   let idPatient =  parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
-  // let invalidForm = $("form[id='id_form_patient_" + idPatient + "']:invalid");  --> not working??
   let invalidForm = document.querySelector("form[id='id_form_patient_" + idPatient + "']:invalid");
   if (invalidForm) {
     alert('Dati mancanti o non corretti!')
@@ -426,21 +436,21 @@ $(document).on('click', ".class_btn_update_patient", function () {
   }
 
   $('id_form_patient_' + idPatient).submit();
-  let form = document.getElementById('id_form_patient_' + idPatient);
-  for(var i=0; i < form.elements.length; i++){
-       if(form.elements[i].hasAttribute('required') && (form.elements[i].value.trim() == '' || form.elements[i].value == null )){
-        form.elements[i].value = ""
-        alert('I campi evidenziati devono essere compilati correttamente!');
-        $('#' + form.elements[i].id).focus();
-        return false;
-      }
+  
+  let form = Array.from($('#id_form_patient_' + idPatient).find( "input, select"))
+  for(var i=0; i < form.length; i++){
+    if(form[i].hasAttribute('required') && (form[i].value.trim() == '' || form[i].value == null )){
+      form[i].value = ""
+      alert('I campi evidenziati devono essere compilati correttamente!');
+      $('#' + form[i].id).focus();
+      return false;
+    }
   }
   let inputArray = $('#id_form_patient_' + idPatient).serializeArray()
 
   UpdatePatientObjectData(inputArray, idPatient)
   
   alert("Dati del paziente aggiornati!")
-  $('#id_button_add_service_' + idPatient).css("display","initial");
 
   //delete all patients' buttons and contents
   for(entry of patients){
@@ -463,7 +473,8 @@ $(document).on('click', ".class_btn_update_patient", function () {
   
   let buttonClasses =  Array.from($(".btn_btn-person"))
   for (let i = 0; i < buttonClasses.length; i++) 
-    AddListener(buttonClasses[i])  
+    AddListener(buttonClasses[i]) 
+  
   // click to leave open the patient section
  $('#id_btn_person_' + idPatient)[0].click()
 });
@@ -477,24 +488,27 @@ $(document).on('click', ".class_btn_update_service", function () {
   let idService = this.id.substring((this.id).lastIndexOf('_') + 1)
   
   let isInputOk = true
+
   $("id_form_select_service_" + idPatient + "_" + idService).submit();
-  let form =$("#id_form_select_service_" + idPatient + "_" + idService);
-  for(var i=0; i < form[0].elements.length; i++){
-    if(form[0].elements[i].hasAttribute('required') && (form[0].elements[i].value.trim() == '' || form[0].elements[i].value == null )){
+
+  let form = Array.from($('#id_form_select_service_' + idPatient + '_' + idService).find( "input, select"))
+  for(var i=0; i < form.length; i++){
+    if(form[i].hasAttribute('required') && (form[i].value.trim() == '' || form[i].value == null )){
+      $('#' + form[i].id).focus();
       isInputOk = false
-      form[0].elements[i].value = ""
+      form[i].value = ""
       break
     }
   }
+
   if (isInputOk){
     $("id_form_" + service + "_" + idPatient + "_" + idService).submit();
-    let form = $("#id_form_" + service + "_" + idPatient + "_" + idService);
-    
-    for(var i=0; i < form[0].elements.length; i++){
-      if(form[0].elements[i].hasAttribute('required') && (form[0].elements[i].value.trim() == '' || form[0].elements[i].value == null )){
-        form[0].elements[i].value = ""
+
+    let form = Array.from($('#id_form_' + service + '_' + idPatient + '_' + idService).find( "input, select"))
+    for(var i=0; i < form.length; i++){
+      if(form[i].hasAttribute('required') && (form[i].value.trim() == '' || form[i].value == null )){
+        $('#' + form[i].id).focus();
         isInputOk = false
-        $('#' + form[0].elements[i].id).focus();
         break
       }
     }
@@ -546,7 +560,11 @@ function changePhoto(elem) {
 }
 
 $(document).on('click', "button[id^=id_btn_person_]", function () {
-  document.getElementById(this.id).scrollIntoView({behavior: "smooth", block: "start"});
+  let top = $(this).position().top
+  currentScroll = $(this).scrollTop();
+  $('#id_main_name').animate({
+      scrollTop: currentScroll + top 
+    }, 1500);
 })
 
 $(document).on('click', "button[id^=id_btn_service_]", function () {
@@ -554,23 +572,28 @@ $(document).on('click', "button[id^=id_btn_service_]", function () {
   currentScroll = $(this.parentElement).scrollTop();
   $('#id_main_name').animate({
       scrollTop: currentScroll + top 
-    }, 1000);
-    $('#' + this.nextElementSibling.id + ' select[id^="id_select_doctor_"]').trigger("focusout")
+    }, 1500);
+    $('#' + this.parentElement.nextElementSibling.id + ' select[id^="id_select_doctor_"]').trigger("focusout")
 })
 
 $('#id_button_add_patient').click(function(){
-  
   let newPatientObj = {newPatient:0}
   CreateNewPatient(newPatientObj)
   $("#id_gender_" + newPatientObj.newPatient).trigger('focusout')
-  document.getElementById('id_btn_person_' + newPatientObj.newPatient).scrollIntoView({behavior: "smooth", block: "start"});
+
+  let divToscroll = $('#id_btn_person_' + newPatientObj.newPatient)
+  let top = divToscroll.position().top
+  currentScroll = divToscroll.scrollTop();
+  $('#id_main_name').animate({
+      scrollTop: currentScroll + top 
+    }, 1500);
 })
 
 $(document).on('click', ".btn_add_service", function () {
-  let patientId = parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
-  let newServiceObj ={newService:0}
+  let patientId = this.id.substring(/\d/.exec(this.id).index, (this.id).lastIndexOf('_')) == '_' ?  this.id.substring((this.id).lastIndexOf('_') + 1) : this.id.substring(/\d/.exec(this.id).index, (this.id).lastIndexOf('_'))
+
+  let newServiceObj = {newService:0}
   CreateNewService(patientId, newServiceObj)
-  
 
   $('#id_btn_service_' + patientId + '_' + newServiceObj.newService).trigger("click")
   $('#id_btn_service_' + patientId + '_' + newServiceObj.newService).addClass('active')
@@ -580,6 +603,12 @@ $(document).on('click', ".btn_add_service", function () {
   $("html, main").scrollTop($('#id_btn_service_' + patientId + '_' + newServiceObj.newService).offset().top);
   $("#id_select_service_" + patientId + '_' + newServiceObj.newService).trigger("focusout")
   $("#id_select_doctor_" + patientId + '_' + newServiceObj.newService).trigger("focusout")
+
+  //hide Button AddService on PersonData section or on previous Button Service
+  if (newServiceObj.newService  == 1)
+    $('#id_button_add_service_' + patientId).css('display','none');
+  else
+    $('#id_button_add_service_' + patientId + '_' + (newServiceObj.newService - 1)).css('display','none');
 })
 
 $(document).on('change', "input, date, select", function (e) {
@@ -592,8 +621,8 @@ $(document).on('focusout', "input, date, select", function (e) {
 
 function CheckInput(inputElement, e) {
   inputElement.css('border', '');
-   if (e.currentTarget.value == '' || e.currentTarget.value == null) {        
-        inputElement.next().html('Campo obbligatorio!');
-        inputElement.css('border','2px inset red');
+  if (e.currentTarget.value == '' || e.currentTarget.value == null) {        
+    inputElement.next().html('Campo obbligatorio!');
+    inputElement.css('border','2px inset red');
   }
- }
+}

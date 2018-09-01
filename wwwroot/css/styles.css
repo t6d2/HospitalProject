@@ -9,10 +9,6 @@
     box-sizing: inherit;
 }
 
-/* .third-party-component {
-  box-sizing: content-box;
-  } */
-
 html {
   height: 100%;
 }
@@ -64,16 +60,14 @@ body {
   padding: 1em;
 }
 
-/* .page-header {
-  flex-direction: column;
-  background-image: url('../images/header.jpg'); 
-  background-size: 100%;
-  background-repeat: no-repeat; 
-  font-family: chalkduster;
-  padding: 4em;
-  margin: 0px;
-  width: 100%;
-} */
+#id_buttons_service_container {
+  display: flex;
+  flex-flow: row nowrap;
+  width:99%;
+  padding: 0.3em 0;
+  justify-content: space-around;
+  margin: 0.3em 0;
+}
 
 .page-header {
   background-color: inherit 0.5
@@ -83,21 +77,18 @@ body {
   margin: 0;
   display: inline;
   font-size: 48px;
-  /* background-color: rgba(255, 255, 255, 0.5); */
 }
 
 .page-header p {
   display: inline;
   font-size: 28px;
   padding: 0 0 0 2em
-  /* background-color: rgba(255, 255, 255, 0.5); */
 } 
 
 .title {
   text-align: left;
   margin-top: 1em;
   margin:0 2em
-
 } 
 
 .grow-more {
@@ -162,7 +153,7 @@ body {
   font-size: 1em;
   color: white;
   float: right;
-  margin: 0em 1em 0em 0em;
+  margin: 0em 1.5em 0em 0em;
   margin-left: auto;
 }
 
@@ -172,11 +163,20 @@ body {
 
 button[class^='btn_add_']  {
   margin-left: auto;
+  cursor: pointer;
   width: auto;
   min-width: 10em;
   height: 2.2em;
   background-color: rgb(156, 154, 154);
+}
 
+.btn_add_service {
+  background-color:  rgb(156, 154, 154);
+  width: 9%;
+  padding: 0.1em 0 0.1em ;
+  margin-left: 0.1em;
+  text-align: center;
+  font-size: 1em;
 }
 
 button[class^='class_btn_update_']  {
@@ -206,7 +206,7 @@ td > .form_patient, td > .form_service {
   flex-direction: row;
   align-items: flex-start;
   justify-content: start;
-  padding: 0em 1em 0em 3em
+  padding: 0em 2em 0em 5em
 }
 
 .input-group {
@@ -216,7 +216,7 @@ td > .form_patient, td > .form_service {
 
 .input-group > input {
   flex-grow: 2;
-  width: 20em;
+  width: 25em;
 }
 
 .input-group > label {
@@ -240,20 +240,20 @@ td > .form_patient, td > .form_service {
 
 .no-grow > input {
   flex-grow: 1;
-  max-width: 10em;
-  width: 7em
+  max-width: 12em;
+  width: 10em
 }
 
 .no-grow > select[class$="gender"] {
-  min-width: 8em;
+  min-width: 10em;
 }
 
 .no-grow > select {
-  min-width: 18em;
+  min-width: 25em;
 }
 
 .no-grow > input[type="date"] {
-  min-width: 10em;
+  min-width: 12em;
 }
 
 input[pattern]:invalid{
