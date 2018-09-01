@@ -20,7 +20,7 @@ body {
   padding: 0;
   width: 100%;
   height:100%;
-  background-color: #80aab6;
+  background-color: #cce7ee;
 }
 
 .main-container {
@@ -48,7 +48,7 @@ body {
 }
 
 .container {
-  background-color: rgb(216, 196, 196);
+  background-color: rgb(228, 224, 220);
   border: 2px solid rgb(80, 120, 206);
   box-sizing: border-box;
   width:90%;
@@ -82,7 +82,7 @@ body {
 .page-header p {
   display: inline;
   font-size: 28px;
-  padding: 0 0 0 2em
+  padding: 0 0 0 3em
 } 
 
 .title {
@@ -100,7 +100,7 @@ body {
 }
 
 .btn_btn-person {
-  background-color: rgb(240, 116, 116);
+  background-color: rgb(238, 234, 185);
   color: #444;
   cursor: pointer;
   width: 100%;
@@ -112,7 +112,7 @@ body {
 }
 
 .btn_btn-service {
-  background-color: rgb(54, 170, 54);
+  background-color: rgb(153, 207, 128);
   color: #444;
   cursor: pointer;
   width: 88%;
@@ -124,16 +124,18 @@ body {
 .content-btn_person .content-btn_service {
   padding: 0 18px;
   display: none;
+  max-height: 200px;
   overflow: hidden;
   background-color: inherit;
+  transition: max-height 0.5s ease-out;
 }
 
 .btn_btn-person:hover {
-  background-color: rgb(224, 50, 50);
+  background-color: rgb(207, 200, 102);
 }
 
 .btn_btn-service:hover {
-  background-color: rgb(26, 105, 26);
+  background-color: rgb(124, 187, 94);
 }
 
 .btn_btn-person:after {
@@ -186,12 +188,12 @@ button[class^='class_btn_update_']  {
 }
 
 .class_btn_update_patient  {
-  background-color:  rgb(240, 116, 116);
-  border: 1px solid rgb(224, 50, 50);
+  background-color:   rgb(238, 234, 185);
+  border: 1px solid rgb(207, 200, 102);
 }
 
 .class_btn_update_service  {
-  background-color:  rgb(54, 170, 54);
+  background-color :rgb(124, 187, 94);
   border: 1px solid rgb(26, 105, 26);
 }
 

@@ -229,7 +229,7 @@ function CloneServices(entry) {
 
       LoadServiceDetail(entry, i)
 
-      //hide previous Button Add Service on 
+      //hide previous Button Add Service 
       $('#id_button_add_service_' + entry.id + '_' + (i-1)).css('display','none');
     }
   }
@@ -380,11 +380,13 @@ function AddListener($elem) {
       var content = this.parentElement.nextElementSibling;
     else
       content = this.nextElementSibling;
+      console.log(content )
     if (content.style.display === "block") {
       content.style.display = "none";
     } else {
-        content.style.display = "block";
+      content.style.display = "block";
     }
+    console.log(content )
   })
 }
 
@@ -538,6 +540,7 @@ $(document).on('click', ".class_btn_update_service", function () {
   inputArray.find(v => v.name == service + 'Date').name= 'serviceDate'
   inputArray.find(v => v.name == service + 'Conditions').name= 'serviceConditions'
   inputArray.find(v => v.name == 'serviceConditions').value= $("#id_" + service + "Conditions_" + idPatient + '_' + idService + " option:selected").text() 
+  inputArray.find(v => v.name == 'doctor').name= 'doctorId'
 
   UpdatePatientObjectServiceData(inputArray, idPatient, idService)
 
@@ -564,7 +567,7 @@ $(document).on('click', "button[id^=id_btn_person_]", function () {
   currentScroll = $(this).scrollTop();
   $('#id_main_name').animate({
       scrollTop: currentScroll + top 
-    }, 1500);
+    }, 1200);
 })
 
 $(document).on('click', "button[id^=id_btn_service_]", function () {
@@ -572,7 +575,7 @@ $(document).on('click', "button[id^=id_btn_service_]", function () {
   currentScroll = $(this.parentElement).scrollTop();
   $('#id_main_name').animate({
       scrollTop: currentScroll + top 
-    }, 1500);
+    }, 1200);
     $('#' + this.parentElement.nextElementSibling.id + ' select[id^="id_select_doctor_"]').trigger("focusout")
 })
 
@@ -586,7 +589,7 @@ $('#id_button_add_patient').click(function(){
   currentScroll = divToscroll.scrollTop();
   $('#id_main_name').animate({
       scrollTop: currentScroll + top 
-    }, 1500);
+    }, 1200);
 })
 
 $(document).on('click', ".btn_add_service", function () {
