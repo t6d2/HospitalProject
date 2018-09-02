@@ -154,7 +154,6 @@ function UpdateButtonPerson(entry, idCurrent) {
 function UpdatePersonFieldsPage(entry){
   for(let key in entry){
     let elementCreated = $('#id_content-btn_person_' + entry.id + ' .class_input_' + key);
-    console.log(key, elementCreated)
     if(elementCreated != null){
 
       if(key == 'birthDate'){
