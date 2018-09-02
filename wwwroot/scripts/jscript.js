@@ -153,8 +153,8 @@ function UpdateButtonPerson(entry, idCurrent) {
 
 function UpdatePersonFieldsPage(entry){
   for(let key in entry){
-
-    let elementCreated = document.body.querySelector('#id_content-btn_person_' + entry.id).querySelector('.class_input_' + key);
+    let elementCreated = $('#id_content-btn_person_' + entry.id + ' .class_input_' + key);
+    console.log(key, elementCreated)
     if(elementCreated != null){
 
       if(key == 'birthDate'){
@@ -168,11 +168,11 @@ function UpdatePersonFieldsPage(entry){
           day = day.length > 1 ? day : '0' + day;
           dateString = entry[key].getFullYear() + "-" + month + "-" + day
         }
-        elementCreated.setAttribute('value', dateString)
+        elementCreated.attr('value', dateString)
       } else if(key != 'imgSource'){
-        elementCreated.setAttribute('value', entry[key])
+        elementCreated.attr('value', entry[key])
       }
-      elementCreated.id = 'id_' + key + '_' + entry.id
+      elementCreated.attr('id','id_' + key + '_' + entry.id)
     }
   }
   if(entry.gender != "")  
@@ -249,11 +249,7 @@ function CloneDefaultService (entry, serviceToCreate){
   for(let j = 0; j < elements.length; j++){
     elements[j].id = elements[j].id.replace('_0_0', '_' + entry.id + '_' + serviceToCreate)
   }
- 
-  // following instructions added just for Edge
-  // $('select[id="id_visitConditions_' + entry.id + '_' + serviceToCreate + '"]').val("")
-  // $('select[id="id_surgeryConditions_' + entry.id + '_' + serviceToCreate + '"]').val("")
-}
+ }
 
 function LoadServiceDetail(entry, serviceNumber) {
    let month = (1 + entry.servicesList[serviceNumber-1].serviceDate.getMonth()).toString();
@@ -299,7 +295,6 @@ function LoadServiceDetail(entry, serviceNumber) {
 function DoctorsSelectPopulate (doctorsArraySelect, id_content_service) {
   //remove all options from select doctor
    $('#' + id_content_service + ' #id_optGroup_doctors').find("option").remove()
-
   //populate select doctor 
   for(i = 0; i < doctorsArraySelect.length; i++) 
     $('#' + id_content_service + ' #id_optGroup_doctors').append("<option Value=" + doctorsArraySelect[i][0] +">" + doctorsArraySelect[i][1] + "</option>");
@@ -337,7 +332,6 @@ function UpdatePatientObjectServiceData(inputArray, idPatient, idService) {
       patientToUpdate.servicesList[idService-1][inputArray[i].name] = inputArray[i].value
     }
   }
-  
   
   let dateObject = new Date(patientToUpdate.servicesList[idService-1].serviceDate);
   patientToUpdate.servicesList[idService-1].serviceDate = dateObject
@@ -429,8 +423,8 @@ $('.btn_btn-person').click (function() {
 
 $(document).on('click', ".class_btn_update_patient", function () {
   let idPatient =  parseInt(this.id.substr(this.id.lastIndexOf('_') + 1));
-  let invalidForm = document.querySelector("form[id='id_form_patient_" + idPatient + "']:invalid");
-  if (invalidForm) {
+  let invalidForm = $("form[id='id_form_patient_" + idPatient + "'] :invalid");
+  if (invalidForm.length > 0) {
     alert('Dati mancanti o non corretti!')
     return false;
   }
@@ -507,7 +501,6 @@ $(document).on('click', ".class_btn_update_service", function () {
     let form = Array.from($('#id_form_' + service + '_' + idPatient + '_' + idService).find( "input, select"))
     for(var i=0; i < form.length; i++){
       if(form[i].hasAttribute('required') && (form[i].value.trim() == '' || form[i].value == null )){
-        // $('#' + form[i].id).focus();
         isInputOk = false
         break
       }
