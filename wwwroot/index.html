@@ -25,7 +25,7 @@
       <p style="padding:0 0 0 1.5em; width:28%; margin:0">Cognome Nome </p>
       <p style="width:17.5%; margin:0">Data di nascita</p>
       <p style="width:14%; margin:0">Numero servizi</p>
-      <button id ="id_button_add_patient" style="margin:0 1.8em 0 auto;" class="btn_add_person" >Aggiungi Paziente</button>
+      <button id ="id_button_add_patient" style="margin:0 2em 0 auto;" class="btn_add_person" >Aggiungi Paziente</button>
     </div>
       <main id="id_main_name" class="main-container" >
         <div id="id_btns_container" class="container">
@@ -66,7 +66,7 @@
                       <div class="input-group no-grow">
                         <label>Genere</label>
                         <select id="id_gender_0" name="gender" class="class_input_gender" required="required"
-                            title="Genere non selezionato">
+                            title="Selezionare il genere">
                           <option disabled selected value="" >Genere...</option>
                           <option value="maschio">maschio</option>
                           <option value="femmina">femmina</option>
@@ -76,7 +76,7 @@
                       <div class="input-group no-grow">
                         <label>Data di nascita</label>
                         <input type="date" id="id_birthDate_0" name="birthDate"  class="class_input_birthDate" 
-                            placeholder="Selezionare la data" pattern="\d{1,2}/\d{1,2}/\d{4}" title="Data di nascita non inserita" required />
+                            placeholder="Selezionare la data" pattern="\d{1,2}/\d{1,2}/\d{4}" title="Selezionare o inserire la data" required />
                       </div>
                     </div>
                     <div class="row">
@@ -135,7 +135,7 @@
                       <div class="row" style="padding:1em 1em 0em 3.5em">
                         <div class="input-group no-grow" style="width:50%;">
                           <label>Servizio &nbsp;</label>
-                          <select id="id_select_service_0_0" name="dptName" class="class_input_select_dpt" required>
+                          <select id="id_select_service_0_0" name="dptName" class="class_input_select_dpt" title="Selezionare un servizio" required>
                             <option value="" disabled selected hidden>Selezionare un servizio...</option>
                             <optgroup id="id_optGroup_visits" label="Visite">
                                 <!-- // loaded dynamically -->
@@ -147,7 +147,7 @@
                         </div>
                         <div class="input-group no-grow" style="width:50%">
                           <label>Dottore &nbsp;</label>
-                          <select id="id_select_doctor_0_0" name="doctor" class="class_input_select_doctor" required>
+                          <select id="id_select_doctor_0_0" name="doctor" class="class_input_select_doctor" title="Selezionare un dottore" required>
                             <option value="" disabled selected hidden>Selezionare un dottore...</option>
                             <optgroup id="id_optGroup_doctors" label="Medici">
                               <!-- // loaded dynamically -->
@@ -166,7 +166,7 @@
                       <div class="row">
                         <div class="input-group no-grow">
                           <label>Condizioni di salute</label>
-                          <select id="id_visitConditions_0_0" name="visitConditions" class="class_input_serviceConditions" required="required">
+                          <select id="id_visitConditions_0_0" name="visitConditions" class="class_input_serviceConditions" title="Selezionare l'esito della visita" required="required">
                             <optgroup label="Condizione di salute">
                               <option value="" disabled selected hidden>Selezionare lo stato di salute...</option>
                               <option value="1">Buona salute</option>
@@ -178,7 +178,8 @@
                         </div>
                         <div class="input-group no-grow">
                           <label>Data della visita</label>
-                          <input type="date" id="id_visitDate_0_0" name="visitDate" class="class_input_visitDate" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Selezionare la data..." required="required"/>
+                          <input type="date" id="id_visitDate_0_0" name="visitDate" class="class_input_visitDate" title="Selezionare o inserire la data" 
+                            pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Selezionare la data..." required="required"/>
                         </div>
                       </div> 
                       <div class="row">
@@ -199,7 +200,7 @@
                       <div class="row">
                         <div class="input-group no-grow" >
                           <label>Esito dell'intervento &nbsp;</label>
-                          <select id="id_surgeryConditions_0_0" name="surgeryConditions" class="class_input_surgeryConditions" required="required">
+                          <select id="id_surgeryConditions_0_0" name="surgeryConditions" class="class_input_surgeryConditions" title="Selezionare l'esito dell'intervento" required="required">
                             <option value="" disabled selected hidden>Selezionare l'esito dell'intervento...</option>
                             <optgroup label="Condizione di salute">
                               <option value="1">Successo</option>
@@ -210,7 +211,8 @@
                         </div>
                         <div class="input-group no-grow">
                           <label for="surgeryDate">Data dell'intervento</label>
-                          <input type="date" id="id_surgeryDate_0_0" name="surgeryDate" class="class_input_surgeryDate" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Selezionare la data..." required="required" />
+                          <input type="date" id="id_surgeryDate_0_0" name="surgeryDate" class="class_input_surgeryDate" title="Selezionare o inserire la data" 
+                            pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Selezionare la data..." required="required" />
                         </div>
                       </div>
                       <div class="row">

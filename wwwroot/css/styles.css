@@ -3,12 +3,6 @@
   font: 15px/22.5px "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
   }
 
-  *,
-::before,
-::after {
-    box-sizing: inherit;
-}
-
 html {
   height: 100%;
 }
@@ -168,14 +162,11 @@ button[class^='btn_add_']  {
   cursor: pointer;
   width: auto;
   min-width: 10em;
-  height: 2.2em;
+  height: 2.1em;
   background-color: rgb(156, 154, 154);
 }
 
 .btn_add_service {
-  background-color:  rgb(156, 154, 154);
-  width: 9%;
-  padding: 0.1em 0 0.1em ;
   margin-left: 0.1em;
   text-align: center;
   font-size: 1em;
@@ -183,18 +174,19 @@ button[class^='btn_add_']  {
 
 button[class^='class_btn_update_']  {
   margin: 0em 0em 0.5em 0em;
+  cursor: pointer;
   color: black;
   font-size: 1.1em;
 }
 
 .class_btn_update_patient  {
   background-color:   rgb(238, 234, 185);
-  border: 1px solid rgb(207, 200, 102);
+  border: 2px solid outset rgb(207, 200, 102);
 }
 
 .class_btn_update_service  {
   background-color :rgb(241, 176, 90);
-  border: 1px solid rgb(194, 128, 41);
+  border: 2px solid outset rgb(194, 128, 41);
 }
 
 td > .form_patient, td > .form_service {

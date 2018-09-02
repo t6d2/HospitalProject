@@ -380,13 +380,11 @@ function AddListener($elem) {
       var content = this.parentElement.nextElementSibling;
     else
       content = this.nextElementSibling;
-      console.log(content )
     if (content.style.display === "block") {
       content.style.display = "none";
     } else {
       content.style.display = "block";
     }
-    console.log(content )
   })
 }
 
@@ -619,7 +617,6 @@ $(document).on('change', "input[required='true'], date, select", function (e) {
 })
 
 $(document).on('focusout', "input[required='true'], date, select", function (e) {
-  console.log(this)
   CheckInput($(this), e)
 })
 
