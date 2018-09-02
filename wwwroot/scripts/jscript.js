@@ -251,8 +251,8 @@ function CloneDefaultService (entry, serviceToCreate){
   }
  
   // following instructions added just for Edge
-  $('select[id="id_visitConditions_' + entry.id + '_' + serviceToCreate + '"]').val("")
-  $('select[id="id_surgeryConditions_' + entry.id + '_' + serviceToCreate + '"]').val("")
+  // $('select[id="id_visitConditions_' + entry.id + '_' + serviceToCreate + '"]').val("")
+  // $('select[id="id_surgeryConditions_' + entry.id + '_' + serviceToCreate + '"]').val("")
 }
 
 function LoadServiceDetail(entry, serviceNumber) {
@@ -509,7 +509,7 @@ $(document).on('click', ".class_btn_update_service", function () {
     let form = Array.from($('#id_form_' + service + '_' + idPatient + '_' + idService).find( "input, select"))
     for(var i=0; i < form.length; i++){
       if(form[i].hasAttribute('required') && (form[i].value.trim() == '' || form[i].value == null )){
-        $('#' + form[i].id).focus();
+        // $('#' + form[i].id).focus();
         isInputOk = false
         break
       }
@@ -614,11 +614,12 @@ $(document).on('click', ".btn_add_service", function () {
     $('#id_button_add_service_' + patientId + '_' + (newServiceObj.newService - 1)).css('display','none');
 })
 
-$(document).on('change', "input, date, select", function (e) {
+$(document).on('change', "input[required='true'], date, select", function (e) {
    CheckInput($(this), e)
 })
 
-$(document).on('focusout', "input, date, select", function (e) {
+$(document).on('focusout', "input[required='true'], date, select", function (e) {
+  console.log(this)
   CheckInput($(this), e)
 })
 
