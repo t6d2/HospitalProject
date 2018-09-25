@@ -1,15 +1,10 @@
 class Person
 {
-  constructor(id, name, surname, gender, birthDate, address, number, city, zip) {
+  constructor(id, name, surname) {
     this.id = id
     this.name = name
     this.surname = surname
-    this.gender = gender
-    this.birthDate = birthDate
-    this.address = address
-    this.number = number
-    this.city = city
-    this.zip = zip
+   
   } 
 
   get fullName() {
@@ -19,7 +14,13 @@ class Person
 
 class Patient extends Person {
   constructor(id, name, surname, gender, birthDate, address, number, city, zip, servicesNumber, imgSource) {
-      super(id, name, surname, gender, birthDate, address, number, city, zip,)
+      super(id, name, surname)
+      this.gender = gender
+      this.birthDate = birthDate
+      this.address = address
+      this.number = number
+      this.city = city
+      this.zip = zip
       this.servicesNumber = servicesNumber
       this.imgSource = imgSource
       this.servicesList = []

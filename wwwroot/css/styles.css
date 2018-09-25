@@ -1,7 +1,11 @@
 :root {
   box-sizing: border-box;
   font: 15px/22.5px "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif;
-  }
+}
+
+*, ::before, ::after {
+  box-sizing: inherit;
+}
 
 html {
   height: 100%;
@@ -41,6 +45,23 @@ body {
   font-weight: bold;
 }
 
+.title_container > p {
+  margin:0
+}
+
+.title_container > #p_fullname {
+  padding:0 0 0 1.5em;
+  width:28%
+}
+
+.title_container > #p_birthdate {
+  width:17.5%
+}
+
+.title_container > #p_servicesnumber{
+  width:14%
+}
+
 .container {
   background-color: rgb(228, 224, 220);
   border: 2px solid rgb(80, 120, 206);
@@ -77,13 +98,13 @@ body {
   display: inline;
   font-size: 28px;
   padding: 0 0 0 1.2em
-} 
+}
 
 .title {
   text-align: left;
   margin-top: 1em;
   margin:0 2em
-} 
+}
 
 .grow-more {
   flex-grow: 1;
@@ -100,9 +121,27 @@ body {
   width: 100%;
   padding: 0.3em 0 0.3em 0;
   text-align: left;
-  display: flex;
+  /* display: flex; */
   flex-direction: row;
   font-size: 1.1em;
+  align-items:center;
+  display: inline-flex
+}
+
+p[id^='p_id_fullName_']  {
+  width:29%;
+  margin:0.2em 0 0.2em 0;
+  padding:0 0 0 0.6em;
+}
+
+p[id^='p_id_birthDate_']  {
+  width:21%;
+  margin:0;
+}
+
+p[id^='p_id_servicesNumber_']  {
+  width:14%;
+  margin:0;
 }
 
 .btn_btn-service {
@@ -163,7 +202,11 @@ button[class^='btn_add_']  {
   width: auto;
   min-width: 10em;
   height: 2.1em;
-  background-color: rgb(156, 154, 154);
+  background-color: rgb(233, 224, 224);
+}
+
+.btn_add_person {
+  margin:0 2em 0 auto;
 }
 
 .btn_add_service {
@@ -203,6 +246,14 @@ td > .form_patient, td > .form_service {
   padding: 0em 2em 0em 5em
 }
 
+.detail_service {
+  padding: 1em 1em 0em 4em
+}
+
+.head_service {
+  padding: 3em 2em 0em 4.5em
+}
+
 .input-group {
   flex-grow: 0;
   margin: 0 0.5em 0.5em;
@@ -228,7 +279,7 @@ td > .form_patient, td > .form_service {
   border-width: 2px;
   border-style: inset;
   border-color: inherit;
-  padding: 0.3em 0.1em;
+  padding: 0.3em 0.3em;
   background-color: aliceblue;
 }
 
@@ -258,23 +309,47 @@ input[pattern]:invalid{
 table {
   border: 2px solid #FFFFFFFF;
   width: 100%;
-  background-color: inherit 
+  background-color: inherit
 }
 
-td .center_aligned{
+.service_type {
+  width:50%;
+}
+
+.center_aligned {
   display:block;
   text-align:center;
-  margin:0 auto 0.5em;
+  justify-content: center; 
+  margin:0;
 }
 
-td > p {
-  color: rgb(241, 176, 90);
-  font-weight: bold
+td > div > p {
+  font-weight: bold;
+  margin:2em auto 0
 }
+
+.class_input_imgSource{
+  width:25%;
+  text-align:center;
+  padding:0 0 0 4em
+}
+
+.class_input_imgSource > input {
+  visibility: hidden;
+  width: 1px;
+  height: 1px
+}
+
 
 img {
   text-align: center;
-  background-color: lightgray
+  background-color: lightgray;
+  cursor:pointer;
+  width: 120px;
+  height: 160px;
+  src:"images/default.jpg";
+  alt:"Clicca qui per caricare la foto"
+
 }
 
 select {

@@ -538,18 +538,20 @@ $(document).on('click', ".class_btn_update_service", function () {
 });
 
 function changePhoto(elem) {
-  if (elem.files && elem.files[0]) {
-      let reader = new FileReader();
+  var url = elem.value;
+  var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+  if (elem.files && elem.files[0]&& (ext == "gif" || ext == "png" || ext == "jpeg" || ext == "jpg")) {
+      var reader = new FileReader();
 
       reader.onload = function (e) {
-          $('#id_photo_image')
-              .attr('src', e.target.result);
-      };
-
+          let idPatient = elem.id.substring((elem.id).lastIndexOf('_') + 1)
+          $('#id_imgSource_' + idPatient + ' #id_photo_image').attr('src', e.target.result)
+      }
       reader.readAsDataURL(elem.files[0]);
-      let idPatient = elem.id.substring((elem.id).lastIndexOf('_') + 1)
-      $('#id_imgSource_' + idPatient + ' #id_photo_image').attr('src', 'images/patients_photos/' + elem.files[0].name)
   }
+  else{
+       $('#id_imgSource_' + idPatient + ' #id_photo_image').attr('src', '/images/no_preview.png');
+    }
 }
 
 $(document).on('click', "button[id^=id_btn_person_]", function () {

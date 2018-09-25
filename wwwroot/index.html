@@ -22,29 +22,30 @@
       </div>
     </header>
     <div class="title_container"  >
-      <p style="padding:0 0 0 1.5em; width:28%; margin:0">Cognome Nome </p>
-      <p style="width:17.5%; margin:0">Data di nascita</p>
-      <p style="width:14%; margin:0">Numero servizi</p>
-      <button id ="id_button_add_patient" style="margin:0 2em 0 auto;" class="btn_add_person" >Aggiungi Paziente</button>
+      <p id="p_fullname">Cognome Nome </p>
+      <p id="p_birthdate">Data di nascita</p>
+      <p id="p_servicesnumber">Numero servizi</p>
+      <button id ="id_button_add_patient" class="btn_add_person" >Aggiungi Paziente</button>
     </div>
       <main id="id_main_name" class="main-container" >
         <div id="id_btns_container" class="container">
           <button href="#id_content-btn_person_0" id="id_btn_person_0"
-            type="button" class="btn_btn-person" data-toggle="collapse"
-            style="align-items:center; display: inline-flex">
-            <p id="p_id_fullName_0" style="width:29%; margin:0.2em 0 0.2em 0 ; padding:0 0 0 0.6em;">full_name </p>
-            <p id="p_id_birthDate_0" style="width:21%; margin:0;">birth_date</p>
-            <p id="p_id_servicesNumber_0" style="width:14%; margin:0;">services_number</p>
+            type="button" class="btn_btn-person" data-toggle="collapse">
+            <p id="p_id_fullName_0" >full_name </p>
+            <p id="p_id_birthDate_0">birth_date</p>
+            <p id="p_id_servicesNumber_0">services_number</p>
           </button>
 
           <div id="id_content-btn_person_0" class="collapse">
             <table>
               <tr>
-                <td id="id_imgSource_0" width="25%" class="class_input_imgSource" style="text-align:center; padding:0 0 0 4em">
-                  <input type="file" id="id_photoFile_0" accept="image/*" name="img" onchange="changePhoto(this);" style="visibility: hidden; width: 1px; height: 1px"/>
+                <td id="id_imgSource_0" class="class_input_imgSource">
+                  <!-- <input type="file" id="id_photoFile_0" accept="image/*" name="img" onchange="changePhoto(this);"/>
                   <a href="" onclick="document.getElementById('id_photoFile_0').click(); return false">
-                    <img id="id_photo_image" class='img img-responsive img-thumbnail' title="clicca sull'immagine per cambiarla"
-                        src="images/default.jpg" alt="Clicca qui per caricare la foto" style="cursor:pointer; width: 120px; height: 160px;"/></a>
+                    <img id="id_photo_image" class='img img-responsive img-thumbnail' title="clicca sull'immagine per cambiarla"/></a> -->
+                    <input type="file" id="id_photoFile_0" accept="image/*" name="img" onchange="changePhoto(this);"/>
+                    <a href="" onclick="document.getElementById('id_photoFile_0').click(); return false">
+                      <img id="id_photo_image" class='img img-responsive img-thumbnail' title="clicca sull'immagine per cambiarla"/></a>
                 </td>
                 <td width="63%">
                   <form  id="id_form_patient_0" class="form_patient">
@@ -53,7 +54,8 @@
                         <label>Nome</label>
                         <input type="text" id="id_name_0" name="name" class="class_input_name" 
                                 placeholder="Inserire il nome" pattern="[A-Za-z][A-Za-z][A-Za-z' -]*"
-                                title="Il nome deve iniziare con almeno due caratteri alfabetici" required />
+                                title="Il nome deve iniziare con almeno due caratteri alfabetici" 
+                                required />
                       </div>
                       <div class="input-group">
                         <label>Cognome</label>
@@ -65,8 +67,8 @@
                     <div class="row">
                       <div class="input-group no-grow">
                         <label>Genere</label>
-                        <select id="id_gender_0" name="gender" class="class_input_gender" required="required"
-                            title="Selezionare il genere">
+                        <select id="id_gender_0" name="gender" class="class_input_gender" 
+                          required="required" title="Selezionare il genere">
                           <option disabled selected value="" >Genere...</option>
                           <option value="maschio">maschio</option>
                           <option value="femmina">femmina</option>
@@ -130,10 +132,10 @@
               <table>
 
                 <tr>
-                  <td colspan=2>
+                  <td>
                     <form id="id_form_select_service_0_0">
-                      <div class="row" style="padding:1em 1em 0em 3.5em">
-                        <div class="input-group no-grow" style="width:50%;">
+                      <div class="row head_service">
+                        <div class="input-group no-grow service_type">
                           <label>Servizio &nbsp;</label>
                           <select id="id_select_service_0_0" name="dptName" class="class_input_select_dpt" title="Selezionare un servizio" required>
                             <option value="" disabled selected hidden>Selezionare un servizio...</option>
@@ -145,7 +147,7 @@
                             </optgroup>
                           </select>
                         </div>
-                        <div class="input-group no-grow" style="width:50%">
+                        <div class="input-group no-grow service_type">
                           <label>Dottore &nbsp;</label>
                           <select id="id_select_doctor_0_0" name="doctor" class="class_input_select_doctor" title="Selezionare un dottore" required>
                             <option value="" disabled selected hidden>Selezionare un dottore...</option>
@@ -161,9 +163,12 @@
 
                 <tr id="id_tr_visit_0_0" class="class_input_tr_visit" style="display:none">
                   <td colspan=2>
-                    <p class="center_aligned" style="margin:0" >Visita</p>
-                    <form method="post" action ="" id="id_form_visit_0_0" class="form_service">
-                      <div class="row">
+                    <div class="center_aligned" >
+                      <p>Tipo di servizio: VISITA</p>
+                    </div>
+                   
+                    <form method="post" action="" id="id_form_visit_0_0" class="form_service">
+                      <div class="row detail_service">
                         <div class="input-group no-grow">
                           <label>Condizioni di salute</label>
                           <select id="id_visitConditions_0_0" name="visitConditions" class="class_input_serviceConditions" title="Selezionare l'esito della visita" required="required">
@@ -182,22 +187,28 @@
                             pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Selezionare la data..." required="required"/>
                         </div>
                       </div> 
-                      <div class="row">
+                      <div class="row detail_service">
                         <div class="input-group">
                           <label>Note &nbsp;</label>
-                          <textarea id="id_visitNotes_0_0" name="visitNotes" class="class_input_note" rows="3" cols="160" placeholder="Aggiungere eventuali note"></textarea>
+                          <textarea id="id_visitNotes_0_0" name="visitNotes" class="class_input_note" 
+                            rows="3" cols="150" placeholder="Aggiungere eventuali note"></textarea>
                         </div>
                       </div>
                     </form>
-                    <button type="submit" id="id_btn_visit_update_0_0" class="class_btn_update_service center_aligned">Aggiorna</button>
+                    <div class="center_aligned">
+                      <button type="submit" id="id_btn_visit_update_0_0" 
+                        class="class_btn_update_service">Aggiorna</button>
+                    </div>
                   </td>
                 </tr> 
                 
                 <tr id="id_tr_surgery_0_0" class="class_input_tr_surgery" style="display:none">
-                  <td colspan="2">
-                    <p class="center_aligned" style="margin:0" >Intervento</p>
-                    <form method="post" action ="" id="id_form_surgery_0_0" class="form_service">
-                      <div class="row">
+                  <td colspan=2> 
+                    <div class="center_aligned" >
+                      <p>Tipo di servizio: INTERVENTO</p>
+                    </div>
+                    <form method="post" action="" id="id_form_surgery_0_0" class="form_service">
+                      <div class="row detail_service">
                         <div class="input-group no-grow" >
                           <label>Esito dell'intervento &nbsp;</label>
                           <select id="id_surgeryConditions_0_0" name="surgeryConditions" class="class_input_surgeryConditions" title="Selezionare l'esito dell'intervento" required="required">
@@ -215,7 +226,7 @@
                             pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="Selezionare la data..." required="required" />
                         </div>
                       </div>
-                      <div class="row">
+                      <div class="row detail_service">
                         <div class="input-group no-grow">
                           <label>N° di bypass</label>
                           <input type="number" min="0" id="id_bypassNumber_0_0" name="bypassNumber" class="class_input_bypassNumber"/>
@@ -234,14 +245,17 @@
                         </div>
                       </div> 
 
-                      <div class="row">
+                      <div class="row detail_service">
                         <div class="input-group">
                           <label>Note &nbsp;</label>
-                          <textarea id="id_surgeryNotes_0_0" name="surgeryNotes" class="class_input_Notes" rows="3" cols="160"  id="message" placeholder="Aggiungere eventuali note"></textarea>
+                          <textarea id="id_surgeryNotes_0_0" name="surgeryNotes" class="class_input_Notes" rows="3" cols="150"  id="message" placeholder="Aggiungere eventuali note"></textarea>
                         </div>
                       </div>
                     </form>
-                    <button type="submit" id="id_btn_surgery_update_0_0" class="class_btn_update_service center_aligned">Aggiorna</button>
+                    <div class="center_aligned" >
+                      <button type="submit" id="id_btn_surgery_update_0_0" 
+                      class="class_btn_update_service">Aggiorna</button>
+                    </div>
                   </td>
                 </tr>
 
